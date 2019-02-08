@@ -14,13 +14,74 @@ package frc.robot;
  * floating around.
  */
 public class RobotMap {
-  // For example to map the left and right motors, you could define the
-  // following variables to use with your drivetrain subsystem.
-  // public static int leftMotor = 1;
-  // public static int rightMotor = 2;
+ 
+ // Physical Constants
+ public static final double WHEEL_DIAMETER = 5.875; // inches
+ public static final double PULSES_PER_REVOLUTION = 128;
+ public static final double DISTANCE_PER_PULSE = Math.PI * WHEEL_DIAMETER / PULSES_PER_REVOLUTION;
 
-  // If you are using multiple modules, make sure to define both the port
-  // number and the module. For example you with a rangefinder:
-  // public static int rangefinderPort = 1;
-  // public static int rangefinderModule = 1;
+  // Joysticks
+  public static final int LEFT_JOYSTICK = 0;
+  public static final int RIGHT_JOYSTICK = 1;
+  public static final int SECONDARY_JOYSTICK = 2;
+
+  // Climber Constants
+  public static final double CLIMBER_SPEED = 0.75;
+ 
+  // Drive train sparks
+	public static final int LEFT_1_SPARK = 2;
+	public static final int LEFT_2_SPARK = 1;
+	public static final int Right_1_SPARK = 5;
+  public static final int RIGHT_2_SPARK = 4;
+  
+  // Drive train talons
+  public static final int LEFT_Drive_TALON = 5;
+  public static final int RIGHT_Drive_TALON = 6;
+
+  public static final int ELEVATOR_TALON = 7;
+  public static final double ELEVATOR_TAL_SPEED = 0.7;
+
+  public static final int ROLLER_VICTORSPX = 8;
+  public static final double ROLLER_VICTOR_SPEED = 0.7; 
+  // Othern Talons
+  public static final int Rack_TALON = 2;
+  public static final int CLIMBER_TALON = 3;
+  public static final int WRIST_TALON = 4;
+ 
+  // Victors
+  public static final int CLIMBER_VICTOR = 2;
+  
+  // Encoders
+  public static final int[] DRIVE_LEFT_ENCODER = { 7, 8 };
+  public static final int[] DRIVE_RIGHT_ENCODER = { 5, 6 };
+  public static final double ROBOT_RADIUS = 12.0;
+
+  // Drive train solenoid
+  public static final int[] DRIVE_TRAIN_SHIFT = { 1, 2 };
+  
+  // Panel solenoids
+  public static final int[] INTAKE_SOLENOID = {6, 7};
+  public static final int[] DEPLOY_SOLENOID = {5, 4};
+
+  // Hatch Panel Limit Switches
+  public static final int LEFT_HATCH_PANEL_LIMIT = 1;
+  public static final int RIGHT_HATCH_PANEL_LIMIT = 0;
+
+  // Climber Limit Switches
+  public static final int UPPER_LIMIT = 2;
+  public static final int LOWER_LIMIT = 3;
+
+  // Vision Constants
+  public static final int IMAGE_WIDTH = 320;
+  // public static final double FOCAL_LENGTH = IMAGE_WIDTH / (2 * Math.tan(32.5));
+  public static final double TAPE_BOUND_WIDTH_INCH = 3.3;
+  public static final double FOCAL_LENGTH = (21 * 49.5) / TAPE_BOUND_WIDTH_INCH;
+  public static final int JEVOIS_BAUD_RATE = 115200;
+  public static final int FOV = 65;
+  
+
+  // Line Following Constants
+  public static final int LEFT_LINE_FOLLOW = 4;
+  public static final int CENTER_LINE_FOLLOW = 3;
+  public static final int RIGHT_LINE_FOLLOW = 2;
 }

@@ -7,36 +7,77 @@
 
 package frc.robot;
 
+
+import edu.wpi.first.wpilibj.GenericHID;
+import edu.wpi.first.wpilibj.Joystick;
+import edu.wpi.first.wpilibj.buttons.JoystickButton;
+import edu.wpi.first.wpilibj.command.Command;
+import frc.robot.commands.DeployHatchPanelCommandGroup;
+import frc.robot.commands.DriveForDistanceCommand;
+import frc.robot.commands.DriveTrainHighShiftCommand;
+import frc.robot.commands.DriveTrainLowShiftCommand;
+import frc.robot.commands.LineFollowCommand;
+import frc.robot.commands.ResetEncodersCommand;
+import frc.robot.commands.RunVisionThreadCommand;
+import frc.robot.commands.TurnAngleCommand;
+import frc.robot.commands.TurnToTargetCommandGroup;
+
 /**
  * This class is the glue that binds the controls on the physical operator
  * interface to the commands and command groups that allow control of the robot.
  */
 public class OI {
-  //// CREATING BUTTONS
-  // One type of button is a joystick button which is any button on a
-  //// joystick.
-  // You create one by telling it which joystick it's on and which button
-  // number it is.
-  // Joystick stick = new Joystick(port);
-  // Button button = new JoystickButton(stick, buttonNumber);
+  private Joystick leftJoy, rightJoy, secondaryJoy;
+  
+  public OI(){
+  //Creates joystick objects for use
+  leftJoy = new Joystick(RobotMap.LEFT_JOYSTICK);
+  rightJoy = new Joystick(RobotMap.RIGHT_JOYSTICK);
+  secondaryJoy = new Joystick(RobotMap.SECONDARY_JOYSTICK);
 
-  // There are a few additional built in buttons you can use. Additionally,
-  // by subclassing Button you can create custom triggers and bind those to
-  // commands the same as any other Button.
+    //Left joystick buttons
+		setJoystickButtonWhenPressedCommand(leftJoy, 1, new DriveTrainHighShiftCommand());
+		
+		//Right joystick buttons
+    setJoystickButtonWhenPressedCommand(rightJoy, 1, new DriveTrainLowShiftCommand());
+    
+    //Secondary Joystick Buttons
+    setJoystickButtonWhenPressedCommand(secondaryJoy, 1, new DeployHatchPanelCommandGroup());
+    setJoystickButtonWhenPressedCommand(secondaryJoy, 2, new RunVisionThreadCommand());
+    setJoystickButtonWhenPressedCommand(secondaryJoy, 3, new LineFollowCommand());
+    setJoystickButtonWhenPressedCommand(secondaryJoy, 5, new ResetEncodersCommand());
+    // setJoystickButtonWhenPressedCommand(secondaryJoy, 4, new CorrectAzimuthCommand());
+    setJoystickButtonWhenPressedCommand(secondaryJoy, 6, new TurnAngleCommand(-90));
+    setJoystickButtonWhenPressedCommand(secondaryJoy, 7, new DriveForDistanceCommand(50, 0.6, 0.6));
+    setJoystickButtonWhenPressedCommand(secondaryJoy, 8, new TurnToTargetCommandGroup());
+  }
 
-  //// TRIGGERING COMMANDS WITH BUTTONS
-  // Once you have a button, it's trivial to bind it to a button in one of
-  // three ways:
-
-  // Start the command when the button is pressed and let it run the command
-  // until it is finished as determined by it's isFinished method.
-  // button.whenPressed(new ExampleCommand());
-
-  // Run the command while the button is being held down and interrupt it once
-  // the button is released.
-  // button.whileHeld(new ExampleCommand());
-
-  // Start the command when the button is released and let it run the command
-  // until it is finished as determined by it's isFinished method.
-  // button.whenReleased(new ExampleCommand());
+  //Gets the Y direction of the left drive joystick
+	public double getLeftY() {
+    return leftJoy.getY();
 }
+
+//Gets the Y direction of the left drive joystick
+public double getLeftX() {
+  return leftJoy.getX();
+}
+
+//Gets the Y direction of the right drive joystick
+public double getRightY() {
+    return rightJoy.getY();
+}
+
+//Gets the X direction of the right drive joystick
+public double getRightX() {
+  return rightJoy.getX();
+}
+
+private void setJoystickButtonWhenPressedCommand(GenericHID joystick, int button, Command command) {
+  new JoystickButton(joystick, button).whenPressed(command);
+}
+
+private void setJoystickButtonWhileHeldCommand(GenericHID joystick, int button, Command command){
+  new JoystickButton(joystick, button).whileHeld(command);
+}
+
+};
