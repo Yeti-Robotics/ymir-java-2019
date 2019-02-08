@@ -28,6 +28,7 @@ import frc.robot.subsystems.DrivetrainSubsystem;
 import frc.robot.subsystems.ElevatorSubsystem;
 import frc.robot.subsystems.HatchPanelSubsystem;
 import frc.robot.subsystems.ShiftGearsSubsystem;
+import frc.robot.subsystems.WristRollerBarSubsystem;
 import frc.robot.subsystems.WristSubsystem;
 
 /**
@@ -48,6 +49,7 @@ public class Robot extends TimedRobot {
   public static HatchPanelSubsystem hatchPanelSubsystem;
   public static ElevatorSubsystem elevatorSubsystem;
   public static WristSubsystem wristSubsystem;
+  public static WristRollerBarSubsystem wristRollerBarSubsystem;
   public static boolean runVisionThread = false;
   public static JeVois jevois;
   public static List<Contour[]> contourList = new ArrayList<>();

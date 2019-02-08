@@ -10,6 +10,7 @@ package frc.robot.subsystems;
 import com.ctre.phoenix.motorcontrol.ControlMode;
 import com.ctre.phoenix.motorcontrol.can.VictorSPX;
 
+import edu.wpi.first.wpilibj.DigitalInput;
 import edu.wpi.first.wpilibj.command.Subsystem;
 import frc.robot.RobotMap;
 
@@ -18,9 +19,11 @@ import frc.robot.RobotMap;
  */
 public class WristRollerBarSubsystem extends Subsystem {
   private VictorSPX wristRollerVictor;
+  private DigitalInput breakBeamSensor;
 
   public WristRollerBarSubsystem() {
     wristRollerVictor = new VictorSPX(RobotMap.ROLLER_VICTORSPX);
+    breakBeamSensor = new DigitalInput(RobotMap.BEAM_BREAK);
   }
 
   public void rollIn() {
@@ -33,6 +36,10 @@ public class WristRollerBarSubsystem extends Subsystem {
 
   public void rollStop() {
     wristRollerVictor.set(ControlMode.PercentOutput, 0);
+  }
+
+  public boolean getBeamBreakSensor() {
+    return breakBeamSensor.get();
   }
 
   @Override
