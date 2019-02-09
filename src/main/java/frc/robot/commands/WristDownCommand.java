@@ -9,15 +9,18 @@ package frc.robot.commands;
 
 import edu.wpi.first.wpilibj.command.Command;
 import frc.robot.Robot;
+import frc.robot.RobotMap;
 
-public class ElevatorDownCommand extends Command {
-  public ElevatorDownCommand() {
-    requires(Robot.elevatorSubsystem);
+public class WristDownCommand extends Command {
+  public WristDownCommand() {
+    requires(Robot.wristSubsystem);
   }
 
   // Called just before this Command runs the first time
   @Override
   protected void initialize() {
+    Robot.wristSubsystem.setSetpoint(RobotMap.WRIST_LOWER);
+    Robot.wristSubsystem.enable();
   }
 
   // Called repeatedly when this Command is scheduled to run
@@ -28,7 +31,7 @@ public class ElevatorDownCommand extends Command {
   // Make this return true when this Command no longer needs to run execute()
   @Override
   protected boolean isFinished() {
-    return false;
+    return Robot.wristSubsystem.onTarget();
   }
 
   // Called once after isFinished returns true

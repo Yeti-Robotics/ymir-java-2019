@@ -88,4 +88,6 @@ public class RobotMap {
   public static final int BEAM_BREAK = 8;
 
   public static final double[] ELEVATOR_LEVELS = {1, 2, 3, 4, 5, 6, 7, 8};
+  public static final int WRIST_UPPER = 7;
+  public static final int WRIST_LOWER = 0;
 }
