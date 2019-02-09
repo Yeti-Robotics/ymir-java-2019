@@ -29,10 +29,10 @@ public class RobotMap {
   public static final double CLIMBER_SPEED = 0.75;
  
   // Drive train sparks
-	public static final int LEFT_1_SPARK = 2;
-	public static final int LEFT_2_SPARK = 1;
-	public static final int Right_1_SPARK = 5;
-  public static final int RIGHT_2_SPARK = 4;
+	public static final int LEFT_1_VICTOR = 2;
+	public static final int LEFT_2_VICTOR = 1;
+	public static final int RIGHT_1_VICTOR = 5;
+  public static final int RIGHT_2_VICTOR = 4;
   
   // Drive train talons
   public static final int LEFT_Drive_TALON = 5;

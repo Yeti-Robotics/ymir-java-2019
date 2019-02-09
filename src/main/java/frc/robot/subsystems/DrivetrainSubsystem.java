@@ -1,31 +1,23 @@
 package frc.robot.subsystems;
 
+import com.ctre.phoenix.motorcontrol.ControlMode;
+import com.ctre.phoenix.motorcontrol.can.VictorSPX;
+
+import edu.wpi.first.wpilibj.ADXRS450_Gyro;
+import edu.wpi.first.wpilibj.AnalogInput;
+import edu.wpi.first.wpilibj.CounterBase.EncodingType;
+import edu.wpi.first.wpilibj.Encoder;
+import edu.wpi.first.wpilibj.PIDSourceType;
+import edu.wpi.first.wpilibj.command.Subsystem;
+import edu.wpi.first.wpilibj.drive.DifferentialDrive;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import frc.robot.RobotMap;
 import frc.robot.commands.UserDriveCommand;
 import frc.robot.controls.CustomTalon;
-import edu.wpi.first.wpilibj.CounterBase.EncodingType;
-import edu.wpi.first.wpilibj.ADXRS450_Gyro;
-import edu.wpi.first.wpilibj.AnalogGyro;
-import edu.wpi.first.wpilibj.AnalogInput;
-import edu.wpi.first.wpilibj.DigitalInput;
-import edu.wpi.first.wpilibj.Encoder;
-import edu.wpi.first.wpilibj.PIDController;
-import edu.wpi.first.wpilibj.PIDOutput;
-import edu.wpi.first.wpilibj.PIDSource;
-import edu.wpi.first.wpilibj.PIDSourceType;
-import edu.wpi.first.wpilibj.Spark;
-import edu.wpi.first.wpilibj.SpeedControllerGroup;
-import edu.wpi.first.wpilibj.command.Subsystem;
-import edu.wpi.first.wpilibj.drive.DifferentialDrive;
-import edu.wpi.first.wpilibj.livewindow.LiveWindow;
-import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
-
-import com.analog.adis16448.frc.ADIS16448_IMU;
-import com.ctre.phoenix.motorcontrol.ControlMode;
 
 public class DrivetrainSubsystem extends Subsystem {
 
-    private Spark left1, left2, right1, right2;
+    private VictorSPX left1, left2, right1, right2;
     private CustomTalon leftTal, rightTal;
     private Encoder leftEnc, rightEnc;
     private DifferentialDrive differentialDrive;
@@ -39,21 +31,22 @@ public class DrivetrainSubsystem extends Subsystem {
 
     public DrivetrainSubsystem() {
 
-        left1 = new Spark(RobotMap.LEFT_1_SPARK);
-        left2 = new Spark(RobotMap.LEFT_2_SPARK);
-        right1 = new Spark(RobotMap.Right_1_SPARK);
-        right2 = new Spark(RobotMap.RIGHT_2_SPARK);
+        left1 = new VictorSPX(RobotMap.LEFT_1_VICTOR);
+        left2 = new VictorSPX(RobotMap.LEFT_2_VICTOR);
+        right1 = new VictorSPX(RobotMap.RIGHT_1_VICTOR);
+        right2 = new VictorSPX(RobotMap.RIGHT_2_VICTOR);
         leftTal = new CustomTalon(RobotMap.LEFT_Drive_TALON);
         rightTal = new CustomTalon(RobotMap.RIGHT_Drive_TALON);
         gyro = new ADXRS450_Gyro();
         gyro.calibrate();
         SmartDashboard.putData(gyro);
-        
 
-        SpeedControllerGroup leftSparks = new SpeedControllerGroup(left1, left2, leftTal);
-        SpeedControllerGroup rightSparks = new SpeedControllerGroup(right1, right2, rightTal);
+        left1.follow(leftTal);
+        left2.follow(leftTal);
+        right1.follow(rightTal);
+        right2.follow(rightTal);
 
-        differentialDrive = new DifferentialDrive(leftSparks, rightSparks);
+        differentialDrive = new DifferentialDrive(leftTal, rightTal);
        
 
         // Creates encoder objects connected to their respective DIO ports
@@ -120,16 +113,12 @@ public class DrivetrainSubsystem extends Subsystem {
 
     // Controls the right side of the drive train
     public void moveDriveTrainRight(double power) {
-        right1.set(power);
-        right2.set(power);
         rightTal.set(ControlMode.PercentOutput, power);
 
     }
 
     // Controls the left side of the drive train
     public void moveDriveTrainLeft(double power) {
-        left1.set(power);
-        left2.set(power);
         leftTal.set(ControlMode.PercentOutput, power);
     }
 
