@@ -10,6 +10,7 @@ package frc.robot.subsystems;
 import com.ctre.phoenix.motorcontrol.FeedbackDevice;
 
 import edu.wpi.first.wpilibj.Encoder;
+import edu.wpi.first.wpilibj.command.PIDSubsystem;
 import edu.wpi.first.wpilibj.command.Subsystem;
 import frc.robot.RobotMap;
 import frc.robot.controls.CustomTalon;
@@ -17,21 +18,16 @@ import frc.robot.controls.CustomTalon;
 /**
  * Add your docs here.
  */
-public class ElevatorSubsystem extends Subsystem {
+public class ElevatorSubsystem extends PIDSubsystem {
   private CustomTalon elevatorTalon;
 
   public ElevatorSubsystem() {
+    super(1, 0, 0);
     elevatorTalon = new CustomTalon(RobotMap.ELEVATOR_TALON);
     elevatorTalon.configSelectedFeedbackSensor(FeedbackDevice.QuadEncoder);
   }
 
-  public void elevatorUp() {
-    elevatorTalon.set(RobotMap.ELEVATOR_TAL_SPEED);
-  }
-
-  public void elevatorDown() {
-    elevatorTalon.set(-RobotMap.ELEVATOR_TAL_SPEED);
-  }
+  
 
   public void elevatorStop() {
     elevatorTalon.set(0);
@@ -49,5 +45,15 @@ public class ElevatorSubsystem extends Subsystem {
   public void initDefaultCommand() {
     // Set the default command for a subsystem here.
     // setDefaultCommand(new MySpecialCommand());
+  }
+
+  @Override
+  protected double returnPIDInput() {
+    return elevatorTalon.getSelectedSensorPosition();
+  }
+
+  @Override
+  protected void usePIDOutput(double output) {
+    elevatorTalon.set(output);
   }
 }

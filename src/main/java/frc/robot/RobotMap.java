@@ -86,4 +86,6 @@ public class RobotMap {
   public static final int RIGHT_LINE_FOLLOW = 2;
 
   public static final int BEAM_BREAK = 8;
+
+  public static final double[] ELEVATOR_LEVELS = {1, 2, 3, 4, 5, 6, 7, 8};
 }
