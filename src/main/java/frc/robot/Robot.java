@@ -24,9 +24,11 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import frc.robot.commands.UserDriveCommand;
 import frc.robot.controls.Contour;
 import frc.robot.controls.JeVois;
+import frc.robot.subsystems.DiscRackSubsystem;
 import frc.robot.subsystems.DrivetrainSubsystem;
 import frc.robot.subsystems.ElevatorSubsystem;
 import frc.robot.subsystems.HatchPanelSubsystem;
+import frc.robot.subsystems.DiscRackSubsystem;
 import frc.robot.subsystems.ShiftGearsSubsystem;
 import frc.robot.subsystems.WristRollerBarSubsystem;
 import frc.robot.subsystems.WristSubsystem;
@@ -50,6 +52,7 @@ public class Robot extends TimedRobot {
   public static ElevatorSubsystem elevatorSubsystem;
   public static WristSubsystem wristSubsystem;
   public static WristRollerBarSubsystem wristRollerBarSubsystem;
+  public static DiscRackSubsystem discRackSubsystem;
   public static boolean runVisionThread = false;
   public static JeVois jevois;
   public static List<Contour[]> contourList = new ArrayList<>();
@@ -69,6 +72,7 @@ public class Robot extends TimedRobot {
     drivetrainSubsystem = new DrivetrainSubsystem();
     shiftGearsSubsystem = new ShiftGearsSubsystem();
     driverStation = DriverStation.getInstance();
+    discRackSubsystem = new DiscRackSubsystem();
     jevois = new JeVois();
     oi = new OI();
     new Timer().scheduleAtFixedRate(new TimerTask(){
