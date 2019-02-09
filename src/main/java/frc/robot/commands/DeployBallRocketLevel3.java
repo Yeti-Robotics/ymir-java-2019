@@ -10,14 +10,14 @@ package frc.robot.commands;
 import edu.wpi.first.wpilibj.command.CommandGroup;
 import frc.robot.RobotMap;
 
-public class IntakeBallCommandGroup extends CommandGroup {
+public class DeployBallRocketLevel3 extends CommandGroup {
   /**
    * Add your docs here.
    */
-  public IntakeBallCommandGroup() {
-    addSequential(new WristDownCommand());
-    addSequential(new IntakeBallCommand());
-    addSequential(new WristUpCommand());
-    addSequential(new MoveElevatorCommand(RobotMap.ELEVATOR_LEVELS[4]));
+  public DeployBallRocketLevel3() {
+    addSequential(new LineFollowCommand());
+    addSequential(new TurnToTargetCommandGroup());
+    addSequential(new MoveElevatorCommand(RobotMap.ELEVATOR_LEVELS[8]));
+    addSequential(new LaunchBallCommand());
   }
 }
