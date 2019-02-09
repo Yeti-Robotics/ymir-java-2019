@@ -11,6 +11,7 @@ import com.ctre.phoenix.motorcontrol.ControlMode;
 import com.ctre.phoenix.motorcontrol.FeedbackDevice;
 
 import edu.wpi.first.wpilibj.Encoder;
+import edu.wpi.first.wpilibj.command.PIDSubsystem;
 import edu.wpi.first.wpilibj.command.Subsystem;
 import frc.robot.RobotMap;
 import frc.robot.controls.CustomTalon;
@@ -18,12 +19,13 @@ import frc.robot.controls.CustomTalon;
 /**
  * Add your docs here.
  */
-public class WristSubsystem extends Subsystem {
+public class WristSubsystem extends PIDSubsystem {
   
   private CustomTalon wristTal;
 
 
   public WristSubsystem(){
+    super(1, 0, 0);
     wristTal = new CustomTalon(RobotMap.WRIST_TALON);
 
     wristTal.configSelectedFeedbackSensor(FeedbackDevice.QuadEncoder);
@@ -31,7 +33,7 @@ public class WristSubsystem extends Subsystem {
   }
 
   public void useWrist(double power){
-    wristTal.set(ControlMode.PercentOutput, power);
+    wristTal.set(power);
   }
 
   public void resetWristEncoder(){
@@ -46,5 +48,15 @@ public class WristSubsystem extends Subsystem {
   public void initDefaultCommand() {
     // Set the default command for a subsystem here.
     // setDefaultCommand(new MySpecialCommand());
+  }
+
+  @Override
+  protected double returnPIDInput() {
+    return wristTal.getSelectedSensorPosition();
+  }
+
+  @Override
+  protected void usePIDOutput(double output) {
+    wristTal.set(output);
   }
 }

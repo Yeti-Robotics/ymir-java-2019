@@ -14,6 +14,8 @@ public class IntakeBallCommandGroup extends CommandGroup {
    * Add your docs here.
    */
   public IntakeBallCommandGroup() {
+    addSequential(new WristDownCommand());
     addSequential(new IntakeBallCommand());
+    addSequential(new WristUpCommand());
   }
 }

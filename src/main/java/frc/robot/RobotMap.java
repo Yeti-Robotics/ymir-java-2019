@@ -86,4 +86,7 @@ public class RobotMap {
   public static final int RIGHT_LINE_FOLLOW = 2;
 
   public static final int BEAM_BREAK = 8;
+
+  public static final int WRIST_UPPER = 7;
+  public static final int WRIST_LOWER = 0;
 }
