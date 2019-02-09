@@ -128,6 +128,9 @@ public class Robot extends TimedRobot {
     // System.out.println(jevois.getLeftDistance() + "," + jevois.getRightDistance());
     SmartDashboard.putNumber("Left Encoder Rate", drivetrainSubsystem.getLeftEncoderRate());
     SmartDashboard.putNumber("Right Encoder Rate", drivetrainSubsystem.getRightEncoderRate());
+    SmartDashboard.putNumber("Left Line Follow Voltage", drivetrainSubsystem.lineSensorLeft.getAverageVoltage());
+    SmartDashboard.putNumber("Center Line Follow Voltage", drivetrainSubsystem.lineSensorCenter.getAverageVoltage());
+    SmartDashboard.putNumber("Right Line Follow Voltage", drivetrainSubsystem.lineSensorRight.getAverageVoltage());
   }
 
   /**

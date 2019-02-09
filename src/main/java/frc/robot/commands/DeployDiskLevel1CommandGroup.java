@@ -17,7 +17,7 @@ public class DeployDiskLevel1CommandGroup extends CommandGroup {
   public DeployDiskLevel1CommandGroup() {
     addSequential(new LineFollowCommand());
     addSequential(new TurnToTargetCommandGroup());
-    // rack and pinion command
+    addSequential(new MoveDiscRackCommand());
     addSequential(new MoveElevatorCommand(RobotMap.ELEVATOR_LEVELS[2]));
     addSequential(new DeployHatchPanelCommandGroup());
   }
