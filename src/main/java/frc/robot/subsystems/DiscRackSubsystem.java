@@ -51,16 +51,6 @@ public class DiscRackSubsystem extends Subsystem {
     // setDefaultCommand(new MySpecialCommand());
   }
 
-  @Override
-  protected double returnPIDInput() {
-    
-    return getRackEncoderValue();
-  }
-
-  @Override
-  protected void movePIDOutput(double output) {
-rackTal.set(output);
-  }
 
 
 }
