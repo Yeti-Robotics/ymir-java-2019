@@ -22,8 +22,8 @@ public class MoveDiscRackCommand extends PIDCommand {
   // Called just before this Command runs the first time
   @Override
   protected void initialize() {
-    Robot.discRackSubsystem.setSetpoint(0);
-    Robot.discRackSubsystem.enable();
+    this.getPIDController().setSetpoint(0);
+    this.getPIDController().enable();
   }
 
   // Called repeatedly when this Command is scheduled to run
