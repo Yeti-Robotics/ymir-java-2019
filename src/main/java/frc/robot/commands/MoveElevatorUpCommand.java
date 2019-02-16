@@ -8,54 +8,40 @@
 package frc.robot.commands;
 
 import edu.wpi.first.wpilibj.command.Command;
-import edu.wpi.first.wpilibj.command.PIDCommand;
 import frc.robot.Robot;
 
-public class MoveDiscRackCommand extends PIDCommand {
-  public MoveDiscRackCommand() {
-    super(1,0,0);
-    // Use requires() here to declare subsystem dependencies
-    // eg. requires(chassis);
-    requires(Robot.discRackSubsystem);
+public class MoveElevatorUpCommand extends Command {
+  public MoveElevatorUpCommand() {
+    setTimeout(2);
+    requires(Robot.elevatorSubsystem);
   }
 
   // Called just before this Command runs the first time
   @Override
   protected void initialize() {
-    this.getPIDController().setSetpoint(0);
-    this.getPIDController().enable();
   }
 
   // Called repeatedly when this Command is scheduled to run
   @Override
   protected void execute() {
-    
+    Robot.elevatorSubsystem.moveElevatorUp();
   }
 
   // Make this return true when this Command no longer needs to run execute()
   @Override
   protected boolean isFinished() {
-    return false;
+    return isTimedOut();
   }
 
   // Called once after isFinished returns true
   @Override
   protected void end() {
+    Robot.elevatorSubsystem.elevatorStop();
   }
 
   // Called when another command which requires one or more of the same
   // subsystems is scheduled to run
   @Override
   protected void interrupted() {
-  }
-
-  @Override
-  protected double returnPIDInput() {
-    return Robot.jevois.getAzimuth();
-  }
-
-  @Override
-  protected void usePIDOutput(double output) {
-  Robot.discRackSubsystem.moveRack(output);
   }
 }

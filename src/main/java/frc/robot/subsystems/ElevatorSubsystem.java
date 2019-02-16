@@ -41,6 +41,14 @@ public class ElevatorSubsystem extends PIDSubsystem {
     return elevatorTalon.getSelectedSensorPosition();
   }
 
+  public void moveElevatorUp() {
+    elevatorTalon.set(0.5);
+  }
+
+  public void moveElevatorDown() {
+    elevatorTalon.set(-0.5);
+  }
+
   @Override
   public void initDefaultCommand() {
     // Set the default command for a subsystem here.
