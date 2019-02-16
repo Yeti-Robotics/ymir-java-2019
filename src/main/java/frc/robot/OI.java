@@ -12,24 +12,19 @@ import edu.wpi.first.wpilibj.GenericHID;
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.buttons.JoystickButton;
 import edu.wpi.first.wpilibj.command.Command;
+import frc.robot.commands.ActivateDeployCommand;
+import frc.robot.commands.DeactivateDeployCommand;
+import frc.robot.commands.DeactivateIntakeCommand;
 import frc.robot.commands.DeployBallCargoShipCommandGroup;
-import frc.robot.commands.DeployBallRocketLevel2CommandGroup;
 import frc.robot.commands.DeployBallRocketLevel3;
 import frc.robot.commands.DeployDiskLevel1CommandGroup;
 import frc.robot.commands.DeployDiskLevel2CommandGroup;
 import frc.robot.commands.DeployDiskLevel3CommandGroup;
 import frc.robot.commands.DeployHatchPanelCommandGroup;
-import frc.robot.commands.DriveForDistanceCommand;
 import frc.robot.commands.DriveTrainHighShiftCommand;
 import frc.robot.commands.DriveTrainLowShiftCommand;
-import frc.robot.commands.IntakeBallCommandGroup;
-import frc.robot.commands.LineFollowCommand;
 import frc.robot.commands.MoveElevatorDownCommand;
 import frc.robot.commands.MoveElevatorUpCommand;
-import frc.robot.commands.ResetEncodersCommand;
-import frc.robot.commands.RunVisionThreadCommand;
-import frc.robot.commands.TurnAngleCommand;
-import frc.robot.commands.TurnToTargetCommandGroup;
 
 /**
  * This class is the glue that binds the controls on the physical operator
@@ -46,26 +41,28 @@ public class OI {
   secondaryJoy = new Joystick(RobotMap.SECONDARY_JOYSTICK);
 
     //Left joystick buttons
-		setJoystickButtonWhenPressedCommand(leftJoy, 1, new DriveTrainHighShiftCommand());
+		setJoystickButtonWhenPressedCommand(driverStationJoy, 11, new DriveTrainHighShiftCommand());
 		
 		//Right joystick buttons
-    setJoystickButtonWhenPressedCommand(rightJoy, 1, new DriveTrainLowShiftCommand());
+    setJoystickButtonWhenPressedCommand(driverStationJoy, 12, new DriveTrainLowShiftCommand());
     
     //Secondary Joystick Buttons
-    setJoystickButtonWhenPressedCommand(secondaryJoy, 1, new DeployDiskLevel1CommandGroup());
+    // setJoystickButtonWhenPressedCommand(driverStationJoy, 1, new DeployDiskLevel1CommandGroup());
     // setJoystickButtonWhenPressedCommand(secondaryJoy, 2, new IntakeBallCommandGroup());
-    setJoystickButtonWhenPressedCommand(secondaryJoy, 3, new DeployDiskLevel2CommandGroup());
-    setJoystickButtonWhenPressedCommand(secondaryJoy, 4, new DeployDiskLevel3CommandGroup());
-    setJoystickButtonWhenPressedCommand(secondaryJoy, 5, new DeployBallCargoShipCommandGroup());
+    // setJoystickButtonWhenPressedCommand(driverStationJoy, 3, new DeployDiskLevel2CommandGroup());
+    // setJoystickButtonWhenPressedCommand(driverStationJoy, 4, new DeployDiskLevel3CommandGroup());
+    // setJoystickButtonWhenPressedCommand(driverStationJoy, 5, new DeployBallCargoShipCommandGroup());
     // setJoystickButtonWhenPressedCommand(secondaryJoy, 6, new DeployBallRocketLevel2CommandGroup());
-    setJoystickButtonWhenPressedCommand(secondaryJoy, 7, new DeployBallRocketLevel3());
+    // setJoystickButtonWhenPressedCommand(driverStationJoy, 7, new DeployBallRocketLevel3());
 
-    // setJoystickButtonWhenPressedCommand(secondaryJoy, 1, new DeployHatchPanelCommandGroup());
-    setJoystickButtonWhenPressedCommand(secondaryJoy, 2, new MoveElevatorUpCommand());
+    setJoystickButtonWhenPressedCommand(driverStationJoy, 1, new ActivateDeployCommand());
+    setJoystickButtonWhenPressedCommand(driverStationJoy, 2, new DeactivateDeployCommand());
+    setJoystickButtonWhenPressedCommand(driverStationJoy, 3, new DeactivateIntakeCommand());
+    setJoystickButtonWhenPressedCommand(driverStationJoy, 7, new MoveElevatorUpCommand());
     // setJoystickButtonWhenPressedCommand(secondaryJoy, 3, new LineFollowCommand());
     // setJoystickButtonWhenPressedCommand(secondaryJoy, 5, new ResetEncodersCommand());
     // // setJoystickButtonWhenPressedCommand(secondaryJoy, 4, new CorrectAzimuthCommand());
-    setJoystickButtonWhenPressedCommand(secondaryJoy, 6, new MoveElevatorDownCommand());
+    setJoystickButtonWhenPressedCommand(driverStationJoy, 8, new MoveElevatorDownCommand());
     // setJoystickButtonWhenPressedCommand(secondaryJoy, 7, new DriveForDistanceCommand(50, 0.6, 0.6));
     // setJoystickButtonWhenPressedCommand(secondaryJoy, 8, new TurnToTargetCommandGroup());
   }
