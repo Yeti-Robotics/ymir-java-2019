@@ -19,7 +19,7 @@ public class WristDownCommand extends Command {
   // Called just before this Command runs the first time
   @Override
   protected void initialize() {
-    Robot.wristSubsystem.setSetpoint(RobotMap.WRIST_LOWER);
+    Robot.wristSubsystem.setSetpoint(RobotMap.WRIST_LOWER_ENCODER_LIMIT);
     Robot.wristSubsystem.enable();
   }
 

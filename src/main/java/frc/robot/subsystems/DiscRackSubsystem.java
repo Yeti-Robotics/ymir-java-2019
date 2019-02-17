@@ -10,7 +10,6 @@ package frc.robot.subsystems;
 import com.ctre.phoenix.motorcontrol.ControlMode;
 import com.ctre.phoenix.motorcontrol.FeedbackDevice;
 
-import edu.wpi.first.wpilibj.command.PIDSubsystem;
 import edu.wpi.first.wpilibj.command.Subsystem;
 import frc.robot.RobotMap;
 import frc.robot.controls.CustomTalon;
@@ -24,7 +23,7 @@ public class DiscRackSubsystem extends Subsystem {
 
   public DiscRackSubsystem() {
 
-    rackTal = new CustomTalon(RobotMap.Rack_TALON);
+    rackTal = new CustomTalon(RobotMap.RACK_TALON);
 
     rackTal.configSelectedFeedbackSensor(FeedbackDevice.QuadEncoder);
 

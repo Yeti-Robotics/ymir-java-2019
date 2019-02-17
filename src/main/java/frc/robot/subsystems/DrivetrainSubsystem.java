@@ -6,9 +6,6 @@ import com.ctre.phoenix.motorcontrol.can.VictorSPX;
 
 import edu.wpi.first.wpilibj.ADXRS450_Gyro;
 import edu.wpi.first.wpilibj.AnalogInput;
-import edu.wpi.first.wpilibj.CounterBase.EncodingType;
-import edu.wpi.first.wpilibj.Encoder;
-import edu.wpi.first.wpilibj.PIDSourceType;
 import edu.wpi.first.wpilibj.command.Subsystem;
 import edu.wpi.first.wpilibj.drive.DifferentialDrive;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
@@ -35,8 +32,8 @@ public class DrivetrainSubsystem extends Subsystem {
         left2 = new VictorSPX(RobotMap.LEFT_2_VICTOR);
         right1 = new VictorSPX(RobotMap.RIGHT_1_VICTOR);
         right2 = new VictorSPX(RobotMap.RIGHT_2_VICTOR);
-        leftTal = new CustomTalon(RobotMap.LEFT_Drive_TALON);
-        rightTal = new CustomTalon(RobotMap.RIGHT_Drive_TALON);
+        leftTal = new CustomTalon(RobotMap.LEFT_DRIVE_TALON);
+        rightTal = new CustomTalon(RobotMap.RIGHT_DRIVE_TALON);
         leftTal.configSelectedFeedbackSensor(FeedbackDevice.QuadEncoder);
         rightTal.configSelectedFeedbackSensor(FeedbackDevice.QuadEncoder);
         gyro = new ADXRS450_Gyro();
@@ -51,20 +48,17 @@ public class DrivetrainSubsystem extends Subsystem {
         differentialDrive = new DifferentialDrive(leftTal, rightTal);
        
 
-        // Creates encoder objects connected to their respective DIO ports
-        rightTal.setInverted(true);
+        leftTal.setInverted(true);
         left1.setInverted(true);
         left2.setInverted(true);
+
+        right1.setInverted(false);
 
         lineSensorLeft = new AnalogInput(RobotMap.LEFT_LINE_FOLLOW);
         lineSensorCenter = new AnalogInput(RobotMap.CENTER_LINE_FOLLOW);
         lineSensorRight = new AnalogInput(RobotMap.RIGHT_LINE_FOLLOW);
 
-        SmartDashboard.putNumber("Left drive distance", getLeftEncoderValue());
-        SmartDashboard.putNumber("Right drive distance", getRightEncoderValue());
-
         driveMode = DriveMode.TANK;
-
     }
     
 

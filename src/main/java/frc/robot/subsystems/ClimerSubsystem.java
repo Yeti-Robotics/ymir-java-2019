@@ -8,7 +8,6 @@
 package frc.robot.subsystems;
 
 import com.ctre.phoenix.motorcontrol.ControlMode;
-import com.ctre.phoenix.motorcontrol.can.VictorSPX;
 
 import edu.wpi.first.wpilibj.DigitalInput;
 import edu.wpi.first.wpilibj.command.Subsystem;
@@ -20,16 +19,12 @@ import frc.robot.controls.CustomTalon;
  */
 public class ClimerSubsystem extends Subsystem {
   private CustomTalon climberTal;
-  private VictorSPX climberVic;
   private DigitalInput upperLimit, lowerLimit;
 
   public ClimerSubsystem(){
     climberTal = new CustomTalon(RobotMap.CLIMBER_TALON);
-    climberVic = new VictorSPX(RobotMap.CLIMBER_VICTOR);
     upperLimit = new DigitalInput(RobotMap.UPPER_LIMIT);
     lowerLimit = new DigitalInput(RobotMap.LOWER_LIMIT);
-
-    
   }
 
   public void useClimber(){

@@ -8,10 +8,9 @@
 package frc.robot.subsystems;
 
 import com.ctre.phoenix.motorcontrol.FeedbackDevice;
+import com.ctre.phoenix.motorcontrol.can.VictorSPX;
 
-import edu.wpi.first.wpilibj.Encoder;
 import edu.wpi.first.wpilibj.command.PIDSubsystem;
-import edu.wpi.first.wpilibj.command.Subsystem;
 import frc.robot.RobotMap;
 import frc.robot.controls.CustomTalon;
 
@@ -20,11 +19,14 @@ import frc.robot.controls.CustomTalon;
  */
 public class ElevatorSubsystem extends PIDSubsystem {
   private CustomTalon elevatorTalon;
+  private VictorSPX elevatorVictor;
 
   public ElevatorSubsystem() {
     super(1, 0, 0);
     elevatorTalon = new CustomTalon(RobotMap.ELEVATOR_TALON);
+    elevatorVictor = new VictorSPX(RobotMap.ELEVATOR_VICTOR);
     elevatorTalon.configSelectedFeedbackSensor(FeedbackDevice.QuadEncoder);
+    elevatorVictor.follow(elevatorTalon);
   }
 
   
@@ -42,11 +44,11 @@ public class ElevatorSubsystem extends PIDSubsystem {
   }
 
   public void moveElevatorUp() {
-    elevatorTalon.set(0.5);
+    elevatorTalon.set(RobotMap.ELEVATOR_TAL_SPEED);
   }
 
   public void moveElevatorDown() {
-    elevatorTalon.set(-0.5);
+    elevatorTalon.set(-RobotMap.ELEVATOR_TAL_SPEED);
   }
 
   @Override

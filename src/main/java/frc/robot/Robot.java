@@ -28,7 +28,6 @@ import frc.robot.subsystems.DiscRackSubsystem;
 import frc.robot.subsystems.DrivetrainSubsystem;
 import frc.robot.subsystems.ElevatorSubsystem;
 import frc.robot.subsystems.HatchPanelSubsystem;
-import frc.robot.subsystems.DiscRackSubsystem;
 import frc.robot.subsystems.ShiftGearsSubsystem;
 import frc.robot.subsystems.WristRollerBarSubsystem;
 import frc.robot.subsystems.WristSubsystem;
@@ -71,6 +70,9 @@ public class Robot extends TimedRobot {
     hatchPanelSubsystem = new HatchPanelSubsystem();
     drivetrainSubsystem = new DrivetrainSubsystem();
     shiftGearsSubsystem = new ShiftGearsSubsystem();
+    elevatorSubsystem = new ElevatorSubsystem();
+    wristSubsystem = new WristSubsystem();
+    wristRollerBarSubsystem = new WristRollerBarSubsystem();
     driverStation = DriverStation.getInstance();
     discRackSubsystem = new DiscRackSubsystem();
     jevois = new JeVois();

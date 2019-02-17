@@ -22,7 +22,7 @@ public class WristRollerBarSubsystem extends Subsystem {
   private DigitalInput breakBeamSensor;
 
   public WristRollerBarSubsystem() {
-    wristRollerVictor = new VictorSPX(RobotMap.ROLLER_VICTORSPX);
+    wristRollerVictor = new VictorSPX(RobotMap.ROLLER_VICTOR);
     breakBeamSensor = new DigitalInput(RobotMap.BEAM_BREAK);
   }
 

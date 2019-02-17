@@ -10,7 +10,6 @@ package frc.robot.commands;
 import edu.wpi.first.wpilibj.command.Command;
 import frc.robot.Robot;
 import frc.robot.RobotMap;
-import frc.robot.subsystems.ElevatorSubsystem;
 
 public class WristUpCommand extends Command {
   public WristUpCommand() {
@@ -20,7 +19,7 @@ public class WristUpCommand extends Command {
   // Called just before this Command runs the first time
   @Override
   protected void initialize() {
-    Robot.wristSubsystem.setSetpoint(RobotMap.WRIST_UPPER);
+    Robot.wristSubsystem.setSetpoint(RobotMap.WRIST_UPPER_ENCODER_LIMIT);
     Robot.wristSubsystem.enable();
   }
 
