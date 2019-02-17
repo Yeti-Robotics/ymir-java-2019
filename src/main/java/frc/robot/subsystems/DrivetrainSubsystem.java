@@ -1,6 +1,7 @@
 package frc.robot.subsystems;
 
 import com.ctre.phoenix.motorcontrol.ControlMode;
+import com.ctre.phoenix.motorcontrol.FeedbackDevice;
 import com.ctre.phoenix.motorcontrol.can.VictorSPX;
 
 import edu.wpi.first.wpilibj.ADXRS450_Gyro;
@@ -19,7 +20,6 @@ public class DrivetrainSubsystem extends Subsystem {
 
     private VictorSPX left1, left2, right1, right2;
     private CustomTalon leftTal, rightTal;
-    private Encoder leftEnc, rightEnc;
     private DifferentialDrive differentialDrive;
     private DriveMode driveMode;
     public AnalogInput lineSensorLeft, lineSensorCenter, lineSensorRight;
@@ -37,6 +37,8 @@ public class DrivetrainSubsystem extends Subsystem {
         right2 = new VictorSPX(RobotMap.RIGHT_2_VICTOR);
         leftTal = new CustomTalon(RobotMap.LEFT_Drive_TALON);
         rightTal = new CustomTalon(RobotMap.RIGHT_Drive_TALON);
+        leftTal.configSelectedFeedbackSensor(FeedbackDevice.QuadEncoder);
+        rightTal.configSelectedFeedbackSensor(FeedbackDevice.QuadEncoder);
         gyro = new ADXRS450_Gyro();
         gyro.calibrate();
         SmartDashboard.putData(gyro);
@@ -50,16 +52,6 @@ public class DrivetrainSubsystem extends Subsystem {
        
 
         // Creates encoder objects connected to their respective DIO ports
-        leftEnc = new Encoder(RobotMap.DRIVE_LEFT_ENCODER[0], RobotMap.DRIVE_LEFT_ENCODER[1], true, EncodingType.k4X);
-        leftEnc.setReverseDirection(false);
-        rightEnc = new Encoder(RobotMap.DRIVE_RIGHT_ENCODER[0], RobotMap.DRIVE_RIGHT_ENCODER[1], true,
-                EncodingType.k4X);
-
-        leftEnc.setDistancePerPulse(RobotMap.DISTANCE_PER_PULSE);
-        leftEnc.setPIDSourceType(PIDSourceType.kDisplacement);
-        rightEnc.setDistancePerPulse(RobotMap.DISTANCE_PER_PULSE);
-        rightEnc.setPIDSourceType(PIDSourceType.kDisplacement);
-
         rightTal.setInverted(true);
         left1.setInverted(true);
         left2.setInverted(true);
@@ -90,21 +82,21 @@ public class DrivetrainSubsystem extends Subsystem {
 
     // Resets the encoder values
     public void resetEncoders() {
-        rightEnc.reset();
-        leftEnc.reset();
+        leftTal.setSelectedSensorPosition(0);
+        rightTal.setSelectedSensorPosition(0);
     }
 
     // Prints drive encoder values to the console
     public void printEncoders() {
-        System.out.println(rightEnc.getDistance() + ", " + leftEnc.getDistance());
+        System.out.println(getRightEncoderDistance() + ", " + getLeftEncoderDistance());
     }
 
     public double getRightEncoderValue() {
-        return rightEnc.getDistance();
+        return rightTal.getSelectedSensorPosition();
     }
 
     public double getLeftEncoderValue() {
-        return leftEnc.getDistance();
+        return leftTal.getSelectedSensorPosition();
     }
 
     public double getAvgEncoderDistance() {
@@ -138,20 +130,20 @@ public class DrivetrainSubsystem extends Subsystem {
         setDefaultCommand(new UserDriveCommand());
     }
 
-    public int getRightPulsesPerRevolution() {
-        return rightEnc.getRaw();
+    public double getRightEncoderDistance() {
+        return rightTal.getSelectedSensorPosition()*RobotMap.WHEELS_DISTANCE_PER_PULSE;
     }
 
-    public int getLeftPulsesPerRevolution() {
-        return leftEnc.getRaw();
+    public double getLeftEncoderDistance() {
+        return leftTal.getSelectedSensorPosition()*RobotMap.WHEELS_DISTANCE_PER_PULSE;
     }
 
     public double getLeftEncoderRate() {
-        return leftEnc.getRate();
+        return leftTal.getSelectedSensorVelocity()*RobotMap.WHEELS_DISTANCE_PER_PULSE;
     }
 
     public double getRightEncoderRate() {
-        return rightEnc.getRate();
+        return rightTal.getSelectedSensorVelocity()*RobotMap.WHEELS_DISTANCE_PER_PULSE;
     }
 
 };

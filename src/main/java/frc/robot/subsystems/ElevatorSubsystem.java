@@ -38,7 +38,7 @@ public class ElevatorSubsystem extends PIDSubsystem {
   }
 
   public double getElevatorEncoder() {
-    return elevatorTalon.getSelectedSensorPosition();
+    return elevatorTalon.getSelectedSensorPosition()*RobotMap.ELEVATOR_DISTANCE_PER_PULSE;
   }
 
   public void moveElevatorUp() {
@@ -57,7 +57,7 @@ public class ElevatorSubsystem extends PIDSubsystem {
 
   @Override
   protected double returnPIDInput() {
-    return elevatorTalon.getSelectedSensorPosition();
+    return getElevatorEncoder();
   }
 
   @Override

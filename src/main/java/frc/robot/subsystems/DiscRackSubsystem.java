@@ -19,12 +19,10 @@ import frc.robot.controls.CustomTalon;
  * Add your docs here.
  */
 public class DiscRackSubsystem extends Subsystem {
- 
+
   private CustomTalon rackTal;
 
-
   public DiscRackSubsystem() {
-    
 
     rackTal = new CustomTalon(RobotMap.Rack_TALON);
 
@@ -33,24 +31,25 @@ public class DiscRackSubsystem extends Subsystem {
   }
 
   public void moveRack(double power){
-    rackTal.set(ControlMode.PercentOutput, power);
+    if (getRackEncoderValue() < RobotMap.RACK_UPPER_LIMIT && getRackEncoderValue() > RobotMap.RACK_LOWER_LIMIT) {
+        rackTal.set(ControlMode.PercentOutput, power);
+  } else {
+    rackTal.set(0);
   }
+}
 
-  public void resetRackEncoder(){
+  public void resetRackEncoder() {
     rackTal.setSelectedSensorPosition(0);
   }
 
-  public double getRackEncoderValue(){
-    return rackTal.getSelectedSensorPosition();
+  public double getRackEncoderValue() {
+    return rackTal.getSelectedSensorPosition() * RobotMap.RACK_DISTANCE_PER_PULSE;
   }
-
 
   @Override
   public void initDefaultCommand() {
     // Set the default command for a subsystem here.
     // setDefaultCommand(new MySpecialCommand());
   }
-
-
 
 }

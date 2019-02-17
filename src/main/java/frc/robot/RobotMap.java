@@ -16,9 +16,23 @@ package frc.robot;
 public class RobotMap {
  
  // Physical Constants
- public static final double WHEEL_DIAMETER = 5.875; // inches
- public static final double PULSES_PER_REVOLUTION = 128;
- public static final double DISTANCE_PER_PULSE = Math.PI * WHEEL_DIAMETER / PULSES_PER_REVOLUTION;
+ public static final double WHEEL_DIAMETER = 6; //inches
+ public static final double PULSES_PER_REVOLUTION = 1024;
+ public static final double WHEELS_DISTANCE_PER_PULSE = (20.0*WHEEL_DIAMETER*Math.PI)/(PULSES_PER_REVOLUTION*60.0);
+
+ public static final double WRIST_GEAR_DIAMETER = 1.7;
+ public static final double WRIST_PULSES_PER_REVOLUTION = 1024;
+ public static final double WRIST_DISTANCE_PER_PULSE = (WRIST_GEAR_DIAMETER*Math.PI)/WRIST_PULSES_PER_REVOLUTION;
+
+ //Elevator Encoder Constants
+ public static final double ELEVATOR_PULSES_PER_REVOLUTION = 1024;
+ public static final double ELEVATOR_SPROCKET_CIRCUMFERENCE = 1.44 * Math.PI;
+ public static final double ELEVATOR_DISTANCE_PER_PULSE = (16.0*ELEVATOR_SPROCKET_CIRCUMFERENCE*60.0)/(ELEVATOR_PULSES_PER_REVOLUTION*24.0);
+
+ //Rack Constants
+ public static final double RACK_PULSES_PER_REVOLUTION = 1024;
+ public static final double RACK_PITCH_DIAMETER = 1; //inches
+ public static final double RACK_DISTANCE_PER_PULSE = Math.PI * RACK_PITCH_DIAMETER / PULSES_PER_REVOLUTION;
 
   // Joysticks
   public static final int LEFT_JOYSTICK = 0;
@@ -57,11 +71,11 @@ public class RobotMap {
   public static final double ROBOT_RADIUS = 12.0;
 
   // Drive train solenoid
-  public static final int[] DRIVE_TRAIN_SHIFT = { 1, 2 };
+  public static final int[] DRIVE_TRAIN_SHIFT = { 0, 7 };
   
   // Panel solenoids
   public static final int[] INTAKE_SOLENOID = {6, 7};
-  public static final int[] DEPLOY_SOLENOID = {5, 4};
+  public static final int[] DEPLOY_SOLENOID = {1, 6};
 
   // Hatch Panel Limit Switches
   public static final int LEFT_HATCH_PANEL_LIMIT = 1;
@@ -81,8 +95,8 @@ public class RobotMap {
   
 
   // Line Following Constants
-  public static final int LEFT_LINE_FOLLOW = 4;
-  public static final int CENTER_LINE_FOLLOW = 3;
+  public static final int LEFT_LINE_FOLLOW = 0;
+  public static final int CENTER_LINE_FOLLOW = 1;
   public static final int RIGHT_LINE_FOLLOW = 2;
 
   public static final int BEAM_BREAK = 8;
@@ -90,4 +104,8 @@ public class RobotMap {
   public static final double[] ELEVATOR_LEVELS = {1, 2, 3, 4, 5, 6, 7, 8};
   public static final int WRIST_UPPER = 7;
   public static final int WRIST_LOWER = 0;
+
+  public static final int RACK_LOWER_LIMIT = -100;
+  public static final int RACK_UPPER_LIMIT = 100;
 }
+

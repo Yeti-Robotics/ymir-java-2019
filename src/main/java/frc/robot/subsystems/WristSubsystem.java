@@ -41,7 +41,7 @@ public class WristSubsystem extends PIDSubsystem {
   }
 
   public double getWristEncoderValue(){
-    return wristTal.getSelectedSensorPosition();
+    return wristTal.getSelectedSensorPosition()*RobotMap.WRIST_DISTANCE_PER_PULSE;
   }
 
   @Override
@@ -52,7 +52,7 @@ public class WristSubsystem extends PIDSubsystem {
 
   @Override
   protected double returnPIDInput() {
-    return wristTal.getSelectedSensorPosition();
+    return getWristEncoderValue();
   }
 
   @Override
