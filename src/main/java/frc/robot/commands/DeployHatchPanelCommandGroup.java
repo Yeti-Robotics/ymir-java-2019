@@ -15,13 +15,14 @@ public class DeployHatchPanelCommandGroup extends CommandGroup {
    * Add your docs here.
    */
   public DeployHatchPanelCommandGroup() {
-   addSequential(new DeactivateIntakeCommand());
-   addSequential(new WaitCommand(0.5));
-   addSequential(new ActivateDeployCommand());
-   addSequential(new WaitCommand(0.75));
-   addSequential(new DeactivateDeployCommand());
-  //  addSequential(new WaitCommand(0.5));
-  //  addSequential(new SenseHatchPanelCommand());
-
+    addSequential(new ActivateDeployCommand());
+    addSequential(new WaitCommand(0.25));
+    addSequential(new DeactivateIntakeCommand());
+    addSequential(new WaitCommand(0.25));
+    addSequential(new DeactivateDeployCommand());
+    addSequential(new WaitCommand(0.25));
+    addSequential(new ActivateIntakeCommand());
+    // addSequential(new WaitCommand(0.5));
+    // addSequential(new SenseHatchPanelCommand());
   }
 }

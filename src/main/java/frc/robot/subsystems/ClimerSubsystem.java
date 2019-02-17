@@ -23,8 +23,8 @@ public class ClimerSubsystem extends Subsystem {
 
   public ClimerSubsystem(){
     climberTal = new CustomTalon(RobotMap.CLIMBER_TALON);
-    upperLimit = new DigitalInput(RobotMap.UPPER_LIMIT);
-    lowerLimit = new DigitalInput(RobotMap.LOWER_LIMIT);
+    upperLimit = new DigitalInput(RobotMap.CLIMBER_UPPER_LIMIT);
+    lowerLimit = new DigitalInput(RobotMap.CLIMBER_LOWER_LIMIT);
   }
 
   public void useClimber(){

@@ -1,5 +1,6 @@
 package frc.robot.subsystems;
 
+import com.analog.adis16448.frc.ADIS16448_IMU;
 import com.ctre.phoenix.motorcontrol.ControlMode;
 import com.ctre.phoenix.motorcontrol.FeedbackDevice;
 import com.ctre.phoenix.motorcontrol.can.VictorSPX;
@@ -20,7 +21,7 @@ public class DrivetrainSubsystem extends Subsystem {
     private DifferentialDrive differentialDrive;
     private DriveMode driveMode;
     public AnalogInput lineSensorLeft, lineSensorCenter, lineSensorRight;
-    public ADXRS450_Gyro gyro;
+    public ADIS16448_IMU gyro;
 
     public enum DriveMode {
         TANK, ARCADE, CHEEZY;
@@ -36,7 +37,7 @@ public class DrivetrainSubsystem extends Subsystem {
         rightTal = new CustomTalon(RobotMap.RIGHT_DRIVE_TALON);
         leftTal.configSelectedFeedbackSensor(FeedbackDevice.QuadEncoder);
         rightTal.configSelectedFeedbackSensor(FeedbackDevice.QuadEncoder);
-        gyro = new ADXRS450_Gyro();
+        gyro = new ADIS16448_IMU();
         gyro.calibrate();
         SmartDashboard.putData(gyro);
 

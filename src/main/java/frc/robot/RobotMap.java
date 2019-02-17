@@ -15,7 +15,7 @@ package frc.robot;
  */
 public class RobotMap {
 
-  // Physical Constants
+  // Drivetrain Encoder Constants
   public static final double WHEEL_DIAMETER = 6; // inches
   public static final double PULSES_PER_REVOLUTION = 1024;
   public static final double WHEELS_DISTANCE_PER_PULSE = (20.0 * WHEEL_DIAMETER * Math.PI)
@@ -70,14 +70,14 @@ public class RobotMap {
 
   // Solenoids
   public static final int[] DRIVE_TRAIN_SHIFT = { 0, 7 };
-  public static final int[] INTAKE_SOLENOID = { 2, 5 };
-  public static final int[] DEPLOY_SOLENOID = { 1, 6 };
+  public static final int[] DEPLOY_SOLENOID = { 2, 5 };
+  public static final int[] INTAKE_SOLENOID = { 1, 6 };
 
   // Limit Switches
   public static final int LEFT_HATCH_PANEL_LIMIT = 1;
   public static final int RIGHT_HATCH_PANEL_LIMIT = 0;
-  public static final int UPPER_LIMIT = 2;
-  public static final int LOWER_LIMIT = 3;
+  public static final int CLIMBER_UPPER_LIMIT = 2;
+  public static final int CLIMBER_LOWER_LIMIT = 3;
 
   // Vision Constants
   public static final int IMAGE_WIDTH = 320;

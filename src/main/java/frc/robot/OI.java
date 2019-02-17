@@ -15,6 +15,7 @@ import frc.robot.commands.ActivateDeployCommand;
 import frc.robot.commands.ActivateIntakeCommand;
 import frc.robot.commands.DeactivateDeployCommand;
 import frc.robot.commands.DeactivateIntakeCommand;
+import frc.robot.commands.DeployHatchPanelCommandGroup;
 import frc.robot.commands.DriveTrainHighShiftCommand;
 import frc.robot.commands.DriveTrainLowShiftCommand;
 import frc.robot.commands.MoveElevatorDownCommand;
@@ -60,6 +61,7 @@ public class OI {
     setJoystickButtonWhenPressedCommand(driverStationJoy, 2, new DeactivateDeployCommand());
     setJoystickButtonWhenPressedCommand(driverStationJoy, 3, new DeactivateIntakeCommand());
     setJoystickButtonWhenPressedCommand(driverStationJoy, 4, new ActivateIntakeCommand());
+    setJoystickButtonWhenPressedCommand(driverStationJoy, 5, new DeployHatchPanelCommandGroup());
     setJoystickButtonWhenPressedCommand(driverStationJoy, 7, new MoveElevatorUpCommand());
     // setJoystickButtonWhenPressedCommand(secondaryJoy, 3, new
     // LineFollowCommand());

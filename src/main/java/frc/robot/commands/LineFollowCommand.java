@@ -11,6 +11,8 @@ import edu.wpi.first.wpilibj.command.Command;
 import frc.robot.Robot;
 
 public class LineFollowCommand extends Command {
+
+  private boolean lineVisible = true;
   public LineFollowCommand() {
     requires(Robot.drivetrainSubsystem);
   }
@@ -40,7 +42,7 @@ public class LineFollowCommand extends Command {
       Robot.drivetrainSubsystem.tankDrive(0.7, 0.5);
       break;
     case "000": //for testing
-      Robot.drivetrainSubsystem.tankDrive(0.0, 0.0);
+      lineVisible = false;
       break;
     }
     
@@ -50,7 +52,7 @@ public class LineFollowCommand extends Command {
   // Make this return true when this Command no longer needs to run execute()
   @Override
   protected boolean isFinished() {
-    return Robot.jevois.getLeftDistance() <= 35;
+    return Robot.jevois.getLeftDistance() <= 15 || !lineVisible;
   }
 
   // Called once after isFinished returns true

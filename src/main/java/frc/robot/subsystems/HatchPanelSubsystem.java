@@ -38,24 +38,22 @@ public class HatchPanelSubsystem extends Subsystem {
   }
 
   public void activateIntake() {
-    intake.set(Value.kForward);
-  }
-  public void deactivateIntake() {
     intake.set(Value.kReverse);
   }
+  public void deactivateIntake() {
+    intake.set(Value.kForward);
+  }
   public void activateDeploy() {
-    deploy.set(Value.kForward);
+    deploy.set(Value.kReverse);
   }
   public void deactivateDeploy() {
-    deploy.set(Value.kReverse);
+    deploy.set(Value.kForward);
   }
 
 
   @Override
   public void initDefaultCommand() {
-    // Set the default command for a subsystem here.
-    // setDefaultCommand(new MySpecialCommand());
-    setDefaultCommand(new SenseHatchPanelCommand());
+    // setDefaultCommand(new SenseHatchPanelCommand());
   }
 
 }
