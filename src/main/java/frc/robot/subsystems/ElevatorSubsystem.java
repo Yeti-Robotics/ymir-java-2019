@@ -8,6 +8,7 @@
 package frc.robot.subsystems;
 
 import com.ctre.phoenix.motorcontrol.FeedbackDevice;
+import com.ctre.phoenix.motorcontrol.NeutralMode;
 import com.ctre.phoenix.motorcontrol.can.VictorSPX;
 
 import edu.wpi.first.wpilibj.command.PIDSubsystem;
@@ -27,9 +28,12 @@ public class ElevatorSubsystem extends PIDSubsystem {
     elevatorVictor = new VictorSPX(RobotMap.ELEVATOR_VICTOR);
     elevatorTalon.configSelectedFeedbackSensor(FeedbackDevice.QuadEncoder);
     elevatorVictor.follow(elevatorTalon);
+    elevatorTalon.setNeutralMode(NeutralMode.Brake);
+    elevatorVictor.setNeutralMode(NeutralMode.Brake);
+    elevatorTalon.configContinuousCurrentLimit(RobotMap.ELEVATOR_CONT_CURRENT_LIMIT);
+    elevatorTalon.configPeakCurrentLimit(RobotMap.ELEVATOR_PEAK_CURRENT_LIMIT);
+    elevatorTalon.configPeakCurrentDuration(RobotMap.ELEVATOR_PEAK_CURRENT_DURATION);
   }
-
-  
 
   public void elevatorStop() {
     elevatorTalon.set(0);
@@ -44,11 +48,11 @@ public class ElevatorSubsystem extends PIDSubsystem {
   }
 
   public void moveElevatorUp() {
-    elevatorTalon.set(RobotMap.ELEVATOR_TAL_SPEED);
+    elevatorTalon.set(RobotMap.ELEVATOR_MANUAL_SPEED);
   }
 
   public void moveElevatorDown() {
-    elevatorTalon.set(-RobotMap.ELEVATOR_TAL_SPEED);
+    elevatorTalon.set(-RobotMap.ELEVATOR_MANUAL_SPEED);
   }
 
   @Override

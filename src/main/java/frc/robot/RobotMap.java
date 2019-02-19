@@ -24,7 +24,9 @@ public class RobotMap {
   // Wrist Encoder Constants
   public static final double WRIST_GEAR_DIAMETER = 1.7;
   public static final double WRIST_PULSES_PER_REVOLUTION = 1024;
-  public static final double WRIST_DISTANCE_PER_PULSE = (WRIST_GEAR_DIAMETER * Math.PI) / WRIST_PULSES_PER_REVOLUTION;
+  public static final double WRIST_DEGREES_PER_PULSE = 360 / WRIST_PULSES_PER_REVOLUTION;
+  public static final int WRIST_UPPER_ENCODER_LIMIT = 7;
+  public static final int WRIST_LOWER_ENCODER_LIMIT = 0;
 
   // Elevator Encoder Constants
   public static final double ELEVATOR_PULSES_PER_REVOLUTION = 1024;
@@ -45,8 +47,29 @@ public class RobotMap {
   public static final int DRIVERSTATION_LEFT_Y_AXIS = 1;
   public static final int DRIVERSTATION_RIGHT_Y_AXIS = 3;
 
-  // Climber Constants
-  public static final double CLIMBER_SPEED = 0.75;
+  // Wrist Constants
+  // FF = (arm weight) * (distance to arm center of mass) / (motor stall torque) * (number of motors) * (gear ratio) * cos(theta)
+  public static final double WRIST_FEED_FORWARD = (3.5 * 13.26) / (0.3182 * 700);
+  public static final double WRIST_DEPLOY_ANGLE = 0;
+  public static final double WRIST_ROCKET1_ANGLE = 0;
+  public static final double WRIST_INTAKE_ANGLE = 0;
+  public static final int WRIST_PEAK_CURRENT_LIMIT = 30;
+  public static final int WRIST_CONT_CURRENT_LIMIT = 15;
+  public static final int WRIST_PEAK_CURRENT_DURATION = 200;
+
+  // Roller Bar Constants
+  public static final double ROLLER_SPEED = 0.7;
+
+  // Elevator constants
+  public static final double[] ELEVATOR_LEVELS = { 1, 2, 3, 4, 5, 6, 7, 8 };
+  public static final double ELEVATOR_MANUAL_SPEED = 0.3;
+  public static final int ELEVATOR_CONT_CURRENT_LIMIT = 15;
+  public static final int ELEVATOR_PEAK_CURRENT_LIMIT = 30;
+  public static final int ELEVATOR_PEAK_CURRENT_DURATION = 200;
+  
+  //Rack constants
+  public static final int RACK_LEFT_ENCODER_LIMIT = -100;
+  public static final int RACK_RIGHT_ENCODER_LIMIT = 100;
 
   // Talons
   public static final int LEFT_DRIVE_TALON = 3;
@@ -64,20 +87,17 @@ public class RobotMap {
   public static final int ELEVATOR_VICTOR = 4;
   public static final int ROLLER_VICTOR = 3;
 
-  // Speed constants
-  public static final double ELEVATOR_TAL_SPEED = 0.3;
-  public static final double ROLLER_VICTOR_SPEED = 0.7;
-
   // Solenoids
   public static final int[] DRIVE_TRAIN_SHIFT = { 0, 7 };
-  public static final int[] DEPLOY_SOLENOID = { 2, 5 };
+  public static final int[] DEPLOY_SOLENOID = { 2, 5 }; 
   public static final int[] INTAKE_SOLENOID = { 1, 6 };
 
   // Limit Switches
   public static final int LEFT_HATCH_PANEL_LIMIT = 1;
   public static final int RIGHT_HATCH_PANEL_LIMIT = 0;
-  public static final int CLIMBER_UPPER_LIMIT = 2;
-  public static final int CLIMBER_LOWER_LIMIT = 3;
+  public static final int ELEVATOR_UPPER_LIMIT = 2;
+  public static final int ELEVATOR_LOWER_LIMIT = 3;
+  public static final int BALL_BEAM_BREAK_SENSOR = 8;
 
   // Vision Constants
   public static final int IMAGE_WIDTH = 320;
@@ -87,16 +107,7 @@ public class RobotMap {
   public static final int FOV = 65;
 
   // Line Following Constants
-  public static final int LEFT_LINE_FOLLOW = 0;
-  public static final int CENTER_LINE_FOLLOW = 1;
-  public static final int RIGHT_LINE_FOLLOW = 2;
-
-  public static final int BEAM_BREAK = 8;
-
-  public static final double[] ELEVATOR_LEVELS = { 1, 2, 3, 4, 5, 6, 7, 8 };
-  public static final int WRIST_UPPER_ENCODER_LIMIT = 7;
-  public static final int WRIST_LOWER_ENCODER_LIMIT = 0;
-
-  public static final int RACK_LOWER_LIMIT = -100;
-  public static final int RACK_UPPER_LIMIT = 100;
+  public static final int LEFT_LINE_FOLLOWER_PORT = 0;
+  public static final int CENTER_LINE_FOLLOWER_PORT = 1;
+  public static final int RIGHT_LINE_FOLLOWER_PORT = 2;
 }

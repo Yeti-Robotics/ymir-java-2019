@@ -5,16 +5,15 @@ import com.ctre.phoenix.motorcontrol.ControlMode;
 import com.ctre.phoenix.motorcontrol.FeedbackDevice;
 import com.ctre.phoenix.motorcontrol.can.VictorSPX;
 
-import edu.wpi.first.wpilibj.ADXRS450_Gyro;
 import edu.wpi.first.wpilibj.AnalogInput;
-import edu.wpi.first.wpilibj.command.Subsystem;
+import edu.wpi.first.wpilibj.command.PIDSubsystem;
 import edu.wpi.first.wpilibj.drive.DifferentialDrive;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import frc.robot.RobotMap;
-import frc.robot.commands.UserDriveCommand;
+import frc.robot.commands.drivetrain.UserDriveCommand;
 import frc.robot.controls.CustomTalon;
 
-public class DrivetrainSubsystem extends Subsystem {
+public class DrivetrainSubsystem extends PIDSubsystem {
 
     private VictorSPX left1, left2, right1, right2;
     private CustomTalon leftTal, rightTal;
@@ -28,7 +27,8 @@ public class DrivetrainSubsystem extends Subsystem {
     }
 
     public DrivetrainSubsystem() {
-
+        
+        super(0.25, 0, 0);
         left1 = new VictorSPX(RobotMap.LEFT_1_VICTOR);
         left2 = new VictorSPX(RobotMap.LEFT_2_VICTOR);
         right1 = new VictorSPX(RobotMap.RIGHT_1_VICTOR);
@@ -55,9 +55,9 @@ public class DrivetrainSubsystem extends Subsystem {
 
         right1.setInverted(false);
 
-        lineSensorLeft = new AnalogInput(RobotMap.LEFT_LINE_FOLLOW);
-        lineSensorCenter = new AnalogInput(RobotMap.CENTER_LINE_FOLLOW);
-        lineSensorRight = new AnalogInput(RobotMap.RIGHT_LINE_FOLLOW);
+        lineSensorLeft = new AnalogInput(RobotMap.LEFT_LINE_FOLLOWER_PORT);
+        lineSensorCenter = new AnalogInput(RobotMap.CENTER_LINE_FOLLOWER_PORT);
+        lineSensorRight = new AnalogInput(RobotMap.RIGHT_LINE_FOLLOWER_PORT);
 
         driveMode = DriveMode.TANK;
     }
@@ -92,10 +92,6 @@ public class DrivetrainSubsystem extends Subsystem {
 
     public double getLeftEncoderValue() {
         return leftTal.getSelectedSensorPosition();
-    }
-
-    public double getAvgEncoderDistance() {
-        return (Math.abs(getRightEncoderValue()) + Math.abs(getLeftEncoderValue())) / 2;
     }
 
     // Controls the right side of the drive train
@@ -133,12 +129,27 @@ public class DrivetrainSubsystem extends Subsystem {
         return leftTal.getSelectedSensorPosition()*RobotMap.WHEELS_DISTANCE_PER_PULSE;
     }
 
+    public double getAvgEncoderDistance() {
+        return (Math.abs(getRightEncoderDistance()) + Math.abs(getLeftEncoderDistance())) / 2;
+    }
+
     public double getLeftEncoderRate() {
         return leftTal.getSelectedSensorVelocity()*RobotMap.WHEELS_DISTANCE_PER_PULSE;
     }
 
     public double getRightEncoderRate() {
         return rightTal.getSelectedSensorVelocity()*RobotMap.WHEELS_DISTANCE_PER_PULSE;
+    }
+
+    @Override
+    protected double returnPIDInput() {
+        return getAvgEncoderDistance();
+    }
+
+    @Override
+    protected void usePIDOutput(double output) {
+        moveDriveTrainLeft(output);
+        moveDriveTrainRight(output);
     }
 
 };

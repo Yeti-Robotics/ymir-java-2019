@@ -1,0 +1,50 @@
+/*----------------------------------------------------------------------------*/
+/* Copyright (c) 2018 FIRST. All Rights Reserved.                             */
+/* Open Source Software - may be modified and shared by FRC teams. The code   */
+/* must be accompanied by the FIRST BSD license file in the root directory of */
+/* the project.                                                               */
+/*----------------------------------------------------------------------------*/
+
+package frc.robot.subsystems;
+
+import com.ctre.phoenix.motorcontrol.ControlMode;
+import com.ctre.phoenix.motorcontrol.can.VictorSPX;
+
+import edu.wpi.first.wpilibj.DigitalInput;
+import edu.wpi.first.wpilibj.command.Subsystem;
+import frc.robot.RobotMap;
+
+/**
+ * Add your docs here.
+ */
+public class RollerBarSubsystem extends Subsystem {
+  private VictorSPX wristRollerVictor;
+  private DigitalInput beamBreakSensor;
+
+  public RollerBarSubsystem() {
+    wristRollerVictor = new VictorSPX(RobotMap.ROLLER_VICTOR);
+    beamBreakSensor = new DigitalInput(RobotMap.BALL_BEAM_BREAK_SENSOR);
+  }
+
+  public void rollIn() {
+    wristRollerVictor.set(ControlMode.PercentOutput, RobotMap.ROLLER_SPEED);
+  }
+
+  public void rollOut() {
+    wristRollerVictor.set(ControlMode.PercentOutput, RobotMap.ROLLER_SPEED);
+  }
+
+  public void rollStop() {
+    wristRollerVictor.set(ControlMode.PercentOutput, 0);
+  }
+
+  public boolean getBeamBreakSensor() {
+    return beamBreakSensor.get();
+  }
+
+  @Override
+  public void initDefaultCommand() {
+    // Set the default command for a subsystem here.
+    // setDefaultCommand(new MySpecialCommand());
+  }
+}

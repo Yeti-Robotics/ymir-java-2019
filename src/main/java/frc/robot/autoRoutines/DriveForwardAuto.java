@@ -1,10 +1,9 @@
 package frc.robot.autoRoutines;
 
 import edu.wpi.first.wpilibj.command.CommandGroup;
-
-import frc.robot.commands.DriveForDistanceCommand;
-import frc.robot.commands.DriveTrainLowShiftCommand;
-import frc.robot.commands.DriveTrainHighShiftCommand;
+import frc.robot.commands.drivetrain.DriveForDistanceCommand;
+import frc.robot.commands.shifting.DriveTrainHighShiftCommand;
+import frc.robot.commands.shifting.DriveTrainLowShiftCommand;
 
 public class DriveForwardAuto extends CommandGroup {
 

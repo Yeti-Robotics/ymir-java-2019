@@ -30,6 +30,12 @@ public class WristSubsystem extends PIDSubsystem {
 
     wristTal.configSelectedFeedbackSensor(FeedbackDevice.QuadEncoder);
 
+    setAbsoluteTolerance(3);
+
+    
+    wristTal.configContinuousCurrentLimit(RobotMap.WRIST_CONT_CURRENT_LIMIT);
+    wristTal.configPeakCurrentLimit(RobotMap.WRIST_PEAK_CURRENT_LIMIT);
+    wristTal.configPeakCurrentDuration(RobotMap.WRIST_PEAK_CURRENT_DURATION);
   }
 
   public void useWrist(double power){
@@ -41,7 +47,7 @@ public class WristSubsystem extends PIDSubsystem {
   }
 
   public double getWristEncoderValue(){
-    return wristTal.getSelectedSensorPosition()*RobotMap.WRIST_DISTANCE_PER_PULSE;
+    return wristTal.getSelectedSensorPosition()*RobotMap.WRIST_DEGREES_PER_PULSE;
   }
 
   @Override

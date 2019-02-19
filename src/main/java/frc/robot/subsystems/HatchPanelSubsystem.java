@@ -12,8 +12,6 @@ import edu.wpi.first.wpilibj.DoubleSolenoid;
 import edu.wpi.first.wpilibj.DoubleSolenoid.Value;
 import edu.wpi.first.wpilibj.command.Subsystem;
 import frc.robot.RobotMap;
-import frc.robot.commands.DeactivateIntakeCommand;
-import frc.robot.commands.SenseHatchPanelCommand;
 
 /**
  * Add your docs here.
@@ -37,16 +35,16 @@ public class HatchPanelSubsystem extends Subsystem {
     return rightSwitch.get();
   }
 
-  public void activateIntake() {
+  public void openIntake() {
     intake.set(Value.kReverse);
   }
-  public void deactivateIntake() {
+  public void closeIntake() {
     intake.set(Value.kForward);
   }
-  public void activateDeploy() {
+  public void deployOut() {
     deploy.set(Value.kReverse);
   }
-  public void deactivateDeploy() {
+  public void deployIn() {
     deploy.set(Value.kForward);
   }
 

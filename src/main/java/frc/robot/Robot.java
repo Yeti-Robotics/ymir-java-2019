@@ -21,16 +21,15 @@ import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.command.Scheduler;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
-import frc.robot.commands.UserDriveCommand;
 import frc.robot.controls.Contour;
 import frc.robot.controls.JeVois;
-import frc.robot.subsystems.DiscRackSubsystem;
 import frc.robot.subsystems.DrivetrainSubsystem;
 import frc.robot.subsystems.ElevatorSubsystem;
 import frc.robot.subsystems.HatchPanelSubsystem;
+import frc.robot.subsystems.RollerBarSubsystem;
 import frc.robot.subsystems.ShiftGearsSubsystem;
-import frc.robot.subsystems.WristRollerBarSubsystem;
 import frc.robot.subsystems.WristSubsystem;
+import frc.robot.subsystems.DiskRackSubsystem;
 
 /**
  * The VM is configured to automatically run this class, and to call the
@@ -46,12 +45,11 @@ public class Robot extends TimedRobot {
   // Instantiates the subsystems
   public static DrivetrainSubsystem drivetrainSubsystem;
   public static ShiftGearsSubsystem shiftGearsSubsystem;
-  public static DriverStation driverStation;
   public static HatchPanelSubsystem hatchPanelSubsystem;
   public static ElevatorSubsystem elevatorSubsystem;
   public static WristSubsystem wristSubsystem;
-  public static WristRollerBarSubsystem wristRollerBarSubsystem;
-  public static DiscRackSubsystem discRackSubsystem;
+  public static RollerBarSubsystem rollerBarSubsystem;
+  public static DiskRackSubsystem discRackSubsystem;
   public static boolean runVisionThread = false;
   public static JeVois jevois;
   public static List<Contour[]> contourList = new ArrayList<>();
@@ -72,9 +70,8 @@ public class Robot extends TimedRobot {
     shiftGearsSubsystem = new ShiftGearsSubsystem();
     elevatorSubsystem = new ElevatorSubsystem();
     wristSubsystem = new WristSubsystem();
-    wristRollerBarSubsystem = new WristRollerBarSubsystem();
-    driverStation = DriverStation.getInstance();
-    discRackSubsystem = new DiscRackSubsystem();
+    rollerBarSubsystem = new RollerBarSubsystem();
+    discRackSubsystem = new DiskRackSubsystem();
     jevois = new JeVois();
     oi = new OI();
     new Timer().scheduleAtFixedRate(new TimerTask(){
@@ -98,7 +95,6 @@ public class Robot extends TimedRobot {
       }
     }, 20L, 20L);
     
-    m_chooser.setDefaultOption("Default Auto", new UserDriveCommand());
     // chooser.addOption("My Auto", new MyAutoCommand());
     SmartDashboard.putData("Auto mode", m_chooser);
   }
@@ -128,6 +124,9 @@ public class Robot extends TimedRobot {
   public void robotPeriodic() {
 
     // System.out.println(jevois.getLeftDistance() + "," + jevois.getRightDistance());
+    SmartDashboard.putNumber("Left Encoder Distance", drivetrainSubsystem.getLeftEncoderDistance());
+    SmartDashboard.putNumber("Right Encoder Distance", drivetrainSubsystem.getRightEncoderDistance());
+    SmartDashboard.putNumber("Avg Encoder Distance", drivetrainSubsystem.getAvgEncoderDistance());
     SmartDashboard.putNumber("Left Encoder Rate", drivetrainSubsystem.getLeftEncoderRate());
     SmartDashboard.putNumber("Right Encoder Rate", drivetrainSubsystem.getRightEncoderRate());
     SmartDashboard.putNumber("Left Line Follow Voltage", drivetrainSubsystem.lineSensorLeft.getAverageVoltage());
