@@ -97,7 +97,7 @@ public class RobotMap {
   public static final int RIGHT_HATCH_PANEL_LIMIT = 0;
   public static final int ELEVATOR_UPPER_LIMIT = 2;
   public static final int ELEVATOR_LOWER_LIMIT = 3;
-  public static final int BALL_BEAM_BREAK_SENSOR = 8;
+  public static final int BALL_BEAM_BREAK_SENSOR = 5;
 
   // Vision Constants
   public static final int IMAGE_WIDTH = 320;
