@@ -15,6 +15,8 @@ import java.util.List;
 import java.util.Timer;
 import java.util.TimerTask;
 
+import edu.wpi.cscore.UsbCamera;
+import edu.wpi.first.cameraserver.CameraServer;
 import edu.wpi.first.wpilibj.DriverStation;
 import edu.wpi.first.wpilibj.TimedRobot;
 import edu.wpi.first.wpilibj.command.Command;
@@ -23,13 +25,13 @@ import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import frc.robot.controls.Contour;
 import frc.robot.controls.JeVois;
+import frc.robot.subsystems.DiskRackSubsystem;
 import frc.robot.subsystems.DrivetrainSubsystem;
 import frc.robot.subsystems.ElevatorSubsystem;
 import frc.robot.subsystems.HatchPanelSubsystem;
 import frc.robot.subsystems.RollerBarSubsystem;
 import frc.robot.subsystems.ShiftGearsSubsystem;
 import frc.robot.subsystems.WristSubsystem;
-import frc.robot.subsystems.DiskRackSubsystem;
 
 /**
  * The VM is configured to automatically run this class, and to call the
@@ -72,8 +74,10 @@ public class Robot extends TimedRobot {
     wristSubsystem = new WristSubsystem();
     rollerBarSubsystem = new RollerBarSubsystem();
     discRackSubsystem = new DiskRackSubsystem();
-    jevois = new JeVois();
+    // jevois = new JeVois();
     oi = new OI();
+    UsbCamera cam = CameraServer.getInstance().startAutomaticCapture(0);
+
     new Timer().scheduleAtFixedRate(new TimerTask(){
       long lastLoop = System.currentTimeMillis();
     

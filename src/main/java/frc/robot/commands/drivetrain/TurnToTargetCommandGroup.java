@@ -17,6 +17,7 @@ public class TurnToTargetCommandGroup extends CommandGroup {
   Contour[] contours;
   double azimuth;
   TurnAngleCommand turnAngleCommand;
+  boolean noContours = true;
   /**
    * Add your docs here.
    */
@@ -28,24 +29,17 @@ public class TurnToTargetCommandGroup extends CommandGroup {
   protected void initialize() {
     contours = Robot.latestContours;
     if(contours != null){
+      noContours = false;
       double azimuth = VisionProcessor.getAzimuth(contours[0], contours[1]);
       System.out.println(azimuth);
 
       turnAngleCommand = new TurnAngleCommand(azimuth);
       turnAngleCommand.start();
-    } else {
-      System.out.println("cancelling");
-      this.cancel();
-      System.out.println("canceled");
     }
   }
 
   @Override
   protected boolean isFinished() {
-    if(turnAngleCommand == null){
-       return isTimedOut();
-    } else{
-      return turnAngleCommand.isFinished() || isTimedOut();
-    }
+    return isTimedOut() || noContours;
   }
 }

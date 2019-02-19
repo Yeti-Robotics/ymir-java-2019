@@ -12,6 +12,7 @@ import edu.wpi.first.wpilibj.DoubleSolenoid;
 import edu.wpi.first.wpilibj.DoubleSolenoid.Value;
 import edu.wpi.first.wpilibj.command.Subsystem;
 import frc.robot.RobotMap;
+import frc.robot.commands.disk.SenseHatchPanelCommand;
 
 /**
  * Add your docs here.
@@ -51,7 +52,7 @@ public class HatchPanelSubsystem extends Subsystem {
 
   @Override
   public void initDefaultCommand() {
-    // setDefaultCommand(new SenseHatchPanelCommand());
+    setDefaultCommand(new SenseHatchPanelCommand());
   }
 
 }
