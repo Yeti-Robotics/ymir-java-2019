@@ -11,6 +11,7 @@ import com.ctre.phoenix.motorcontrol.FeedbackDevice;
 import com.ctre.phoenix.motorcontrol.NeutralMode;
 import com.ctre.phoenix.motorcontrol.can.VictorSPX;
 
+import edu.wpi.first.wpilibj.DigitalInput;
 import edu.wpi.first.wpilibj.command.PIDSubsystem;
 import frc.robot.RobotMap;
 import frc.robot.controls.CustomTalon;
@@ -21,11 +22,14 @@ import frc.robot.controls.CustomTalon;
 public class ElevatorSubsystem extends PIDSubsystem {
   private CustomTalon elevatorTalon;
   private VictorSPX elevatorVictor;
+  private DigitalInput upperLimit, lowerLimit;
 
   public ElevatorSubsystem() {
     super(1, 0, 0);
     elevatorTalon = new CustomTalon(RobotMap.ELEVATOR_TALON);
     elevatorVictor = new VictorSPX(RobotMap.ELEVATOR_VICTOR);
+    upperLimit = new DigitalInput(RobotMap.ELEVATOR_UPPER_LIMIT);
+    lowerLimit = new DigitalInput(RobotMap.ELEVATOR_LOWER_LIMIT);
     elevatorTalon.configSelectedFeedbackSensor(FeedbackDevice.QuadEncoder);
     elevatorVictor.follow(elevatorTalon);
     elevatorTalon.setNeutralMode(NeutralMode.Brake);
@@ -33,6 +37,16 @@ public class ElevatorSubsystem extends PIDSubsystem {
     elevatorTalon.configContinuousCurrentLimit(RobotMap.ELEVATOR_CONT_CURRENT_LIMIT);
     elevatorTalon.configPeakCurrentLimit(RobotMap.ELEVATOR_PEAK_CURRENT_LIMIT);
     elevatorTalon.configPeakCurrentDuration(RobotMap.ELEVATOR_PEAK_CURRENT_DURATION);
+    elevatorTalon.setInverted(true);
+    disable();
+  }
+
+  public boolean getUpperLimit() {
+    return upperLimit.get();
+  }
+
+  public boolean getLowerLimit() {
+    return lowerLimit.get();
   }
 
   public void elevatorStop() {

@@ -48,7 +48,8 @@ public class RobotMap {
   public static final int DRIVERSTATION_RIGHT_Y_AXIS = 3;
 
   // Wrist Constants
-  // FF = (arm weight) * (distance to arm center of mass) / (motor stall torque) * (number of motors) * (gear ratio) * cos(theta)
+  // FF = (arm weight) * (distance to arm center of mass) / (motor stall torque) *
+  // (number of motors) * (gear ratio) * cos(theta)
   public static final double WRIST_FEED_FORWARD = (3.5 * 13.26) / (0.3182 * 700);
   public static final double WRIST_DEPLOY_ANGLE = 0;
   public static final double WRIST_ROCKET1_ANGLE = 0;
@@ -62,21 +63,20 @@ public class RobotMap {
 
   // Elevator constants
   public static final double[] ELEVATOR_LEVELS = { 1, 2, 3, 4, 5, 6, 7, 8 };
-  public static final double ELEVATOR_MANUAL_SPEED = 0.3;
+  public static final double ELEVATOR_MANUAL_SPEED = 1;
   public static final int ELEVATOR_CONT_CURRENT_LIMIT = 15;
   public static final int ELEVATOR_PEAK_CURRENT_LIMIT = 30;
   public static final int ELEVATOR_PEAK_CURRENT_DURATION = 200;
-  
-  //Rack constants
+
+  // Rack constants
   public static final int RACK_LEFT_ENCODER_LIMIT = -100;
   public static final int RACK_RIGHT_ENCODER_LIMIT = 100;
 
   // Talons
   public static final int LEFT_DRIVE_TALON = 3;
   public static final int RIGHT_DRIVE_TALON = 5;
-  public static final int ELEVATOR_TALON = 4;
   public static final int RACK_TALON = 2;
-  public static final int CLIMBER_TALON = 0;
+  public static final int ELEVATOR_TALON = 0;
   public static final int WRIST_TALON = 1;
 
   // Victors
@@ -89,7 +89,7 @@ public class RobotMap {
 
   // Solenoids
   public static final int[] DRIVE_TRAIN_SHIFT = { 0, 7 };
-  public static final int[] DEPLOY_SOLENOID = { 2, 5 }; 
+  public static final int[] DEPLOY_SOLENOID = { 2, 5 };
   public static final int[] INTAKE_SOLENOID = { 1, 6 };
 
   // Limit Switches

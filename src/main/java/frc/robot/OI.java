@@ -63,8 +63,8 @@ public class OI {
     setJoystickButtonWhenPressedCommand(driverStationJoy, 4, new OpenIntakeCommand());
     setJoystickButtonWhenPressedCommand(driverStationJoy, 5, new DeployHatchPanelCommandGroup());
     setJoystickButtonWhenPressedCommand(driverStationJoy, 6, new DriveForDistancePIDCommand(50));
-    setJoystickButtonWhenPressedCommand(driverStationJoy, 7, new MoveElevatorUpCommand());
-    setJoystickButtonWhenPressedCommand(driverStationJoy, 8, new MoveElevatorDownCommand());
+    setJoystickButtonWhileHeldCommand(driverStationJoy, 7, new MoveElevatorUpCommand());
+    setJoystickButtonWhileHeldCommand(driverStationJoy, 8, new MoveElevatorDownCommand());
     // setJoystickButtonWhenPressedCommand(secondaryJoy, 3, new
     // LineFollowCommand());
     // setJoystickButtonWhenPressedCommand(secondaryJoy, 5, new
