@@ -63,10 +63,14 @@ public class RobotMap {
 
   // Elevator constants
   public static final double[] ELEVATOR_LEVELS = { 1, 2, 3, 4, 5, 6, 7, 8 };
-  public static final double ELEVATOR_MANUAL_SPEED = 1;
-  public static final int ELEVATOR_CONT_CURRENT_LIMIT = 15;
-  public static final int ELEVATOR_PEAK_CURRENT_LIMIT = 30;
-  public static final int ELEVATOR_PEAK_CURRENT_DURATION = 200;
+  public static final double ELEVATOR_MANUAL_UP_SPEED = 1;
+  public static final double ELEVATOR_MANUAL_DOWN_SPEED = -.2;
+  public static final int ELEVATOR1_CONT_CURRENT_LIMIT = 15;
+  public static final int ELEVATOR1_PEAK_CURRENT_LIMIT = 30;
+  public static final int ELEVATOR1_PEAK_CURRENT_DURATION = 200;
+  public static final int ELEVATOR2_CONT_CURRENT_LIMIT = 15;
+  public static final int ELEVATOR2_PEAK_CURRENT_LIMIT = 30;
+  public static final int ELEVATOR2_PEAK_CURRENT_DURATION = 200;
 
   // Rack constants
   public static final int RACK_LEFT_ENCODER_LIMIT = -100;
@@ -76,7 +80,8 @@ public class RobotMap {
   public static final int LEFT_DRIVE_TALON = 3;
   public static final int RIGHT_DRIVE_TALON = 5;
   public static final int RACK_TALON = 2;
-  public static final int ELEVATOR_TALON = 0;
+  public static final int ELEVATOR1_TALON = 0;
+  public static final int ELEVATOR2_TALON = 4;
   public static final int WRIST_TALON = 1;
 
   // Victors

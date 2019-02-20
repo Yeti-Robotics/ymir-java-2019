@@ -29,6 +29,10 @@ public class DiskRackSubsystem extends Subsystem {
 
   }
 
+  public void printEncoders() {
+    System.out.println("Rack: " + rackTal.getSelectedSensorPosition());
+  }
+
   public void moveRack(double power){
     if (getRackEncoderValue() < RobotMap.RACK_LEFT_ENCODER_LIMIT && getRackEncoderValue() > RobotMap.RACK_RIGHT_ENCODER_LIMIT) {
         rackTal.set(ControlMode.PercentOutput, power);

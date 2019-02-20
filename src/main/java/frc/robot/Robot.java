@@ -16,6 +16,7 @@ import java.util.Timer;
 import java.util.TimerTask;
 
 import edu.wpi.cscore.UsbCamera;
+import edu.wpi.cscore.VideoMode;
 import edu.wpi.first.cameraserver.CameraServer;
 import edu.wpi.first.wpilibj.DriverStation;
 import edu.wpi.first.wpilibj.TimedRobot;
@@ -77,6 +78,8 @@ public class Robot extends TimedRobot {
     // jevois = new JeVois();
     oi = new OI();
     UsbCamera cam = CameraServer.getInstance().startAutomaticCapture(0);
+    cam.setVideoMode(VideoMode.PixelFormat.kMJPEG, 640, 360, 30);
+
 
     new Timer().scheduleAtFixedRate(new TimerTask(){
       long lastLoop = System.currentTimeMillis();
@@ -128,6 +131,8 @@ public class Robot extends TimedRobot {
   public void robotPeriodic() {
 
     // System.out.println(jevois.getLeftDistance() + "," + jevois.getRightDistance());
+    discRackSubsystem.printEncoders();
+    wristSubsystem.printEncoders();
     SmartDashboard.putNumber("Left Encoder Distance", drivetrainSubsystem.getLeftEncoderDistance());
     SmartDashboard.putNumber("Right Encoder Distance", drivetrainSubsystem.getRightEncoderDistance());
     SmartDashboard.putNumber("Avg Encoder Distance", drivetrainSubsystem.getAvgEncoderDistance());
@@ -198,7 +203,7 @@ public class Robot extends TimedRobot {
     // This makes sure that the autonomous stops running when
     // teleop starts running. If you want the autonomous to
     // continue until interrupted by another command, remove
-    // this line or comment it out.
+    // this line or comment it out.-
     if (m_autonomousCommand != null) {
       m_autonomousCommand.cancel();
     }

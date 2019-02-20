@@ -38,6 +38,10 @@ public class WristSubsystem extends PIDSubsystem {
     wristTal.configPeakCurrentDuration(RobotMap.WRIST_PEAK_CURRENT_DURATION);
   }
 
+  public void printEncoders() {
+    System.out.println("Wrist: " + wristTal.getSelectedSensorPosition());
+  }
+
   public void useWrist(double power){
     wristTal.set(power);
   }

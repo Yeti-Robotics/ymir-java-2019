@@ -39,7 +39,6 @@ public class DrivetrainSubsystem extends PIDSubsystem {
         rightTal.configSelectedFeedbackSensor(FeedbackDevice.QuadEncoder);
         gyro = new ADIS16448_IMU();
         gyro.calibrate();
-        SmartDashboard.putData(gyro);
 
         left1.follow(leftTal);
         left2.follow(leftTal);
