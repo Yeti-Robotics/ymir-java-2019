@@ -35,9 +35,9 @@ public class JeVois {
         contours = parseStream();
 
         double leftDistance;
-        if (contours != null){
-        leftDistance = (RobotMap.TAPE_BOUND_WIDTH_INCH * RobotMap.FOCAL_LENGTH) / contours[0].w;
-        return leftDistance;
+        if (contours != null) {
+            leftDistance = (RobotMap.TAPE_BOUND_WIDTH_INCH * RobotMap.FOCAL_LENGTH) / contours[0].w;
+            return leftDistance;
         }
         return 1000;
     }
@@ -46,11 +46,16 @@ public class JeVois {
         contours = parseStream();
 
         double rightDistance;
-        if (contours != null){
-        rightDistance = (RobotMap.TAPE_BOUND_WIDTH_INCH * RobotMap.FOCAL_LENGTH) / contours[1].w;
-        return rightDistance;
+        if (contours != null) {
+            rightDistance = (RobotMap.TAPE_BOUND_WIDTH_INCH * RobotMap.FOCAL_LENGTH) / contours[1].w;
+            return rightDistance;
         }
         return 1000;
+    }
+
+    public double getCenterDistance() {
+        double centerDistance = (getRightDistance() + getLeftDistance()) / 2;
+        return centerDistance; 
     }
 
     public Contour[] parseStream() {
@@ -87,9 +92,21 @@ public class JeVois {
 
     public double getAzimuth() {
         Rect boundRect = boundRect();
-        double centerX = (boundRect.x + boundRect.width/2);
+        double centerX = (boundRect.x + boundRect.width / 2);
         double azimuth = (centerX * RobotMap.FOV / RobotMap.IMAGE_WIDTH) - (RobotMap.FOV / 2);
         return azimuth;
 
+    }
+
+    public double getLeftAzimuth() {
+        double centerLeftX = (contours[0].x + contours[0].w / 2);
+        double leftAzimuth =  (centerLeftX * RobotMap.FOV / RobotMap.IMAGE_WIDTH) - (RobotMap.FOV / 2);
+        return leftAzimuth;
+    }
+
+    public double getRightAzimuth() {
+        double centerRightX = (contours[1].x + contours[1].w / 2);
+        double rightAzimuth =  (centerRightX * RobotMap.FOV / RobotMap.IMAGE_WIDTH) - (RobotMap.FOV / 2);
+        return rightAzimuth;
     }
 }
