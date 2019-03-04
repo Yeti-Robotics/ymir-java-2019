@@ -131,8 +131,11 @@ public class Robot extends TimedRobot {
   public void robotPeriodic() {
 
     // System.out.println(jevois.getLeftDistance() + "," + jevois.getRightDistance());
-    discRackSubsystem.printEncoders();
-    wristSubsystem.printEncoders();
+    // discRackSubsystem.printEncoders();
+    // elevatorSubsystem.printEncoders();
+    // wristSubsystem.printEncoders();
+    SmartDashboard.putNumber("elevator speed", Robot.elevatorSubsystem.getPIDController().get());
+    SmartDashboard.putNumber("Elevator height", elevatorSubsystem.getElevatorEncoder());
     SmartDashboard.putNumber("Left Encoder Distance", drivetrainSubsystem.getLeftEncoderDistance());
     SmartDashboard.putNumber("Right Encoder Distance", drivetrainSubsystem.getRightEncoderDistance());
     SmartDashboard.putNumber("Avg Encoder Distance", drivetrainSubsystem.getAvgEncoderDistance());
@@ -150,6 +153,7 @@ public class Robot extends TimedRobot {
    */
   @Override
   public void disabledInit() {
+    elevatorSubsystem.disable();
   }
 
   @Override

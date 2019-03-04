@@ -25,7 +25,7 @@ public class ElevatorSubsystem extends PIDSubsystem {
   private DigitalInput upperLimit, lowerLimit;
 
   public ElevatorSubsystem() {
-    super(1, 0, 0);
+    super(0.00005, .000001, 0, 0.3);
     elevator1Talon = new CustomTalon(RobotMap.ELEVATOR1_TALON);
     elevator2Talon = new CustomTalon(RobotMap.ELEVATOR2_TALON);
     upperLimit = new DigitalInput(RobotMap.ELEVATOR_UPPER_LIMIT);
@@ -42,7 +42,12 @@ public class ElevatorSubsystem extends PIDSubsystem {
     elevator2Talon.configPeakCurrentLimit(RobotMap.ELEVATOR2_PEAK_CURRENT_LIMIT);
     elevator2Talon.configPeakCurrentDuration(RobotMap.ELEVATOR2_PEAK_CURRENT_DURATION);
     elevator1Talon.setInverted(true);
+
+    setOutputRange(RobotMap.ELEVATOR_MANUAL_DOWN_SPEED, 1);
+    setAbsoluteTolerance(250);
     disable();
+
+    resetElevatorEncoder();
   }
 
   public boolean getUpperLimit() {
@@ -62,7 +67,11 @@ public class ElevatorSubsystem extends PIDSubsystem {
   }
 
   public double getElevatorEncoder() {
-    return elevator1Talon.getSelectedSensorPosition()*RobotMap.ELEVATOR_DISTANCE_PER_PULSE;
+    return elevator1Talon.getSelectedSensorPosition() * (RobotMap.ELEVATOR_DISTANCE_PER_PULSE);
+  }
+
+  public void printEncoders() {
+    System.out.println("Elevator position: " + getElevatorEncoder());
   }
 
   public void moveElevatorUp() {
@@ -89,5 +98,9 @@ public class ElevatorSubsystem extends PIDSubsystem {
   @Override
   protected void usePIDOutput(double output) {
     elevator1Talon.set(output);
+  }
+
+  public void moveElevator(double speed) {
+    elevator1Talon.set(speed);
   }
 }
