@@ -20,6 +20,8 @@ import frc.robot.commands.elevator.MoveElevatorCommand;
 import frc.robot.commands.elevator.MoveElevatorDownCommand;
 import frc.robot.commands.elevator.MoveElevatorUpCommand;
 import frc.robot.commands.groups.DeployHatchPanelCommandGroup;
+import frc.robot.commands.rollerbar.IntakeBallCommand;
+import frc.robot.commands.rollerbar.LaunchBallCommand;
 import frc.robot.commands.shifting.DriveTrainHighShiftCommand;
 import frc.robot.commands.shifting.DriveTrainLowShiftCommand;
 /**
@@ -58,12 +60,13 @@ public class OI {
     // setJoystickButtonWhenPressedCommand(driverStationJoy, 7, new
     // DeployBallRocketLevel3());
 
-    setJoystickButtonWhenPressedCommand(driverStationJoy, 1, new DeployOutCommand());
-    setJoystickButtonWhenPressedCommand(driverStationJoy, 2, new DeployInCommand());
+    setJoystickButtonWhileHeldCommand(driverStationJoy, 1, new IntakeBallCommand());
+    setJoystickButtonWhileHeldCommand(driverStationJoy, 2, new LaunchBallCommand());
     setJoystickButtonWhenPressedCommand(driverStationJoy, 3, new CloseIntakeCommand());
     setJoystickButtonWhenPressedCommand(driverStationJoy, 4, new OpenIntakeCommand());
     setJoystickButtonWhenPressedCommand(driverStationJoy, 5, new DeployHatchPanelCommandGroup());
-    setJoystickButtonWhenPressedCommand(driverStationJoy, 6, new MoveElevatorCommand(60000));
+    setJoystickButtonWhenPressedCommand(driverStationJoy, 6, new DeployInCommand());
+    // setJoystickButtonWhenPressedCommand(driverStationJoy, 6, new MoveElevatorCommand(60000));
     setJoystickButtonWhileHeldCommand(driverStationJoy, 7, new MoveElevatorUpCommand());
     setJoystickButtonWhileHeldCommand(driverStationJoy, 8, new MoveElevatorDownCommand());
     // setJoystickButtonWhenPressedCommand(secondaryJoy, 3, new
@@ -86,8 +89,9 @@ public class OI {
 
   // Gets the Y direction of the left drive joystick
   public double getLeftX() {
-    return leftJoy.getX();
+    return driverStationJoy.getRawAxis(0);
   }
+  
 
   // Gets the Y direction of the right drive joystick
   public double getRightY() {

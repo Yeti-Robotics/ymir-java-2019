@@ -32,11 +32,11 @@ public class UserDriveCommand extends Command {
        break;  
       case ARCADE: 
 //    	        Robot.drivetrainSubsystem.arcadeDrive(-Robot.oi.getRightX(), Robot.oi.getLeftY());
-            Robot.drivetrainSubsystem.arcadeDrive(-Robot.oi.getLeftX(), Robot.oi.getLeftY());
+            Robot.drivetrainSubsystem.arcadeDrive(Robot.oi.getLeftX(), -Robot.oi.getLeftY());
          break;
       case CHEEZY:
 //    	        Robot.drivetrainSubsystem.cheezyDrive(-Robot.oi.getRightX(), Robot.oi.getLeftY());
-            Robot.drivetrainSubsystem.cheezyDrive(-Robot.oi.getLeftX(), Robot.oi.getLeftY());
+            Robot.drivetrainSubsystem.cheezyDrive(Robot.oi.getLeftX(), -Robot.oi.getLeftY());
          break;
   }
   }

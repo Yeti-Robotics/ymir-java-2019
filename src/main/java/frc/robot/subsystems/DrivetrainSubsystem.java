@@ -52,13 +52,11 @@ public class DrivetrainSubsystem extends PIDSubsystem {
         left1.setInverted(true);
         left2.setInverted(true);
 
-        right1.setInverted(false);
-
         lineSensorLeft = new AnalogInput(RobotMap.LEFT_LINE_FOLLOWER_PORT);
         lineSensorCenter = new AnalogInput(RobotMap.CENTER_LINE_FOLLOWER_PORT);
         lineSensorRight = new AnalogInput(RobotMap.RIGHT_LINE_FOLLOWER_PORT);
 
-        driveMode = DriveMode.TANK;
+        driveMode = DriveMode.CHEEZY;
     }
     
 
@@ -121,11 +119,11 @@ public class DrivetrainSubsystem extends PIDSubsystem {
     }
 
     public double getRightEncoderDistance() {
-        return rightTal.getSelectedSensorPosition()*RobotMap.WHEELS_DISTANCE_PER_PULSE;
+        return rightTal.getSelectedSensorPosition()*RobotMap.DRIVE_DISTANCE_PER_PULSE;
     }
 
     public double getLeftEncoderDistance() {
-        return leftTal.getSelectedSensorPosition()*RobotMap.WHEELS_DISTANCE_PER_PULSE;
+        return leftTal.getSelectedSensorPosition()*RobotMap.DRIVE_DISTANCE_PER_PULSE;
     }
 
     public double getAvgEncoderDistance() {
@@ -133,11 +131,11 @@ public class DrivetrainSubsystem extends PIDSubsystem {
     }
 
     public double getLeftEncoderRate() {
-        return leftTal.getSelectedSensorVelocity()*RobotMap.WHEELS_DISTANCE_PER_PULSE;
+        return leftTal.getSelectedSensorVelocity()*RobotMap.DRIVE_DISTANCE_PER_PULSE;
     }
 
     public double getRightEncoderRate() {
-        return rightTal.getSelectedSensorVelocity()*RobotMap.WHEELS_DISTANCE_PER_PULSE;
+        return rightTal.getSelectedSensorVelocity()*RobotMap.DRIVE_DISTANCE_PER_PULSE;
     }
 
     @Override

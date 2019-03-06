@@ -33,16 +33,22 @@ public class ElevatorSubsystem extends PIDSubsystem {
     elevator1Talon.configSelectedFeedbackSensor(FeedbackDevice.QuadEncoder);
     elevator2Talon.configSelectedFeedbackSensor(FeedbackDevice.QuadEncoder);
     elevator2Talon.follow(elevator1Talon);
+
     elevator1Talon.setNeutralMode(NeutralMode.Brake);
     elevator2Talon.setNeutralMode(NeutralMode.Brake);
-    elevator1Talon.configContinuousCurrentLimit(RobotMap.ELEVATOR1_CONT_CURRENT_LIMIT);
-    elevator1Talon.configPeakCurrentLimit(RobotMap.ELEVATOR1_PEAK_CURRENT_LIMIT);
-    elevator1Talon.configPeakCurrentDuration(RobotMap.ELEVATOR1_PEAK_CURRENT_DURATION);
-    elevator2Talon.configContinuousCurrentLimit(RobotMap.ELEVATOR2_CONT_CURRENT_LIMIT);
-    elevator2Talon.configPeakCurrentLimit(RobotMap.ELEVATOR2_PEAK_CURRENT_LIMIT);
-    elevator2Talon.configPeakCurrentDuration(RobotMap.ELEVATOR2_PEAK_CURRENT_DURATION);
-    elevator1Talon.setInverted(true);
 
+    elevator1Talon.configContinuousCurrentLimit(RobotMap.ELEVATOR_CONT_CURRENT_LIMIT);
+    elevator1Talon.configPeakCurrentLimit(RobotMap.ELEVATOR_PEAK_CURRENT_LIMIT);
+    elevator1Talon.configPeakCurrentDuration(RobotMap.ELEVATOR_PEAK_CURRENT_DURATION);
+    elevator1Talon.enableCurrentLimit(true);
+
+    elevator2Talon.configContinuousCurrentLimit(RobotMap.ELEVATOR_CONT_CURRENT_LIMIT);
+    elevator2Talon.configPeakCurrentLimit(RobotMap.ELEVATOR_PEAK_CURRENT_LIMIT);
+    elevator2Talon.configPeakCurrentDuration(RobotMap.ELEVATOR_PEAK_CURRENT_DURATION);
+    elevator1Talon.enableCurrentLimit(true);
+
+    elevator1Talon.setInverted(true);
+        
     setOutputRange(RobotMap.ELEVATOR_MANUAL_DOWN_SPEED, 1);
     setAbsoluteTolerance(250);
     disable();

@@ -14,6 +14,7 @@ import edu.wpi.first.wpilibj.Encoder;
 import edu.wpi.first.wpilibj.command.PIDSubsystem;
 import edu.wpi.first.wpilibj.command.Subsystem;
 import frc.robot.RobotMap;
+import frc.robot.commands.wrist.UserWristCommand;
 import frc.robot.controls.CustomTalon;
 
 /**
@@ -36,7 +37,13 @@ public class WristSubsystem extends PIDSubsystem {
     wristTal.configContinuousCurrentLimit(RobotMap.WRIST_CONT_CURRENT_LIMIT);
     wristTal.configPeakCurrentLimit(RobotMap.WRIST_PEAK_CURRENT_LIMIT);
     wristTal.configPeakCurrentDuration(RobotMap.WRIST_PEAK_CURRENT_DURATION);
+
+    wristTal.configContinuousCurrentLimit(15);
+    wristTal.configPeakCurrentLimit(25);
+    wristTal.configPeakCurrentDuration(200);
+    wristTal.enableCurrentLimit(true);
   }
+
 
   public void printEncoders() {
     System.out.println("Wrist: " + wristTal.getSelectedSensorPosition());
@@ -56,6 +63,7 @@ public class WristSubsystem extends PIDSubsystem {
 
   @Override
   public void initDefaultCommand() {
+    setDefaultCommand(new UserWristCommand());
     // Set the default command for a subsystem here.
     // setDefaultCommand(new MySpecialCommand());
   }

@@ -29,11 +29,11 @@ public class HatchPanelSubsystem extends Subsystem {
   }
 
   public boolean getLeftSwitch() {
-    return leftSwitch.get();
+    return !leftSwitch.get();
   }
 
   public boolean getRightSwitch() {
-    return rightSwitch.get();
+    return !rightSwitch.get();
   }
 
   public void openIntake() {

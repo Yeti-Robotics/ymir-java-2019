@@ -144,6 +144,7 @@ public class Robot extends TimedRobot {
     SmartDashboard.putNumber("Left Line Follow Voltage", drivetrainSubsystem.lineSensorLeft.getAverageVoltage());
     SmartDashboard.putNumber("Center Line Follow Voltage", drivetrainSubsystem.lineSensorCenter.getAverageVoltage());
     SmartDashboard.putNumber("Right Line Follow Voltage", drivetrainSubsystem.lineSensorRight.getAverageVoltage());
+    // System.out.println(jevois.getLeftDistance());
   }
 
   /**

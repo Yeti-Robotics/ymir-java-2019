@@ -5,16 +5,14 @@
 /* the project.                                                               */
 /*----------------------------------------------------------------------------*/
 
-package frc.robot.commands.drivetrain;
+package frc.robot.commands.wrist;
 
 import edu.wpi.first.wpilibj.command.Command;
 import frc.robot.Robot;
 
-public class LineFollowCommand extends Command {
-
-  private boolean lineVisible = true;
-  public LineFollowCommand() {
-    requires(Robot.drivetrainSubsystem);
+public class UserWristCommand extends Command {
+  public UserWristCommand() {
+    requires(Robot.wristSubsystem);
   }
 
   // Called just before this Command runs the first time
@@ -25,40 +23,19 @@ public class LineFollowCommand extends Command {
   // Called repeatedly when this Command is scheduled to run
   @Override
   protected void execute() {
-    String left = Robot.drivetrainSubsystem.lineSensorLeft.getAverageVoltage() > 0.5 ? "1" : "0";
-    String center = Robot.drivetrainSubsystem.lineSensorCenter.getAverageVoltage() > 0.5 ? "1" : "0";
-    String right = Robot.drivetrainSubsystem.lineSensorRight.getAverageVoltage() > 0.5 ? "1" : "0";
-    String lineFollow = left + center + right;
-    switch (lineFollow) {
-    case "010":
-      Robot.drivetrainSubsystem.tankDrive(0.5, 0.5);
-      break;
-    case "110":
-    case "100":
-      Robot.drivetrainSubsystem.tankDrive(0.5, 0.7);
-      break;
-    case "011":
-    case "001":
-      Robot.drivetrainSubsystem.tankDrive(0.7, 0.5);
-      break;
-    case "000": //for testing
-      lineVisible = false;
-      break;
-    }
-    
-
+    Robot.wristSubsystem.useWrist(-Robot.oi.getRightY());
   }
 
   // Make this return true when this Command no longer needs to run execute()
   @Override
   protected boolean isFinished() {
-    return Robot.jevois.getLeftDistance() <= 9 || !lineVisible;
+    return false;
   }
 
   // Called once after isFinished returns true
   @Override
   protected void end() {
-    Robot.drivetrainSubsystem.tankDrive(0, 0);
+  
   }
 
   // Called when another command which requires one or more of the same

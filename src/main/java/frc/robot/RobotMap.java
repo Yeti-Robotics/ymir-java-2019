@@ -18,8 +18,9 @@ public class RobotMap {
   // Drivetrain Encoder Constants
   public static final double WHEEL_DIAMETER = 6; // inches
   public static final double PULSES_PER_REVOLUTION = 1024;
-  public static final double WHEELS_DISTANCE_PER_PULSE = (20.0 * WHEEL_DIAMETER * Math.PI)
-      / (PULSES_PER_REVOLUTION * 60.0);
+  public static final double DRIVE_GEAR_RATIO = 20.0 / 64.0;
+  public static final double DRIVE_DISTANCE_PER_PULSE = (WHEEL_DIAMETER * Math.PI)
+      / (PULSES_PER_REVOLUTION * DRIVE_GEAR_RATIO);
 
   // Wrist Encoder Constants
   public static final double WRIST_GEAR_DIAMETER = 1.7;
@@ -31,8 +32,10 @@ public class RobotMap {
   // Elevator Encoder Constants
   public static final double ELEVATOR_PULSES_PER_REVOLUTION = 1024;
   public static final double ELEVATOR_SPROCKET_CIRCUMFERENCE = 1.44 * Math.PI;
-  public static final double ELEVATOR_DISTANCE_PER_PULSE = (16.0 * ELEVATOR_SPROCKET_CIRCUMFERENCE * 60.0)
-      / (ELEVATOR_PULSES_PER_REVOLUTION * 24.0);
+  public static final double ELEVATOR_HEIGHT_RATIO = 60.0 / 24.0;
+  public static final double ELEVATOR_GEAR_RATIO = 40.0 / 1.0;
+  public static final double ELEVATOR_DISTANCE_PER_PULSE = (ELEVATOR_GEAR_RATIO * ELEVATOR_SPROCKET_CIRCUMFERENCE * ELEVATOR_HEIGHT_RATIO )
+      / (ELEVATOR_PULSES_PER_REVOLUTION);
 
   // Rack Encoder Constants
   public static final double RACK_PULSES_PER_REVOLUTION = 1024;
@@ -59,18 +62,15 @@ public class RobotMap {
   public static final int WRIST_PEAK_CURRENT_DURATION = 200;
 
   // Roller Bar Constants
-  public static final double ROLLER_SPEED = 0.7;
+  public static final double ROLLER_SPEED = 1.0;
 
   // Elevator constants
   public static final double[] ELEVATOR_LEVELS = { 1, 2, 3, 4, 5, 6, 7, 8 };
-  public static final double ELEVATOR_MANUAL_UP_SPEED = .8;
+  public static final double ELEVATOR_MANUAL_UP_SPEED = 0.5;
   public static final double ELEVATOR_MANUAL_DOWN_SPEED = -.2;
-  public static final int ELEVATOR1_CONT_CURRENT_LIMIT = 15;
-  public static final int ELEVATOR1_PEAK_CURRENT_LIMIT = 30;
-  public static final int ELEVATOR1_PEAK_CURRENT_DURATION = 200;
-  public static final int ELEVATOR2_CONT_CURRENT_LIMIT = 15;
-  public static final int ELEVATOR2_PEAK_CURRENT_LIMIT = 30;
-  public static final int ELEVATOR2_PEAK_CURRENT_DURATION = 200;
+  public static final int ELEVATOR_CONT_CURRENT_LIMIT = 15;
+  public static final int ELEVATOR_PEAK_CURRENT_LIMIT = 25;
+  public static final int ELEVATOR_PEAK_CURRENT_DURATION = 200;
 
   // Rack constants
   public static final int RACK_LEFT_ENCODER_LIMIT = -100;
