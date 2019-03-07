@@ -3,6 +3,7 @@ package frc.robot.subsystems;
 import com.analog.adis16448.frc.ADIS16448_IMU;
 import com.ctre.phoenix.motorcontrol.ControlMode;
 import com.ctre.phoenix.motorcontrol.FeedbackDevice;
+import com.ctre.phoenix.motorcontrol.StatusFrameEnhanced;
 import com.ctre.phoenix.motorcontrol.can.VictorSPX;
 
 import edu.wpi.first.wpilibj.AnalogInput;
@@ -35,8 +36,10 @@ public class DrivetrainSubsystem extends PIDSubsystem {
         right2 = new VictorSPX(RobotMap.RIGHT_2_VICTOR);
         leftTal = new CustomTalon(RobotMap.LEFT_DRIVE_TALON);
         rightTal = new CustomTalon(RobotMap.RIGHT_DRIVE_TALON);
-        leftTal.configSelectedFeedbackSensor(FeedbackDevice.QuadEncoder);
-        rightTal.configSelectedFeedbackSensor(FeedbackDevice.QuadEncoder);
+        leftTal.setStatusFramePeriod(StatusFrameEnhanced.Status_2_Feedback0, 1, 30);
+        leftTal.configSelectedFeedbackSensor(FeedbackDevice.CTRE_MagEncoder_Relative);
+        rightTal.setStatusFramePeriod(StatusFrameEnhanced.Status_2_Feedback0, 1, 30);
+        rightTal.configSelectedFeedbackSensor(FeedbackDevice.CTRE_MagEncoder_Relative);   
         gyro = new ADIS16448_IMU();
         gyro.calibrate();
 

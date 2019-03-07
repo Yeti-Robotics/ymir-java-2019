@@ -78,7 +78,8 @@ public class Robot extends TimedRobot {
     // jevois = new JeVois();
     oi = new OI();
     UsbCamera cam = CameraServer.getInstance().startAutomaticCapture(0);
-    cam.setVideoMode(VideoMode.PixelFormat.kMJPEG, 640, 360, 30);
+    cam.setVideoMode(VideoMode.PixelFormat.kMJPEG, 200, 150, 30);
+    cam.setBrightness(50);
 
 
     new Timer().scheduleAtFixedRate(new TimerTask(){

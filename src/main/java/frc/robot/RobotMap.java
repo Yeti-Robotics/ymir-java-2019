@@ -66,7 +66,7 @@ public class RobotMap {
 
   // Elevator constants
   public static final double[] ELEVATOR_LEVELS = { 1, 2, 3, 4, 5, 6, 7, 8 };
-  public static final double ELEVATOR_MANUAL_UP_SPEED = 0.5;
+  public static final double ELEVATOR_MANUAL_UP_SPEED = 0.8;
   public static final double ELEVATOR_MANUAL_DOWN_SPEED = -.2;
   public static final int ELEVATOR_CONT_CURRENT_LIMIT = 15;
   public static final int ELEVATOR_PEAK_CURRENT_LIMIT = 25;
