@@ -9,6 +9,7 @@ package frc.robot.commands.elevator;
 
 import edu.wpi.first.wpilibj.command.Command;
 import frc.robot.Robot;
+import frc.robot.RobotMap;
 
 public class MoveElevatorDownCommand extends Command {
   public MoveElevatorDownCommand() {
@@ -45,6 +46,6 @@ public class MoveElevatorDownCommand extends Command {
   // subsystems is scheduled to run
   @Override
   protected void interrupted() {
-    Robot.elevatorSubsystem.moveElevator(0.3);
+    Robot.elevatorSubsystem.moveElevator(RobotMap.ELEVATOR_STABLE_SPEED);
   }
 }

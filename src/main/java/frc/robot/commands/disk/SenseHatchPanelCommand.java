@@ -7,6 +7,7 @@
 
 package frc.robot.commands.disk;
 
+import edu.wpi.first.wpilibj.DoubleSolenoid.Value;
 import edu.wpi.first.wpilibj.command.Command;
 import frc.robot.Robot;
 
@@ -22,13 +23,13 @@ public class SenseHatchPanelCommand extends Command {
   @Override
   protected void execute() {
     if (Robot.hatchPanelSubsystem.getLeftSwitch() || Robot.hatchPanelSubsystem.getRightSwitch()){
-      Robot.hatchPanelSubsystem.openIntake();
+      Robot.hatchPanelSubsystem.closeIntake();
     }
   }
 
   @Override
   protected boolean isFinished() {
-    return false;
+    return Robot.hatchPanelSubsystem.getIntakeState() == Value.kReverse;
   }
 
   @Override

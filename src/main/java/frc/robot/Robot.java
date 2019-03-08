@@ -19,6 +19,7 @@ import edu.wpi.cscore.UsbCamera;
 import edu.wpi.cscore.VideoMode;
 import edu.wpi.first.cameraserver.CameraServer;
 import edu.wpi.first.wpilibj.DriverStation;
+import edu.wpi.first.wpilibj.PowerDistributionPanel;
 import edu.wpi.first.wpilibj.TimedRobot;
 import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.command.Scheduler;
@@ -26,6 +27,7 @@ import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import frc.robot.controls.Contour;
 import frc.robot.controls.JeVois;
+import frc.robot.controls.VisionProcessor;
 import frc.robot.subsystems.DiskRackSubsystem;
 import frc.robot.subsystems.DrivetrainSubsystem;
 import frc.robot.subsystems.ElevatorSubsystem;
@@ -75,11 +77,14 @@ public class Robot extends TimedRobot {
     wristSubsystem = new WristSubsystem();
     rollerBarSubsystem = new RollerBarSubsystem();
     discRackSubsystem = new DiskRackSubsystem();
-    // jevois = new JeVois();
+    jevois = new JeVois();
     oi = new OI();
     UsbCamera cam = CameraServer.getInstance().startAutomaticCapture(0);
     cam.setVideoMode(VideoMode.PixelFormat.kMJPEG, 200, 150, 30);
     cam.setBrightness(50);
+    
+    UsbCamera jevoisView = CameraServer.getInstance().startAutomaticCapture(1);
+    jevoisView.setVideoMode(VideoMode.PixelFormat.kYUYV, 320, 240, 30);
 
 
     new Timer().scheduleAtFixedRate(new TimerTask(){
@@ -91,7 +96,7 @@ public class Robot extends TimedRobot {
           if (contours != null) {
             contourList.add(contours);
             latestContours = contours;
-            System.out.println(Arrays.toString(latestContours));
+            // System.out.println(Arrays.toString(latestContours));
             if (contourList.size() > 10){
               contourList.remove(0);
             }
@@ -145,7 +150,14 @@ public class Robot extends TimedRobot {
     SmartDashboard.putNumber("Left Line Follow Voltage", drivetrainSubsystem.lineSensorLeft.getAverageVoltage());
     SmartDashboard.putNumber("Center Line Follow Voltage", drivetrainSubsystem.lineSensorCenter.getAverageVoltage());
     SmartDashboard.putNumber("Right Line Follow Voltage", drivetrainSubsystem.lineSensorRight.getAverageVoltage());
-    // System.out.println(jevois.getLeftDistance());
+    
+    if (latestContours != null) {
+    System.out.println("left: " + VisionProcessor.getLeftDistance(latestContours[0], latestContours[1]) + ", right: " + VisionProcessor.getRightDistance(latestContours[0], latestContours[1]));
+    // System.out.println(VisionProcessor.boundRect(latestContours[0], latestContours[1]).width);
+    // System.out.println(VisionProcessor.getCenterDistance(latestContours[0], latestContours[1]));
+    }
+
+   
   }
 
   /**

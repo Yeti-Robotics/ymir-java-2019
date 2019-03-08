@@ -36,10 +36,10 @@ public class HatchPanelSubsystem extends Subsystem {
     return !rightSwitch.get();
   }
 
-  public void openIntake() {
+  public void closeIntake() {
     intake.set(Value.kReverse);
   }
-  public void closeIntake() {
+  public void openIntake() {
     intake.set(Value.kForward);
   }
   public void deployOut() {
@@ -49,10 +49,14 @@ public class HatchPanelSubsystem extends Subsystem {
     deploy.set(Value.kForward);
   }
 
+  public Value getIntakeState() {
+    return intake.get();
+  }
+
 
   @Override
   public void initDefaultCommand() {
-    setDefaultCommand(new SenseHatchPanelCommand());
+    
   }
 
 }

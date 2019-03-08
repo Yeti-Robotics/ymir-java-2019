@@ -11,10 +11,12 @@ import edu.wpi.first.wpilibj.GenericHID;
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.buttons.JoystickButton;
 import edu.wpi.first.wpilibj.command.Command;
-import frc.robot.commands.disk.CloseIntakeCommand;
+import frc.robot.commands.disk.OpenIntakeCommand;
+import frc.robot.commands.disk.ListenForDiskCommandGroup;
 import frc.robot.commands.disk.DeployInCommand;
 import frc.robot.commands.disk.DeployOutCommand;
-import frc.robot.commands.disk.OpenIntakeCommand;
+import frc.robot.commands.disk.CloseIntakeCommand;
+import frc.robot.commands.disk.CloseIntakeDeployInCommandGroup;
 import frc.robot.commands.drivetrain.DriveForDistancePIDCommand;
 import frc.robot.commands.elevator.MoveElevatorCommand;
 import frc.robot.commands.elevator.MoveElevatorDownCommand;
@@ -62,12 +64,11 @@ public class OI {
 
     setJoystickButtonWhileHeldCommand(driverStationJoy, 1, new IntakeBallCommand());
     setJoystickButtonWhileHeldCommand(driverStationJoy, 2, new LaunchBallCommand());
-    setJoystickButtonWhenPressedCommand(driverStationJoy, 3, new CloseIntakeCommand());
-    setJoystickButtonWhenPressedCommand(driverStationJoy, 4, new OpenIntakeCommand());
+    setJoystickButtonWhileHeldCommand(driverStationJoy, 4, new MoveElevatorUpCommand());
     setJoystickButtonWhenPressedCommand(driverStationJoy, 5, new DeployHatchPanelCommandGroup());
-    setJoystickButtonWhenPressedCommand(driverStationJoy, 6, new DeployInCommand());
+    setJoystickButtonWhenPressedCommand(driverStationJoy, 6, new ListenForDiskCommandGroup());
     // setJoystickButtonWhenPressedCommand(driverStationJoy, 6, new MoveElevatorCommand(60000));
-    setJoystickButtonWhileHeldCommand(driverStationJoy, 7, new MoveElevatorUpCommand());
+    setJoystickButtonWhenPressedCommand(driverStationJoy, 7, new CloseIntakeDeployInCommandGroup());
     setJoystickButtonWhileHeldCommand(driverStationJoy, 8, new MoveElevatorDownCommand());
     // setJoystickButtonWhenPressedCommand(secondaryJoy, 3, new
     // LineFollowCommand());

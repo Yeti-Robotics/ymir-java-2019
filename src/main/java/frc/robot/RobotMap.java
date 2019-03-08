@@ -17,7 +17,7 @@ public class RobotMap {
 
   // Drivetrain Encoder Constants
   public static final double WHEEL_DIAMETER = 6; // inches
-  public static final double PULSES_PER_REVOLUTION = 1024;
+  public static final double PULSES_PER_REVOLUTION = 4096;
   public static final double DRIVE_GEAR_RATIO = 20.0 / 64.0;
   public static final double DRIVE_DISTANCE_PER_PULSE = (WHEEL_DIAMETER * Math.PI)
       / (PULSES_PER_REVOLUTION * DRIVE_GEAR_RATIO);
@@ -30,7 +30,7 @@ public class RobotMap {
   public static final int WRIST_LOWER_ENCODER_LIMIT = 0;
 
   // Elevator Encoder Constants
-  public static final double ELEVATOR_PULSES_PER_REVOLUTION = 1024;
+  public static final double ELEVATOR_PULSES_PER_REVOLUTION = 4096;
   public static final double ELEVATOR_SPROCKET_CIRCUMFERENCE = 1.44 * Math.PI;
   public static final double ELEVATOR_HEIGHT_RATIO = 60.0 / 24.0;
   public static final double ELEVATOR_GEAR_RATIO = 40.0 / 1.0;
@@ -66,8 +66,9 @@ public class RobotMap {
 
   // Elevator constants
   public static final double[] ELEVATOR_LEVELS = { 1, 2, 3, 4, 5, 6, 7, 8 };
-  public static final double ELEVATOR_MANUAL_UP_SPEED = 0.8;
+  public static final double ELEVATOR_MANUAL_UP_SPEED = 0.5;
   public static final double ELEVATOR_MANUAL_DOWN_SPEED = -.2;
+  public static final double ELEVATOR_STABLE_SPEED = 0.15;
   public static final int ELEVATOR_CONT_CURRENT_LIMIT = 15;
   public static final int ELEVATOR_PEAK_CURRENT_LIMIT = 25;
   public static final int ELEVATOR_PEAK_CURRENT_DURATION = 200;
@@ -108,7 +109,7 @@ public class RobotMap {
   public static final int IMAGE_WIDTH = 320;
   public static final double TAPE_BOUND_WIDTH_INCH = 3.3;
   public static final double TARGET_BOUND_WIDTH_INCH = 14.6;
-  public static final double FOCAL_LENGTH = (21 * 49.5) / TAPE_BOUND_WIDTH_INCH;
+  public static final double FOCAL_LENGTH = (20 * 68) / TAPE_BOUND_WIDTH_INCH;
   public static final int JEVOIS_BAUD_RATE = 115200;
   public static final int FOV = 65;
 
@@ -116,4 +117,17 @@ public class RobotMap {
   public static final int LEFT_LINE_FOLLOWER_PORT = 0;
   public static final int CENTER_LINE_FOLLOWER_PORT = 1;
   public static final int RIGHT_LINE_FOLLOWER_PORT = 2;
+
+  //Dashboard constants
+  public static final String NETWORK_TABLES_GYRO = "/SmartDashboard/drive/navx/yaw";
+  public static final String NETWORK_TABLES_ARM_ENCODER = "/SmartDashboard/arm/encoder";
+  public static final String NETWORK_TABLES_ELEVATOR_ENCODER = "/SmartDashboard/elevator/encoder";
+  public static final String NETWORK_TABLES_AUTO_MODES = "/SmartDashboard/autonomous/modes";
+  public static final String NETWORK_TABLES_AUTO__CUREENTLY_SELECTED = "/SmartDashboard/currentlySelectedMode";
+  public static final String NETWORK_TABLES_AUTO_SELECTED = "/SmartDashboard/autonomous/selected";
+  public static final String NETWORK_TABLES_VISION_TARGET_FOUND = "/SmartDashboard/vision/targetFound";
+  public static final String NETWORK_TABLES_LINEFOLLOWER_LEFT = "/SmartDashboard/lineFollower/left";
+  public static final String NETWORK_TABLES_LINEFOLLOWER_CENTER = "/SmartDashboard/lineFollower/center";
+  public static final String NETWORK_TABLES_LINEFOLLOWER_RIGHT = "/SmartDashboard/lineFollower/right";
+  public static final String NETWORK_TABLES_ARM_BALL ="/SmartDashboard/arm/ball";
 }
