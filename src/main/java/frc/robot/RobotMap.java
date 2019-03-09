@@ -18,9 +18,7 @@ public class RobotMap {
   // Drivetrain Encoder Constants
   public static final double WHEEL_DIAMETER = 6; // inches
   public static final double PULSES_PER_REVOLUTION = 4096;
-  public static final double DRIVE_GEAR_RATIO = 20.0 / 64.0;
-  public static final double DRIVE_DISTANCE_PER_PULSE = (WHEEL_DIAMETER * Math.PI)
-      / (PULSES_PER_REVOLUTION * DRIVE_GEAR_RATIO);
+  public static final double DRIVETRAIN_GEAR_RATIO = (64.0 * 36.0) / (20.0 * 12.0);
 
   // Wrist Encoder Constants
   public static final double WRIST_GEAR_DIAMETER = 1.7;
@@ -34,8 +32,8 @@ public class RobotMap {
   public static final double ELEVATOR_SPROCKET_CIRCUMFERENCE = 1.44 * Math.PI;
   public static final double ELEVATOR_HEIGHT_RATIO = 60.0 / 24.0;
   public static final double ELEVATOR_GEAR_RATIO = 40.0 / 1.0;
-  public static final double ELEVATOR_DISTANCE_PER_PULSE = (ELEVATOR_GEAR_RATIO * ELEVATOR_SPROCKET_CIRCUMFERENCE * ELEVATOR_HEIGHT_RATIO )
-      / (ELEVATOR_PULSES_PER_REVOLUTION);
+  public static final double ELEVATOR_DISTANCE_PER_PULSE = (ELEVATOR_GEAR_RATIO * ELEVATOR_SPROCKET_CIRCUMFERENCE
+      * ELEVATOR_HEIGHT_RATIO) / (ELEVATOR_PULSES_PER_REVOLUTION);
 
   // Rack Encoder Constants
   public static final double RACK_PULSES_PER_REVOLUTION = 1024;
@@ -118,7 +116,7 @@ public class RobotMap {
   public static final int CENTER_LINE_FOLLOWER_PORT = 1;
   public static final int RIGHT_LINE_FOLLOWER_PORT = 2;
 
-  //Dashboard constants
+  // Dashboard constants
   public static final String NETWORK_TABLES_GYRO = "/SmartDashboard/drive/navx/yaw";
   public static final String NETWORK_TABLES_ARM_ENCODER = "/SmartDashboard/arm/encoder";
   public static final String NETWORK_TABLES_ELEVATOR_ENCODER = "/SmartDashboard/elevator/encoder";
@@ -129,5 +127,5 @@ public class RobotMap {
   public static final String NETWORK_TABLES_LINEFOLLOWER_LEFT = "/SmartDashboard/lineFollower/left";
   public static final String NETWORK_TABLES_LINEFOLLOWER_CENTER = "/SmartDashboard/lineFollower/center";
   public static final String NETWORK_TABLES_LINEFOLLOWER_RIGHT = "/SmartDashboard/lineFollower/right";
-  public static final String NETWORK_TABLES_ARM_BALL ="/SmartDashboard/arm/ball";
+  public static final String NETWORK_TABLES_ARM_BALL = "/SmartDashboard/arm/ball";
 }

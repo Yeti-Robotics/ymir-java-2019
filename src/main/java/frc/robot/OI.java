@@ -17,7 +17,9 @@ import frc.robot.commands.disk.DeployInCommand;
 import frc.robot.commands.disk.DeployOutCommand;
 import frc.robot.commands.disk.CloseIntakeCommand;
 import frc.robot.commands.disk.CloseIntakeDeployInCommandGroup;
+import frc.robot.commands.drivetrain.DriveForDistanceCommand;
 import frc.robot.commands.drivetrain.DriveForDistancePIDCommand;
+import frc.robot.commands.drivetrain.ResetDriveEncoderCommand;
 import frc.robot.commands.elevator.MoveElevatorCommand;
 import frc.robot.commands.elevator.MoveElevatorDownCommand;
 import frc.robot.commands.elevator.MoveElevatorUpCommand;
@@ -64,11 +66,12 @@ public class OI {
 
     setJoystickButtonWhileHeldCommand(driverStationJoy, 1, new IntakeBallCommand());
     setJoystickButtonWhileHeldCommand(driverStationJoy, 2, new LaunchBallCommand());
+    setJoystickButtonWhenPressedCommand(driverStationJoy, 3, new ResetDriveEncoderCommand());
     setJoystickButtonWhileHeldCommand(driverStationJoy, 4, new MoveElevatorUpCommand());
     setJoystickButtonWhenPressedCommand(driverStationJoy, 5, new DeployHatchPanelCommandGroup());
     setJoystickButtonWhenPressedCommand(driverStationJoy, 6, new ListenForDiskCommandGroup());
     // setJoystickButtonWhenPressedCommand(driverStationJoy, 6, new MoveElevatorCommand(60000));
-    setJoystickButtonWhenPressedCommand(driverStationJoy, 7, new CloseIntakeDeployInCommandGroup());
+    // setJoystickButtonWhenPressedCommand(driverStationJoy, 7, new CloseIntakeDeployInCommandGroup());
     setJoystickButtonWhileHeldCommand(driverStationJoy, 8, new MoveElevatorDownCommand());
     // setJoystickButtonWhenPressedCommand(secondaryJoy, 3, new
     // LineFollowCommand());
@@ -76,8 +79,7 @@ public class OI {
     // ResetEncodersCommand());
     // // setJoystickButtonWhenPressedCommand(secondaryJoy, 4, new
     // CorrectAzimuthCommand());
-    // setJoystickButtonWhenPressedCommand(secondaryJoy, 7, new
-    // DriveForDistanceCommand(50, 0.6, 0.6));
+    setJoystickButtonWhenPressedCommand(driverStationJoy, 7, new DriveForDistanceCommand(120, 0.5, 0.5));
     // setJoystickButtonWhenPressedCommand(secondaryJoy, 8, new
     // TurnToTargetCommandGroup());
   }
