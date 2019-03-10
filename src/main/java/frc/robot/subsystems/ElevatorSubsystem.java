@@ -67,7 +67,6 @@ public class ElevatorSubsystem extends PIDSubsystem {
 
     elevator1Talon.config_kP(0, RobotMap.ELEVATOR_P);
     elevator1Talon.config_kI(0, 0);
-    elevator1Talon.config_IntegralZone(0, RobotMap.ELEVATOR_INTEGRAL_ZONE);
     elevator1Talon.config_kD(0, RobotMap.ELEVATOR_D);
     elevator1Talon.configMotionCruiseVelocity((int) (RobotMap.ELEVATOR_MAX_VELOCITY / 1.25));
     elevator1Talon.configMotionAcceleration((int) (RobotMap.ELEVATOR_MAX_VELOCITY / 1.25));
@@ -77,8 +76,8 @@ public class ElevatorSubsystem extends PIDSubsystem {
     elevator1Talon.setStatusFramePeriod(StatusFrameEnhanced.Status_10_MotionMagic, 10);
     elevator1Talon.configOpenloopRamp(RobotMap.ELEVATOR_OPEN_LOOP_RAMP);
     elevator1Talon.configPeakOutputForward(RobotMap.ELEVATOR_PEAK_OUTPUT_FORWARD);
-    elevator1Talon.configForwardSoftLimitThreshold(convertInchesToCounts(RobotMap.ELEVATOR_REVERSE_SOFT_LIMIT));
-    elevator1Talon.configReverseSoftLimitThreshold(convertInchesToCounts(RobotMap.ELEVATOR_FORWARD_SOFT_LIMIT));
+    elevator1Talon.configForwardSoftLimitThreshold(convertInchesToCounts(RobotMap.ELEVATOR_FORWARD_SOFT_LIMIT));
+    elevator1Talon.configReverseSoftLimitThreshold(convertInchesToCounts(RobotMap.ELEVATOR_REVERSE_SOFT_LIMIT));
     elevator1Talon.configReverseSoftLimitEnable(true);
     elevator1Talon.configForwardSoftLimitEnable(true);
   }

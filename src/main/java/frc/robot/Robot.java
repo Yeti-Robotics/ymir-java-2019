@@ -60,7 +60,9 @@ public class Robot extends TimedRobot {
   public static boolean runVisionThread = false;
   public static JeVois jevois;
   public static List<Contour[]> contourList = new ArrayList<>();
-  public static Contour[] latestContours;
+  public static Contour[] latestContours = {
+    new Contour("0", "0", "0", "0", "0"), new Contour("0", "0", "0", "0", "0")
+  };
   static Object imgLock = new Object();
   public static String[] autoModes = {"Test 1"};
 
@@ -106,7 +108,9 @@ public class Robot extends TimedRobot {
             lastLoop = System.currentTimeMillis();
           }
           if (System.currentTimeMillis() - lastLoop > 3000) {
-            latestContours = null;
+            latestContours = new Contour[] {
+              new Contour("0", "0", "0", "0", "0"), new Contour("0", "0", "0", "0", "0")
+            };
           }
       }
     }, 20L, 20L);
@@ -114,7 +118,7 @@ public class Robot extends TimedRobot {
     // chooser.addOption("My Auto", new MyAutoCommand());
     SmartDashboard.putData("Auto mode", m_chooser);
 
-    
+
     networkTable.getEntry(RobotMap.NETWORK_TABLES_AUTO_MODES).setStringArray(autoModes);
   }
 
@@ -162,7 +166,7 @@ public class Robot extends TimedRobot {
 
     // System.out.println("left: " + VisionProcessor.getLeftDistance(latestContours[0], latestContours[1]) + ", right: " + VisionProcessor.getRightDistance(latestContours[0], latestContours[1]));
     // System.out.println(VisionProcessor.boundRect(latestContours[0], latestContours[1]).width);
-    // System.out.println(VisionProcessor.getAverageDistance(latestContours[0], latestContours[1]));
+    System.out.println(VisionProcessor.getAverageDistance(latestContours[0], latestContours[1]));
     }
 
     networkTable.getEntry(RobotMap.NETWORK_TABLES_GYRO).setDouble(drivetrainSubsystem.getAngle());
@@ -223,12 +227,12 @@ public class Robot extends TimedRobot {
     if (m_autonomousCommand != null) {
       m_autonomousCommand.start();
 
-      
+
     }
-    
+
     String chosenAutoMode = networkTable.getEntry(RobotMap.NETWORK_TABLES_AUTO__CUREENTLY_SELECTED).getString("Default Auto");
     switch (chosenAutoMode) {
-      
+
       default:
         break;
     }

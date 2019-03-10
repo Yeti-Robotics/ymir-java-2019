@@ -78,14 +78,14 @@ public class RobotMap {
   public static final int ELEVATOR_CONT_CURRENT_LIMIT = 15;
   public static final int ELEVATOR_PEAK_CURRENT_LIMIT = 25;
   public static final int ELEVATOR_PEAK_CURRENT_DURATION = 200;
+
   public static final double ELEVATOR_MAX_VELOCITY = 58472.2;
   public static final double ELEVATOR_P = (511.5*30) / 81536;
-  public static final int ELEVATOR_INTEGRAL_ZONE = 5000;
   public static final double ELEVATOR_D = (511.5*6000) / 81536;
   public static final double ELEVATOR_OPEN_LOOP_RAMP = .3;
   public static final double ELEVATOR_PEAK_OUTPUT_FORWARD = .6;
-  public static final double ELEVATOR_REVERSE_SOFT_LIMIT = 59;
-  public static final double ELEVATOR_FORWARD_SOFT_LIMIT = 0;
+  public static final double ELEVATOR_REVERSE_SOFT_LIMIT = 0;
+  public static final double ELEVATOR_FORWARD_SOFT_LIMIT = 59;
   public static final double ELEVATOR_TOLERANCE = 1;
 
 
@@ -125,9 +125,10 @@ public class RobotMap {
   public static final int IMAGE_WIDTH = 320;
   public static final double TAPE_BOUND_WIDTH_INCH = 3.3;
   public static final double TARGET_BOUND_WIDTH_INCH = 14.6;
-  public static final double FOCAL_LENGTH = (20 * 68) / TAPE_BOUND_WIDTH_INCH;
+  public static final double FOCAL_LENGTH = (22 * 55) / TAPE_BOUND_WIDTH_INCH;
   public static final int JEVOIS_BAUD_RATE = 115200;
   public static final int FOV = 65;
+  public static final double CAMERA_BUMPER_BUFFER = 8.5;
 
   // Line Following Constants
   public static final int LEFT_LINE_FOLLOWER_PORT = 0;

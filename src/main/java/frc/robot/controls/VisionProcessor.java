@@ -41,17 +41,18 @@ public class VisionProcessor {
     }
 
     public static double getCenterDistance(Contour leftCon, Contour rightCon) {
-        double centerDistance = (RobotMap.TARGET_BOUND_WIDTH_INCH * RobotMap.FOCAL_LENGTH) / boundRect(leftCon, rightCon).width;
 
        if (leftCon != null && leftCon != null) {
-            centerDistance = (RobotMap.TARGET_BOUND_WIDTH_INCH * RobotMap.FOCAL_LENGTH) / boundRect(leftCon, rightCon).width;
-            return centerDistance;
+        return (RobotMap.TARGET_BOUND_WIDTH_INCH * RobotMap.FOCAL_LENGTH) / boundRect(leftCon, rightCon).width;
         }
         return 1000;
     }
 
     public static double getAverageDistance(Contour leftCon, Contour rightCon) {
-        return (getLeftDistance(leftCon, rightCon) + getRightDistance(leftCon, rightCon)) / 2;
+        if (leftCon != null && leftCon != null) {        
+            return (getLeftDistance(leftCon, rightCon) + getRightDistance(leftCon, rightCon)) / 2;
+            }
+            return 1000;
     }
 
 }
