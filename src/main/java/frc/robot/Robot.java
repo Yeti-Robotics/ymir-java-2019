@@ -18,6 +18,9 @@ import java.util.TimerTask;
 import edu.wpi.cscore.UsbCamera;
 import edu.wpi.cscore.VideoMode;
 import edu.wpi.first.cameraserver.CameraServer;
+import edu.wpi.first.networktables.NetworkTable;
+import edu.wpi.first.networktables.NetworkTableEntry;
+import edu.wpi.first.networktables.NetworkTableInstance;
 import edu.wpi.first.wpilibj.DriverStation;
 import edu.wpi.first.wpilibj.PowerDistributionPanel;
 import edu.wpi.first.wpilibj.TimedRobot;
@@ -45,6 +48,7 @@ import frc.robot.subsystems.WristSubsystem;
 public class Robot extends TimedRobot {
 
   public static OI oi;
+  public static NetworkTable networkTable;
 
   // Instantiates the subsystems
   public static DrivetrainSubsystem drivetrainSubsystem;
@@ -58,6 +62,7 @@ public class Robot extends TimedRobot {
   public static List<Contour[]> contourList = new ArrayList<>();
   public static Contour[] latestContours;
   static Object imgLock = new Object();
+  public static String[] autoModes = {"Test 1"};
 
   Command m_autonomousCommand;
   SendableChooser<Command> m_chooser = new SendableChooser<>();
@@ -76,11 +81,12 @@ public class Robot extends TimedRobot {
     rollerBarSubsystem = new RollerBarSubsystem();
     jevois = new JeVois();
     oi = new OI();
-    UsbCamera cam = CameraServer.getInstance().startAutomaticCapture(0);
-    cam.setVideoMode(VideoMode.PixelFormat.kMJPEG, 200, 150, 30);
-    cam.setBrightness(50);
+    networkTable = NetworkTableInstance.getDefault().getTable("SmartDashboard");
+    // UsbCamera cam = CameraServer.getInstance().startAutomaticCapture(0);
+    // cam.setVideoMode(VideoMode.PixelFormat.kMJPEG, 200, 150, 30);
+    // cam.setBrightness(50);
     
-    UsbCamera jevoisView = CameraServer.getInstance().startAutomaticCapture(1);
+    UsbCamera jevoisView = CameraServer.getInstance().startAutomaticCapture(0);
     jevoisView.setVideoMode(VideoMode.PixelFormat.kYUYV, 320, 240, 30);
 
 
@@ -107,6 +113,9 @@ public class Robot extends TimedRobot {
     
     // chooser.addOption("My Auto", new MyAutoCommand());
     SmartDashboard.putData("Auto mode", m_chooser);
+
+    
+    networkTable.getEntry(RobotMap.NETWORK_TABLES_AUTO_MODES).setStringArray(autoModes);
   }
 
   public static void enableVision() {
@@ -144,16 +153,26 @@ public class Robot extends TimedRobot {
     SmartDashboard.putNumber("Avg Encoder Distance", drivetrainSubsystem.getAvgEncoderDistance());
     SmartDashboard.putNumber("Left Encoder Rate", drivetrainSubsystem.getLeftEncoderRate());
     SmartDashboard.putNumber("Right Encoder Rate", drivetrainSubsystem.getRightEncoderRate());
-    SmartDashboard.putNumber("Left Line Follow Voltage", drivetrainSubsystem.lineSensorLeft.getAverageVoltage());
-    SmartDashboard.putNumber("Center Line Follow Voltage", drivetrainSubsystem.lineSensorCenter.getAverageVoltage());
-    SmartDashboard.putNumber("Right Line Follow Voltage", drivetrainSubsystem.lineSensorRight.getAverageVoltage());
+    SmartDashboard.putBoolean("Left Line Follow Voltage", drivetrainSubsystem.getLeftLineFollower());
+    SmartDashboard.putBoolean("Center Line Follow Voltage", drivetrainSubsystem.getCenterLineFollower());
+    SmartDashboard.putBoolean("Right Line Follow Voltage", drivetrainSubsystem.getRightLineFollower());
     SmartDashboard.putNumber("Elevator raw value", elevatorSubsystem.elevator1Talon.getSelectedSensorPosition());
     
     if (latestContours != null) {
+
     // System.out.println("left: " + VisionProcessor.getLeftDistance(latestContours[0], latestContours[1]) + ", right: " + VisionProcessor.getRightDistance(latestContours[0], latestContours[1]));
     // System.out.println(VisionProcessor.boundRect(latestContours[0], latestContours[1]).width);
     // System.out.println(VisionProcessor.getAverageDistance(latestContours[0], latestContours[1]));
     }
+
+    networkTable.getEntry(RobotMap.NETWORK_TABLES_GYRO).setDouble(drivetrainSubsystem.getAngle());
+    networkTable.getEntry(RobotMap.NETWORK_TABLES_ARM_ENCODER).setDouble(wristSubsystem.getWristEncoderValue());
+    networkTable.getEntry(RobotMap.NETWORK_TABLES_ELEVATOR_ENCODER).setDouble(elevatorSubsystem.getElevatorEncoder());
+    networkTable.getEntry(RobotMap.NETWORK_TABLES_VISION_TARGET_FOUND).setBoolean(latestContours[0].w > 0);
+    networkTable.getEntry(RobotMap.NETWORK_TABLES_LINEFOLLOWER_LEFT).setBoolean(drivetrainSubsystem.getLeftLineFollower());
+    networkTable.getEntry(RobotMap.NETWORK_TABLES_LINEFOLLOWER_CENTER).setBoolean(drivetrainSubsystem.getCenterLineFollower());
+    networkTable.getEntry(RobotMap.NETWORK_TABLES_LINEFOLLOWER_RIGHT).setBoolean(drivetrainSubsystem.getRightLineFollower());
+    networkTable.getEntry(RobotMap.NETWORK_TABLES_ARM_BALL).setBoolean(rollerBarSubsystem.getBeamBreakSensor());
 
    
   }
@@ -203,6 +222,15 @@ public class Robot extends TimedRobot {
     // schedule the autonomous command (example)
     if (m_autonomousCommand != null) {
       m_autonomousCommand.start();
+
+      
+    }
+    
+    String chosenAutoMode = networkTable.getEntry(RobotMap.NETWORK_TABLES_AUTO__CUREENTLY_SELECTED).getString("Default Auto");
+    switch (chosenAutoMode) {
+      
+      default:
+        break;
     }
   }
 

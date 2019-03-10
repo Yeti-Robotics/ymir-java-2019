@@ -140,7 +140,6 @@ public class RobotMap {
   public static final String NETWORK_TABLES_ELEVATOR_ENCODER = "/SmartDashboard/elevator/encoder";
   public static final String NETWORK_TABLES_AUTO_MODES = "/SmartDashboard/autonomous/modes";
   public static final String NETWORK_TABLES_AUTO__CUREENTLY_SELECTED = "/SmartDashboard/currentlySelectedMode";
-  public static final String NETWORK_TABLES_AUTO_SELECTED = "/SmartDashboard/autonomous/selected";
   public static final String NETWORK_TABLES_VISION_TARGET_FOUND = "/SmartDashboard/vision/targetFound";
   public static final String NETWORK_TABLES_LINEFOLLOWER_LEFT = "/SmartDashboard/lineFollower/left";
   public static final String NETWORK_TABLES_LINEFOLLOWER_CENTER = "/SmartDashboard/lineFollower/center";

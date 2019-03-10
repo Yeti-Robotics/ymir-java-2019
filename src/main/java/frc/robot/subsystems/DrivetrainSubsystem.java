@@ -20,8 +20,8 @@ public class DrivetrainSubsystem extends PIDSubsystem {
     private CustomTalon leftTal, rightTal;
     private DifferentialDrive differentialDrive;
     private DriveMode driveMode;
-    public AnalogInput lineSensorLeft, lineSensorCenter, lineSensorRight;
-    public ADIS16448_IMU gyro;
+    private AnalogInput lineSensorLeft, lineSensorCenter, lineSensorRight;
+    private ADIS16448_IMU gyro;
 
     public enum DriveMode {
         TANK, ARCADE, CHEEZY;
@@ -65,6 +65,22 @@ public class DrivetrainSubsystem extends PIDSubsystem {
 
     public void resetGyro() {
         gyro.reset();
+    }
+
+    public double getAngle() {
+       return gyro.getAngle();
+    }
+
+    public boolean getLeftLineFollower() {
+        return lineSensorLeft.getAverageVoltage() > 0.5;
+    }
+
+    public boolean getCenterLineFollower() {
+        return lineSensorCenter.getAverageVoltage() > 0.5;
+    }
+
+    public boolean getRightLineFollower() {
+        return lineSensorRight.getAverageVoltage() > 0.5;
     }
 
     public DriveMode getDriveMode() {

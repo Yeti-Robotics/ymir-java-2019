@@ -14,21 +14,24 @@ import frc.robot.controls.VisionProcessor;
 public class LineFollowCommand extends Command {
 
   private boolean lineVisible = true;
-  public LineFollowCommand() {
+  private double distance;
+  public LineFollowCommand(double distance) {
+    this.distance = distance;
     requires(Robot.drivetrainSubsystem);
   }
 
   // Called just before this Command runs the first time
   @Override
   protected void initialize() {
+    Robot.drivetrainSubsystem.resetEncoders();
   }
 
   // Called repeatedly when this Command is scheduled to run
   @Override
   protected void execute() {
-    String left = Robot.drivetrainSubsystem.lineSensorLeft.getAverageVoltage() > 0.5 ? "1" : "0";
-    String center = Robot.drivetrainSubsystem.lineSensorCenter.getAverageVoltage() > 0.5 ? "1" : "0";
-    String right = Robot.drivetrainSubsystem.lineSensorRight.getAverageVoltage() > 0.5 ? "1" : "0";
+    String left = Robot.drivetrainSubsystem.getLeftLineFollower() ? "1" : "0";
+    String center = Robot.drivetrainSubsystem.getCenterLineFollower() ? "1" : "0";
+    String right = Robot.drivetrainSubsystem.getRightLineFollower() ? "1" : "0";
     String lineFollow = left + center + right;
     switch (lineFollow) {
     case "010":
@@ -51,11 +54,7 @@ public class LineFollowCommand extends Command {
   // Make this return true when this Command no longer needs to run execute()
   @Override
   protected boolean isFinished() {
-    if (Robot.latestContours != null) {
-      return VisionProcessor.getAverageDistance(Robot.latestContours[0], Robot.latestContours[1]) <= 9 || !lineVisible;
-    } else {
-      return !lineVisible;
-    }
+      return Robot.drivetrainSubsystem.getAvgEncoderDistance() >= distance || !lineVisible;
   }
 
   // Called once after isFinished returns true

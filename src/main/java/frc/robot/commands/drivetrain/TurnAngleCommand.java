@@ -44,7 +44,7 @@ public class TurnAngleCommand extends Command {
   protected void execute() {
   
     targetAngle = Math.abs(angle);
-    currentAngle = Math.abs(Robot.drivetrainSubsystem.gyro.getAngle());
+    currentAngle = Math.abs(Robot.drivetrainSubsystem.getAngle());
    
     double error = targetAngle - currentAngle;
     totalError += error;
