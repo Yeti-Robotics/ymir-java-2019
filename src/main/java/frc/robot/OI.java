@@ -23,6 +23,7 @@ import frc.robot.commands.drivetrain.ResetDriveEncoderCommand;
 import frc.robot.commands.elevator.MoveElevatorCommand;
 import frc.robot.commands.elevator.MoveElevatorDownCommand;
 import frc.robot.commands.elevator.MoveElevatorUpCommand;
+import frc.robot.commands.groups.DeployDiskLevel1CommandGroup;
 import frc.robot.commands.groups.DeployHatchPanelCommandGroup;
 import frc.robot.commands.rollerbar.IntakeBallCommand;
 import frc.robot.commands.rollerbar.LaunchBallCommand;
@@ -65,13 +66,14 @@ public class OI {
     // DeployBallRocketLevel3());
 
     setJoystickButtonWhileHeldCommand(driverStationJoy, 1, new IntakeBallCommand());
-    setJoystickButtonWhileHeldCommand(driverStationJoy, 2, new LaunchBallCommand());
+    // setJoystickButtonWhileHeldCommand(driverStationJoy, 2, new LaunchBallCommand());
+    setJoystickButtonWhileHeldCommand(driverStationJoy, 2, new MoveElevatorCommand(5.628));
     setJoystickButtonWhenPressedCommand(driverStationJoy, 3, new ResetDriveEncoderCommand());
     setJoystickButtonWhileHeldCommand(driverStationJoy, 4, new MoveElevatorUpCommand());
     setJoystickButtonWhenPressedCommand(driverStationJoy, 5, new DeployHatchPanelCommandGroup());
     setJoystickButtonWhenPressedCommand(driverStationJoy, 6, new ListenForDiskCommandGroup());
     // setJoystickButtonWhenPressedCommand(driverStationJoy, 6, new MoveElevatorCommand(60000));
-    // setJoystickButtonWhenPressedCommand(driverStationJoy, 7, new CloseIntakeDeployInCommandGroup());
+    setJoystickButtonWhenPressedCommand(driverStationJoy, 7, new CloseIntakeDeployInCommandGroup());
     setJoystickButtonWhileHeldCommand(driverStationJoy, 8, new MoveElevatorDownCommand());
     // setJoystickButtonWhenPressedCommand(secondaryJoy, 3, new
     // LineFollowCommand());
@@ -79,7 +81,7 @@ public class OI {
     // ResetEncodersCommand());
     // // setJoystickButtonWhenPressedCommand(secondaryJoy, 4, new
     // CorrectAzimuthCommand());
-    setJoystickButtonWhenPressedCommand(driverStationJoy, 7, new DriveForDistanceCommand(120, 0.5, 0.5));
+    // setJoystickButtonWhenPressedCommand(driverStationJoy, 7, new DriveForDistanceCommand(120, 0.5, 0.5));
     // setJoystickButtonWhenPressedCommand(secondaryJoy, 8, new
     // TurnToTargetCommandGroup());
   }

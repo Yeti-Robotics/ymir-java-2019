@@ -11,6 +11,7 @@ import java.util.ArrayList;
 
 import org.opencv.core.Rect;
 
+import frc.robot.Robot;
 import frc.robot.RobotMap;
 
 /**
@@ -41,7 +42,16 @@ public class VisionProcessor {
 
     public static double getCenterDistance(Contour leftCon, Contour rightCon) {
         double centerDistance = (RobotMap.TARGET_BOUND_WIDTH_INCH * RobotMap.FOCAL_LENGTH) / boundRect(leftCon, rightCon).width;
-        return centerDistance; 
+
+       if (leftCon != null && leftCon != null) {
+            centerDistance = (RobotMap.TARGET_BOUND_WIDTH_INCH * RobotMap.FOCAL_LENGTH) / boundRect(leftCon, rightCon).width;
+            return centerDistance;
+        }
+        return 1000;
+    }
+
+    public static double getAverageDistance(Contour leftCon, Contour rightCon) {
+        return (getLeftDistance(leftCon, rightCon) + getRightDistance(leftCon, rightCon)) / 2;
     }
 
 }

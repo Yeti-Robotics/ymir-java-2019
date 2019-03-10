@@ -28,7 +28,6 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import frc.robot.controls.Contour;
 import frc.robot.controls.JeVois;
 import frc.robot.controls.VisionProcessor;
-import frc.robot.subsystems.DiskRackSubsystem;
 import frc.robot.subsystems.DrivetrainSubsystem;
 import frc.robot.subsystems.ElevatorSubsystem;
 import frc.robot.subsystems.HatchPanelSubsystem;
@@ -54,7 +53,6 @@ public class Robot extends TimedRobot {
   public static ElevatorSubsystem elevatorSubsystem;
   public static WristSubsystem wristSubsystem;
   public static RollerBarSubsystem rollerBarSubsystem;
-  public static DiskRackSubsystem discRackSubsystem;
   public static boolean runVisionThread = false;
   public static JeVois jevois;
   public static List<Contour[]> contourList = new ArrayList<>();
@@ -76,7 +74,6 @@ public class Robot extends TimedRobot {
     elevatorSubsystem = new ElevatorSubsystem();
     wristSubsystem = new WristSubsystem();
     rollerBarSubsystem = new RollerBarSubsystem();
-    discRackSubsystem = new DiskRackSubsystem();
     jevois = new JeVois();
     oi = new OI();
     UsbCamera cam = CameraServer.getInstance().startAutomaticCapture(0);
@@ -150,11 +147,12 @@ public class Robot extends TimedRobot {
     SmartDashboard.putNumber("Left Line Follow Voltage", drivetrainSubsystem.lineSensorLeft.getAverageVoltage());
     SmartDashboard.putNumber("Center Line Follow Voltage", drivetrainSubsystem.lineSensorCenter.getAverageVoltage());
     SmartDashboard.putNumber("Right Line Follow Voltage", drivetrainSubsystem.lineSensorRight.getAverageVoltage());
+    SmartDashboard.putNumber("Elevator raw value", elevatorSubsystem.elevator1Talon.getSelectedSensorPosition());
     
     if (latestContours != null) {
-    System.out.println("left: " + VisionProcessor.getLeftDistance(latestContours[0], latestContours[1]) + ", right: " + VisionProcessor.getRightDistance(latestContours[0], latestContours[1]));
+    // System.out.println("left: " + VisionProcessor.getLeftDistance(latestContours[0], latestContours[1]) + ", right: " + VisionProcessor.getRightDistance(latestContours[0], latestContours[1]));
     // System.out.println(VisionProcessor.boundRect(latestContours[0], latestContours[1]).width);
-    // System.out.println(VisionProcessor.getCenterDistance(latestContours[0], latestContours[1]));
+    // System.out.println(VisionProcessor.getAverageDistance(latestContours[0], latestContours[1]));
     }
 
    

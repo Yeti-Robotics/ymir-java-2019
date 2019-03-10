@@ -9,6 +9,7 @@ package frc.robot.commands.drivetrain;
 
 import edu.wpi.first.wpilibj.command.Command;
 import frc.robot.Robot;
+import frc.robot.controls.VisionProcessor;
 
 public class LineFollowCommand extends Command {
 
@@ -31,28 +32,30 @@ public class LineFollowCommand extends Command {
     String lineFollow = left + center + right;
     switch (lineFollow) {
     case "010":
-      Robot.drivetrainSubsystem.tankDrive(0.5, 0.5);
+      Robot.drivetrainSubsystem.tankDrive(-0.5, -0.5);
       break;
     case "110":
     case "100":
-      Robot.drivetrainSubsystem.tankDrive(0.5, 0.7);
+      Robot.drivetrainSubsystem.tankDrive(-0.5,-0.7);
       break;
     case "011":
     case "001":
-      Robot.drivetrainSubsystem.tankDrive(0.7, 0.5);
+      Robot.drivetrainSubsystem.tankDrive(-0.7, -0.5);
       break;
     case "000": //for testing
       lineVisible = false;
       break;
     }
-    
-
   }
 
   // Make this return true when this Command no longer needs to run execute()
   @Override
   protected boolean isFinished() {
-    return Robot.jevois.getLeftDistance() <= 9 || !lineVisible;
+    if (Robot.latestContours != null) {
+      return VisionProcessor.getAverageDistance(Robot.latestContours[0], Robot.latestContours[1]) <= 9 || !lineVisible;
+    } else {
+      return !lineVisible;
+    }
   }
 
   // Called once after isFinished returns true

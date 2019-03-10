@@ -22,6 +22,6 @@ public class IntakeBallCommandGroup extends CommandGroup {
     addSequential(new WristDownCommand());
     addSequential(new IntakeBallCommand());
     addSequential(new WristUpCommand());
-    addSequential(new MoveElevatorCommand(RobotMap.ELEVATOR_LEVELS[4]));
+    addSequential(new MoveElevatorCommand(RobotMap.ELEVATOR_REST_LEVEL));
   }
 }

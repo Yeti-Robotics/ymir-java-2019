@@ -21,7 +21,7 @@ public class DeployBallRocketLevel2CommandGroup extends CommandGroup {
   public DeployBallRocketLevel2CommandGroup() {
     addSequential(new LineFollowCommand());
     addSequential(new TurnToTargetCommandGroup());
-    addSequential(new MoveElevatorCommand(RobotMap.ELEVATOR_LEVELS[6]));
+    addSequential(new MoveElevatorCommand(RobotMap.ELEVATOR_BALL_ROCKET_LEVEL_2));
     addSequential(new LaunchBallCommand());
   }
 }

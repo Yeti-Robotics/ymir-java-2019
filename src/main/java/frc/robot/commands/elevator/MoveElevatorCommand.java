@@ -24,8 +24,9 @@ public class MoveElevatorCommand extends Command {
   // Called just before this Command runs the first time
   @Override
   protected void initialize() {
-    Robot.elevatorSubsystem.setSetpoint(elevatorPosition);
-    Robot.elevatorSubsystem.enable();
+    Robot.elevatorSubsystem.setPosition(elevatorPosition);
+    // Robot.elevatorSubsystem.setSetpoint(elevatorPosition);
+    // Robot.elevatorSubsystem.enable();
   }
 
   // Called repeatedly when this Command is scheduled to run

@@ -19,6 +19,7 @@ public class RobotMap {
   public static final double WHEEL_DIAMETER = 6; // inches
   public static final double PULSES_PER_REVOLUTION = 4096;
   public static final double DRIVETRAIN_GEAR_RATIO = (64.0 * 36.0) / (20.0 * 12.0);
+  public static final double DRIVE_DISTANCE_PER_PULSE = (WHEEL_DIAMETER * Math.PI) / (PULSES_PER_REVOLUTION * DRIVETRAIN_GEAR_RATIO);
 
   // Wrist Encoder Constants
   public static final double WRIST_GEAR_DIAMETER = 1.7;
@@ -30,10 +31,9 @@ public class RobotMap {
   // Elevator Encoder Constants
   public static final double ELEVATOR_PULSES_PER_REVOLUTION = 4096;
   public static final double ELEVATOR_SPROCKET_CIRCUMFERENCE = 1.44 * Math.PI;
-  public static final double ELEVATOR_HEIGHT_RATIO = 60.0 / 24.0;
+  public static final double ELEVATOR_HEIGHT_RATIO = 60 / 24.0;
   public static final double ELEVATOR_GEAR_RATIO = 40.0 / 1.0;
-  public static final double ELEVATOR_DISTANCE_PER_PULSE = (ELEVATOR_GEAR_RATIO * ELEVATOR_SPROCKET_CIRCUMFERENCE
-      * ELEVATOR_HEIGHT_RATIO) / (ELEVATOR_PULSES_PER_REVOLUTION);
+  public static final double ELEVATOR_DISTANCE_PER_PULSE = (ELEVATOR_SPROCKET_CIRCUMFERENCE * ELEVATOR_HEIGHT_RATIO) / (ELEVATOR_PULSES_PER_REVOLUTION * ELEVATOR_GEAR_RATIO);
 
   // Rack Encoder Constants
   public static final double RACK_PULSES_PER_REVOLUTION = 1024;
@@ -63,13 +63,24 @@ public class RobotMap {
   public static final double ROLLER_SPEED = 1.0;
 
   // Elevator constants
-  public static final double[] ELEVATOR_LEVELS = { 1, 2, 3, 4, 5, 6, 7, 8 };
-  public static final double ELEVATOR_MANUAL_UP_SPEED = 0.5;
+  public static final double ELEVATOR_REST_LEVEL = 0;
+  public static final double ELEVATOR_BALL_ROCKET_LEVEL_1 = ELEVATOR_REST_LEVEL;
+  public static final double ELEVATOR_BALL_CARGOSHIP_LEVEL = 16;
+  public static final double ELEVATOR_BALL_ROCKET_LEVEL_2 = 22.5;
+  public static final double ELEVATOR_BALL_ROCKET_LEVEL_3 = 50.5;
+  public static final double ELEVATOR_HATCH_PANEL_LEVEL_1 = 6;
+  public static final double ELEVATOR_HATCH_PANEL_LEVEL_2 = 34;
+  public static final double ELEVATOR_HATCH_PANEL_LEVEL_3 = 62;
+
+  public static final double ELEVATOR_MANUAL_UP_SPEED = .5;
   public static final double ELEVATOR_MANUAL_DOWN_SPEED = -.2;
-  public static final double ELEVATOR_STABLE_SPEED = 0.15;
+  public static final double ELEVATOR_STABLE_SPEED = 0.2;
   public static final int ELEVATOR_CONT_CURRENT_LIMIT = 15;
   public static final int ELEVATOR_PEAK_CURRENT_LIMIT = 25;
   public static final int ELEVATOR_PEAK_CURRENT_DURATION = 200;
+  public static final double ELEVATOR_MAX_VELOCITY = 58472.2;
+  public static final double ELEVATOR_F_GAIN = 1023 / ELEVATOR_MAX_VELOCITY;
+
 
   // Rack constants
   public static final int RACK_LEFT_ENCODER_LIMIT = -100;

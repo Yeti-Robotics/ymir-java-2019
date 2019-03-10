@@ -14,14 +14,14 @@ import frc.robot.commands.drivetrain.TurnToTargetCommandGroup;
 import frc.robot.commands.elevator.MoveElevatorCommand;
 import frc.robot.commands.rollerbar.LaunchBallCommand;
 
-public class DeployBallCargoShipCommandGroup extends CommandGroup {
+public class DeployBallRocketLevel1CommandGroup extends CommandGroup {
   /**
    * Add your docs here.
    */
-  public DeployBallCargoShipCommandGroup() {
+  public DeployBallRocketLevel1CommandGroup() {
     addSequential(new LineFollowCommand());
     addSequential(new TurnToTargetCommandGroup());
-    addSequential(new MoveElevatorCommand(RobotMap.ELEVATOR_BALL_CARGOSHIP_LEVEL));
+    addSequential(new MoveElevatorCommand(RobotMap.ELEVATOR_BALL_ROCKET_LEVEL_1));
     addSequential(new LaunchBallCommand());
   }
 }

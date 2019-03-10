@@ -7,8 +7,10 @@
 
 package frc.robot.subsystems;
 
+import com.ctre.phoenix.motorcontrol.ControlMode;
 import com.ctre.phoenix.motorcontrol.FeedbackDevice;
 import com.ctre.phoenix.motorcontrol.NeutralMode;
+import com.ctre.phoenix.motorcontrol.StatusFrameEnhanced;
 import com.ctre.phoenix.motorcontrol.can.VictorSPX;
 
 import edu.wpi.first.wpilibj.DigitalInput;
@@ -21,7 +23,7 @@ import frc.robot.controls.CustomTalon;
  * Add your docs here.
  */
 public class ElevatorSubsystem extends PIDSubsystem {
-  private CustomTalon elevator1Talon, elevator2Talon;
+  public CustomTalon elevator1Talon, elevator2Talon;
   private DigitalInput upperLimit, lowerLimit;
 
   public ElevatorSubsystem() {
@@ -30,8 +32,15 @@ public class ElevatorSubsystem extends PIDSubsystem {
     elevator2Talon = new CustomTalon(RobotMap.ELEVATOR2_TALON);
     upperLimit = new DigitalInput(RobotMap.ELEVATOR_UPPER_LIMIT);
     lowerLimit = new DigitalInput(RobotMap.ELEVATOR_LOWER_LIMIT);
-    elevator1Talon.configSelectedFeedbackSensor(FeedbackDevice.QuadEncoder);
-    elevator2Talon.configSelectedFeedbackSensor(FeedbackDevice.QuadEncoder);
+
+    elevator1Talon.configVoltageCompSaturation(12);
+    elevator2Talon.configVoltageCompSaturation(12);
+
+    elevator1Talon.setStatusFramePeriod(StatusFrameEnhanced.Status_2_Feedback0, 1, 30);
+    elevator1Talon.configSelectedFeedbackSensor(FeedbackDevice.CTRE_MagEncoder_Relative);
+    elevator2Talon.setStatusFramePeriod(StatusFrameEnhanced.Status_2_Feedback0, 1, 30);
+    elevator2Talon.configSelectedFeedbackSensor(FeedbackDevice.CTRE_MagEncoder_Relative);
+
     elevator2Talon.follow(elevator1Talon);
 
     elevator1Talon.setNeutralMode(NeutralMode.Brake);
@@ -54,6 +63,28 @@ public class ElevatorSubsystem extends PIDSubsystem {
     disable();
 
     resetElevatorEncoder();
+
+    elevator1Talon.configNominalOutputForward(RobotMap.ELEVATOR_STABLE_SPEED);
+    elevator1Talon.configPeakOutputForward(0.5);
+    elevator1Talon.configPeakOutputReverse(RobotMap.ELEVATOR_MANUAL_DOWN_SPEED);
+    elevator1Talon.configAllowableClosedloopError(0, 1);
+    elevator1Talon.config_kF(0, RobotMap.ELEVATOR_STABLE_SPEED);
+    elevator1Talon.config_kP(0, 511.5 / 81536);
+    elevator1Talon.config_kI(0, 0);
+    elevator1Talon.config_kD(0, 0);
+
+
+
+    
+
+
+    // elevator1Talon.configMotionCruiseVelocity((int) (RobotMap.ELEVATOR_MAX_VELOCITY / 2));
+    // elevator1Talon.configMotionAcceleration((int) (RobotMap.ELEVATOR_MAX_VELOCITY / 2));
+    // elevator1Talon.configPeakOutputReverse(RobotMap.ELEVATOR_MANUAL_DOWN_SPEED);
+    // elevator1Talon.configClosedLoopPeriod(0, 1);
+    // elevator1Talon.configClosedLoopPeriod(1, 1);
+
+
   }
 
   public boolean getUpperLimit() {
@@ -89,6 +120,19 @@ public class ElevatorSubsystem extends PIDSubsystem {
     SmartDashboard.putNumber("elevator current", elevator1Talon.getOutputCurrent());
     elevator1Talon.set(RobotMap.ELEVATOR_MANUAL_DOWN_SPEED);
   }
+
+  public void setPosition(double setpoint) {
+    elevator1Talon.set(ControlMode.Position, setpoint / RobotMap.ELEVATOR_DISTANCE_PER_PULSE);
+  }
+
+  public boolean talonOnTarget() {
+    return (elevator1Talon.getClosedLoopError()*RobotMap.ELEVATOR_DISTANCE_PER_PULSE) < 3;
+  }
+  
+  // public void setMotionMagic(double setpoint) {
+  //   elevator1Talon.set(ControlMode.MotionMagic, );
+  //   elevator1Talon.set(
+  // }
 
   @Override
   public void initDefaultCommand() {
