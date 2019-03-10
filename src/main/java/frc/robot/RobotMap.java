@@ -79,7 +79,14 @@ public class RobotMap {
   public static final int ELEVATOR_PEAK_CURRENT_LIMIT = 25;
   public static final int ELEVATOR_PEAK_CURRENT_DURATION = 200;
   public static final double ELEVATOR_MAX_VELOCITY = 58472.2;
-  public static final double ELEVATOR_F_GAIN = 1023 / ELEVATOR_MAX_VELOCITY;
+  public static final double ELEVATOR_P = (511.5*30) / 81536;
+  public static final int ELEVATOR_INTEGRAL_ZONE = 5000;
+  public static final double ELEVATOR_D = (511.5*6000) / 81536;
+  public static final double ELEVATOR_OPEN_LOOP_RAMP = .3;
+  public static final double ELEVATOR_PEAK_OUTPUT_FORWARD = .6;
+  public static final double ELEVATOR_REVERSE_SOFT_LIMIT = 59;
+  public static final double ELEVATOR_FORWARD_SOFT_LIMIT = 0;
+  public static final double ELEVATOR_TOLERANCE = 1;
 
 
   // Rack constants

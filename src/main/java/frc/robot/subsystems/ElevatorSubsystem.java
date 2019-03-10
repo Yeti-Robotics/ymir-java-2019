@@ -25,6 +25,7 @@ import frc.robot.controls.CustomTalon;
 public class ElevatorSubsystem extends PIDSubsystem {
   public CustomTalon elevator1Talon, elevator2Talon;
   private DigitalInput upperLimit, lowerLimit;
+  private double motionMagicTarget;
 
   public ElevatorSubsystem() {
     super(0.00005, .000001, 0, 0.3);
@@ -64,27 +65,26 @@ public class ElevatorSubsystem extends PIDSubsystem {
 
     resetElevatorEncoder();
 
-    elevator1Talon.configNominalOutputForward(RobotMap.ELEVATOR_STABLE_SPEED);
-    elevator1Talon.configPeakOutputForward(0.5);
-    elevator1Talon.configPeakOutputReverse(RobotMap.ELEVATOR_MANUAL_DOWN_SPEED);
-    elevator1Talon.configAllowableClosedloopError(0, 1);
-    elevator1Talon.config_kF(0, RobotMap.ELEVATOR_STABLE_SPEED);
-    elevator1Talon.config_kP(0, 511.5 / 81536);
+    elevator1Talon.config_kP(0, RobotMap.ELEVATOR_P);
     elevator1Talon.config_kI(0, 0);
-    elevator1Talon.config_kD(0, 0);
+    elevator1Talon.config_IntegralZone(0, RobotMap.ELEVATOR_INTEGRAL_ZONE);
+    elevator1Talon.config_kD(0, RobotMap.ELEVATOR_D);
+    elevator1Talon.configMotionCruiseVelocity((int) (RobotMap.ELEVATOR_MAX_VELOCITY / 1.25));
+    elevator1Talon.configMotionAcceleration((int) (RobotMap.ELEVATOR_MAX_VELOCITY / 1.25));
+    elevator1Talon.configPeakOutputReverse(RobotMap.ELEVATOR_MANUAL_DOWN_SPEED);
+    elevator1Talon.configAllowableClosedloopError(0, convertInchesToCounts(RobotMap.ELEVATOR_TOLERANCE));
+    elevator1Talon.setStatusFramePeriod(StatusFrameEnhanced.Status_13_Base_PIDF0, 10);
+    elevator1Talon.setStatusFramePeriod(StatusFrameEnhanced.Status_10_MotionMagic, 10);
+    elevator1Talon.configOpenloopRamp(RobotMap.ELEVATOR_OPEN_LOOP_RAMP);
+    elevator1Talon.configPeakOutputForward(RobotMap.ELEVATOR_PEAK_OUTPUT_FORWARD);
+    elevator1Talon.configForwardSoftLimitThreshold(convertInchesToCounts(RobotMap.ELEVATOR_REVERSE_SOFT_LIMIT));
+    elevator1Talon.configReverseSoftLimitThreshold(convertInchesToCounts(RobotMap.ELEVATOR_FORWARD_SOFT_LIMIT));
+    elevator1Talon.configReverseSoftLimitEnable(true);
+    elevator1Talon.configForwardSoftLimitEnable(true);
+  }
 
-
-
-    
-
-
-    // elevator1Talon.configMotionCruiseVelocity((int) (RobotMap.ELEVATOR_MAX_VELOCITY / 2));
-    // elevator1Talon.configMotionAcceleration((int) (RobotMap.ELEVATOR_MAX_VELOCITY / 2));
-    // elevator1Talon.configPeakOutputReverse(RobotMap.ELEVATOR_MANUAL_DOWN_SPEED);
-    // elevator1Talon.configClosedLoopPeriod(0, 1);
-    // elevator1Talon.configClosedLoopPeriod(1, 1);
-
-
+  public int convertInchesToCounts(double inches) {
+    return (int) (inches / RobotMap.ELEVATOR_DISTANCE_PER_PULSE);
   }
 
   public boolean getUpperLimit() {
@@ -96,7 +96,7 @@ public class ElevatorSubsystem extends PIDSubsystem {
   }
 
   public void elevatorStop() {
-    elevator1Talon.set(0);
+    elevator1Talon.set(RobotMap.ELEVATOR_STABLE_SPEED);
   }
 
   public void resetElevatorEncoder() {
@@ -124,20 +124,27 @@ public class ElevatorSubsystem extends PIDSubsystem {
   public void setPosition(double setpoint) {
     elevator1Talon.set(ControlMode.Position, setpoint / RobotMap.ELEVATOR_DISTANCE_PER_PULSE);
   }
-
-  public boolean talonOnTarget() {
-    return (elevator1Talon.getClosedLoopError()*RobotMap.ELEVATOR_DISTANCE_PER_PULSE) < 3;
-  }
   
-  // public void setMotionMagic(double setpoint) {
-  //   elevator1Talon.set(ControlMode.MotionMagic, );
-  //   elevator1Talon.set(
-  // }
+  public void setMotionMagic(double setpoint) {
+    motionMagicTarget = setpoint;
+    elevator1Talon.set(ControlMode.MotionMagic, convertInchesToCounts(setpoint));
+  }
+
+  public boolean motionMagicOnTarget() {
+    return Math.abs(elevator1Talon.getSelectedSensorPosition() - convertInchesToCounts(motionMagicTarget)) <= convertInchesToCounts(RobotMap.ELEVATOR_TOLERANCE);
+  }
 
   @Override
   public void initDefaultCommand() {
     // Set the default command for a subsystem here.
     // setDefaultCommand(new MySpecialCommand());
+  }
+
+  public void displayEncoderInfo() {
+    SmartDashboard.putNumber("raw encoder value", elevator1Talon.getSelectedSensorPosition());
+    SmartDashboard.putNumber("current target", convertInchesToCounts(motionMagicTarget));
+    SmartDashboard.putNumber("tolerance", convertInchesToCounts(1));
+    SmartDashboard.putNumber("error", elevator1Talon.getSelectedSensorPosition() - convertInchesToCounts(motionMagicTarget));
   }
 
   @Override

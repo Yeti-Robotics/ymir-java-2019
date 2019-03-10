@@ -24,7 +24,7 @@ public class MoveElevatorCommand extends Command {
   // Called just before this Command runs the first time
   @Override
   protected void initialize() {
-    Robot.elevatorSubsystem.setPosition(elevatorPosition);
+    Robot.elevatorSubsystem.setMotionMagic(elevatorPosition);
     // Robot.elevatorSubsystem.setSetpoint(elevatorPosition);
     // Robot.elevatorSubsystem.enable();
   }
@@ -32,18 +32,20 @@ public class MoveElevatorCommand extends Command {
   // Called repeatedly when this Command is scheduled to run
   @Override
   protected void execute() {
- 
+    System.out.println("running");
   }
 
   // Make this return true when this Command no longer needs to run execute()
   @Override
   protected boolean isFinished() {
-    return Robot.elevatorSubsystem.onTarget();
+    return Robot.elevatorSubsystem.motionMagicOnTarget();
   }
 
   // Called once after isFinished returns true
   @Override
   protected void end() {
+    System.out.println("finished!!!!!!");
+    Robot.elevatorSubsystem.elevatorStop();
   }
 
   // Called when another command which requires one or more of the same
