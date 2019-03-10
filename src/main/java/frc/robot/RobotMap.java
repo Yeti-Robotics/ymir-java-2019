@@ -136,14 +136,14 @@ public class RobotMap {
   public static final int RIGHT_LINE_FOLLOWER_PORT = 2;
 
   // Dashboard constants
-  public static final String NETWORK_TABLES_GYRO = "/SmartDashboard/drive/navx/yaw";
-  public static final String NETWORK_TABLES_ARM_ENCODER = "/SmartDashboard/arm/encoder";
-  public static final String NETWORK_TABLES_ELEVATOR_ENCODER = "/SmartDashboard/elevator/encoder";
-  public static final String NETWORK_TABLES_AUTO_MODES = "/SmartDashboard/autonomous/modes";
-  public static final String NETWORK_TABLES_AUTO__CUREENTLY_SELECTED = "/SmartDashboard/currentlySelectedMode";
-  public static final String NETWORK_TABLES_VISION_TARGET_FOUND = "/SmartDashboard/vision/targetFound";
-  public static final String NETWORK_TABLES_LINEFOLLOWER_LEFT = "/SmartDashboard/lineFollower/left";
-  public static final String NETWORK_TABLES_LINEFOLLOWER_CENTER = "/SmartDashboard/lineFollower/center";
-  public static final String NETWORK_TABLES_LINEFOLLOWER_RIGHT = "/SmartDashboard/lineFollower/right";
-  public static final String NETWORK_TABLES_ARM_BALL = "/SmartDashboard/arm/ball";
+  public static final String NETWORK_TABLES_GYRO = "/drive/navx/yaw";
+  public static final String NETWORK_TABLES_ARM_ENCODER = "/arm/encoder";
+  public static final String NETWORK_TABLES_ELEVATOR_ENCODER = "/elevator/encoder";
+  public static final String NETWORK_TABLES_AUTO_MODES = "/autonomous/modes";
+  public static final String NETWORK_TABLES_AUTO__CUREENTLY_SELECTED = "/currentlySelectedMode";
+  public static final String NETWORK_TABLES_VISION_TARGET_FOUND = "/vision/targetFound";
+  public static final String NETWORK_TABLES_LINEFOLLOWER_LEFT = "/lineFollower/left";
+  public static final String NETWORK_TABLES_LINEFOLLOWER_CENTER = "/lineFollower/center";
+  public static final String NETWORK_TABLES_LINEFOLLOWER_RIGHT = "/lineFollower/right";
+  public static final String NETWORK_TABLES_ARM_BALL = "/arm/ball";
 }
