@@ -67,10 +67,10 @@ public class RobotMap {
   public static final double ELEVATOR_BALL_ROCKET_LEVEL_1 = ELEVATOR_REST_LEVEL;
   public static final double ELEVATOR_BALL_CARGOSHIP_LEVEL = 16;
   public static final double ELEVATOR_BALL_ROCKET_LEVEL_2 = 22.5;
-  public static final double ELEVATOR_BALL_ROCKET_LEVEL_3 = 50.5;
-  public static final double ELEVATOR_HATCH_PANEL_LEVEL_1 = 6;
+  public static final double ELEVATOR_BALL_ROCKET_LEVEL_3 = 48.5;
+  public static final double ELEVATOR_HATCH_PANEL_LEVEL_1 = 4;
   public static final double ELEVATOR_HATCH_PANEL_LEVEL_2 = 34;
-  public static final double ELEVATOR_HATCH_PANEL_LEVEL_3 = 62;
+  public static final double ELEVATOR_HATCH_PANEL_LEVEL_3 = 57.7;
 
   public static final double ELEVATOR_MANUAL_UP_SPEED = .5;
   public static final double ELEVATOR_MANUAL_DOWN_SPEED = -.2;
@@ -80,6 +80,8 @@ public class RobotMap {
   public static final int ELEVATOR_PEAK_CURRENT_DURATION = 200;
 
   public static final double ELEVATOR_MAX_VELOCITY = 58472.2;
+  public static final double ELEVATOR_INITIAL_VELOCITY = ELEVATOR_MAX_VELOCITY / 1.25;
+  public static final double ELEVATOR_INITIAL_ACCELERATION = ELEVATOR_MAX_VELOCITY / 1.25;  
   public static final double ELEVATOR_P = (511.5*30) / 81536;
   public static final double ELEVATOR_D = (511.5*6000) / 81536;
   public static final double ELEVATOR_OPEN_LOOP_RAMP = .3;
@@ -128,7 +130,7 @@ public class RobotMap {
   public static final double FOCAL_LENGTH = (22 * 55) / TAPE_BOUND_WIDTH_INCH;
   public static final int JEVOIS_BAUD_RATE = 115200;
   public static final int FOV = 65;
-  public static final double CAMERA_BUMPER_BUFFER = 8.5;
+  public static final double CAMERA_BUMPER_BUFFER = 7.5;
 
   // Line Following Constants
   public static final int LEFT_LINE_FOLLOWER_PORT = 0;

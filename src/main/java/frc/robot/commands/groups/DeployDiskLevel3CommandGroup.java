@@ -8,21 +8,20 @@
 package frc.robot.commands.groups;
 
 import edu.wpi.first.wpilibj.command.CommandGroup;
-import frc.robot.Robot;
 import frc.robot.RobotMap;
-import frc.robot.commands.drivetrain.LineFollowCommand;
-import frc.robot.commands.drivetrain.TurnToTargetCommandGroup;
+import frc.robot.commands.drivetrain.DriveToLineCommand;
+import frc.robot.commands.drivetrain.LineFollowToTargetCommand;
 import frc.robot.commands.elevator.MoveElevatorCommand;
-import frc.robot.controls.VisionProcessor;
 
 public class DeployDiskLevel3CommandGroup extends CommandGroup {
   /**
    * Add your docs here.
    */
   public DeployDiskLevel3CommandGroup() {
-    addSequential(new LineFollowCommand(VisionProcessor.getAverageDistance(Robot.latestContours[0], Robot.latestContours[1])));
-    addSequential(new TurnToTargetCommandGroup());
-    addSequential(new MoveElevatorCommand(RobotMap.ELEVATOR_HATCH_PANEL_LEVEL_3));
+    addSequential(new MoveElevatorCommand(RobotMap.ELEVATOR_HATCH_PANEL_LEVEL_1));
+    addSequential(new DriveToLineCommand());
+    addSequential(new LineFollowToTargetCommand());
+    // addSequential(new TurnToTargetCommandGroup());
     addSequential(new DeployHatchPanelCommandGroup());
   }
 }

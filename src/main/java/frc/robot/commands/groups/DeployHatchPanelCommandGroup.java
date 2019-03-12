@@ -9,10 +9,9 @@ package frc.robot.commands.groups;
 
 import edu.wpi.first.wpilibj.command.CommandGroup;
 import edu.wpi.first.wpilibj.command.WaitCommand;
-import frc.robot.commands.disk.OpenIntakeCommand;
 import frc.robot.commands.disk.DeployInCommand;
 import frc.robot.commands.disk.DeployOutCommand;
-import frc.robot.commands.disk.CloseIntakeCommand;
+import frc.robot.commands.disk.OpenIntakeCommand;
 
 public class DeployHatchPanelCommandGroup extends CommandGroup {
   /**
@@ -24,9 +23,5 @@ public class DeployHatchPanelCommandGroup extends CommandGroup {
     addSequential(new OpenIntakeCommand());
     addSequential(new WaitCommand(0.25));
     addSequential(new DeployInCommand());
-    // addSequential(new WaitCommand(0.25));
-    // addSequential(new CloseIntakeCommand());
-    // addSequential(new WaitCommand(0.5));
-    // addSequential(new SenseHatchPanelCommand());
   }
 }

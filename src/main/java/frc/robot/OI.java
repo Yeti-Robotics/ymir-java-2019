@@ -11,16 +11,8 @@ import edu.wpi.first.wpilibj.GenericHID;
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.buttons.JoystickButton;
 import edu.wpi.first.wpilibj.command.Command;
-import frc.robot.commands.disk.OpenIntakeCommand;
-import frc.robot.commands.disk.ListenForDiskCommandGroup;
-import frc.robot.commands.disk.DeployInCommand;
 import frc.robot.commands.disk.DeployOutCommand;
-import frc.robot.commands.disk.CloseIntakeCommand;
-import frc.robot.commands.disk.CloseIntakeDeployInCommandGroup;
-import frc.robot.commands.drivetrain.DriveForDistanceCommand;
-import frc.robot.commands.drivetrain.DriveForDistancePIDCommand;
-import frc.robot.commands.drivetrain.ResetDriveEncoderCommand;
-import frc.robot.commands.elevator.MoveElevatorCommand;
+import frc.robot.commands.disk.ListenForDiskCommandGroup;
 import frc.robot.commands.elevator.MoveElevatorDownCommand;
 import frc.robot.commands.elevator.MoveElevatorUpCommand;
 import frc.robot.commands.groups.DeployDiskLevel1CommandGroup;
@@ -65,12 +57,13 @@ public class OI {
     // setJoystickButtonWhenPressedCommand(driverStationJoy, 7, new
     // DeployBallRocketLevel3());
 
-    // setJoystickButtonWhileHeldCommand(driverStationJoy, 1, new IntakeBallCommand());
-    // setJoystickButtonWhileHeldCommand(driverStationJoy, 2, new LaunchBallCommand());
+    setJoystickButtonWhileHeldCommand(driverStationJoy, 1, new IntakeBallCommand());
+    setJoystickButtonWhileHeldCommand(driverStationJoy, 2, new LaunchBallCommand());
     setJoystickButtonWhileHeldCommand(driverStationJoy, 7, new MoveElevatorDownCommand());
-    setJoystickButtonWhenPressedCommand(driverStationJoy, 1, new MoveElevatorCommand(RobotMap.ELEVATOR_HATCH_PANEL_LEVEL_1));
-    setJoystickButtonWhenPressedCommand(driverStationJoy, 2, new MoveElevatorCommand(RobotMap.ELEVATOR_HATCH_PANEL_LEVEL_2));
-    setJoystickButtonWhenPressedCommand(driverStationJoy, 4, new MoveElevatorCommand(RobotMap.ELEVATOR_HATCH_PANEL_LEVEL_3));
+    // setJoystickButtonWhenPressedCommand(driverStationJoy, 1, new MoveElevatorCommand(RobotMap.ELEVATOR_HATCH_PANEL_LEVEL_1));
+    // setJoystickButtonWhenPressedCommand(driverStationJoy, 2, new MoveElevatorCommand(RobotMap.ELEVATOR_HATCH_PANEL_LEVEL_2));
+    // setJoystickButtonWhenPressedCommand(driverStationJoy, 4, new MoveElevatorCommand(RobotMap.ELEVATOR_HATCH_PANEL_LEVEL_3));
+    setJoystickButtonWhenPressedCommand(driverStationJoy, 4, new DeployOutCommand());
     setJoystickButtonWhenPressedCommand(driverStationJoy, 5, new DeployHatchPanelCommandGroup());
     setJoystickButtonWhenPressedCommand(driverStationJoy, 6, new ListenForDiskCommandGroup());
     setJoystickButtonWhileHeldCommand(driverStationJoy, 3, new MoveElevatorUpCommand());

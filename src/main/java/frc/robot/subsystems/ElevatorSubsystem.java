@@ -37,9 +37,9 @@ public class ElevatorSubsystem extends PIDSubsystem {
     elevator1Talon.configVoltageCompSaturation(12);
     elevator2Talon.configVoltageCompSaturation(12);
 
-    elevator1Talon.setStatusFramePeriod(StatusFrameEnhanced.Status_2_Feedback0, 1, 30);
+    elevator1Talon.setStatusFramePeriod(StatusFrameEnhanced.Status_2_Feedback0, 2, 30);
     elevator1Talon.configSelectedFeedbackSensor(FeedbackDevice.CTRE_MagEncoder_Relative);
-    elevator2Talon.setStatusFramePeriod(StatusFrameEnhanced.Status_2_Feedback0, 1, 30);
+    elevator2Talon.setStatusFramePeriod(StatusFrameEnhanced.Status_2_Feedback0, 2, 30);
     elevator2Talon.configSelectedFeedbackSensor(FeedbackDevice.CTRE_MagEncoder_Relative);
 
     elevator2Talon.follow(elevator1Talon);
@@ -58,6 +58,8 @@ public class ElevatorSubsystem extends PIDSubsystem {
     elevator1Talon.enableCurrentLimit(true);
 
     elevator1Talon.setInverted(true);
+    
+    elevator1Talon.configOpenloopRamp(RobotMap.ELEVATOR_OPEN_LOOP_RAMP);
         
     setOutputRange(RobotMap.ELEVATOR_MANUAL_DOWN_SPEED, 1);
     setAbsoluteTolerance(250);
@@ -68,18 +70,18 @@ public class ElevatorSubsystem extends PIDSubsystem {
     elevator1Talon.config_kP(0, RobotMap.ELEVATOR_P);
     elevator1Talon.config_kI(0, 0);
     elevator1Talon.config_kD(0, RobotMap.ELEVATOR_D);
-    elevator1Talon.configMotionCruiseVelocity((int) (RobotMap.ELEVATOR_MAX_VELOCITY / 1.25));
-    elevator1Talon.configMotionAcceleration((int) (RobotMap.ELEVATOR_MAX_VELOCITY / 1.25));
+    elevator1Talon.configMotionCruiseVelocity((int) (RobotMap.ELEVATOR_INITIAL_VELOCITY));
+    elevator1Talon.configMotionAcceleration((int) (RobotMap.ELEVATOR_INITIAL_ACCELERATION));
     elevator1Talon.configPeakOutputReverse(RobotMap.ELEVATOR_MANUAL_DOWN_SPEED);
     elevator1Talon.configAllowableClosedloopError(0, convertInchesToCounts(RobotMap.ELEVATOR_TOLERANCE));
     elevator1Talon.setStatusFramePeriod(StatusFrameEnhanced.Status_13_Base_PIDF0, 10);
     elevator1Talon.setStatusFramePeriod(StatusFrameEnhanced.Status_10_MotionMagic, 10);
-    elevator1Talon.configOpenloopRamp(RobotMap.ELEVATOR_OPEN_LOOP_RAMP);
     elevator1Talon.configPeakOutputForward(RobotMap.ELEVATOR_PEAK_OUTPUT_FORWARD);
     elevator1Talon.configForwardSoftLimitThreshold(convertInchesToCounts(RobotMap.ELEVATOR_FORWARD_SOFT_LIMIT));
     elevator1Talon.configReverseSoftLimitThreshold(convertInchesToCounts(RobotMap.ELEVATOR_REVERSE_SOFT_LIMIT));
     elevator1Talon.configReverseSoftLimitEnable(true);
     elevator1Talon.configForwardSoftLimitEnable(true);
+    elevator1Talon.configClosedloopRamp(RobotMap.ELEVATOR_OPEN_LOOP_RAMP);
   }
 
   public int convertInchesToCounts(double inches) {

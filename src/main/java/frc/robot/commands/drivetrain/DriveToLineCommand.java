@@ -9,52 +9,29 @@ package frc.robot.commands.drivetrain;
 
 import edu.wpi.first.wpilibj.command.Command;
 import frc.robot.Robot;
-import frc.robot.controls.VisionProcessor;
 
-public class LineFollowCommand extends Command {
-
-  private boolean lineVisible = true;
-  private double distance;
-  public LineFollowCommand(double distance) {
-    this.distance = distance;
+public class DriveToLineCommand extends Command {
+  public DriveToLineCommand() {
+    // Use requires() here to declare subsystem dependencies
+    // eg. requires(chassis);
     requires(Robot.drivetrainSubsystem);
   }
 
   // Called just before this Command runs the first time
   @Override
   protected void initialize() {
-    Robot.drivetrainSubsystem.resetEncoders();
   }
 
   // Called repeatedly when this Command is scheduled to run
   @Override
   protected void execute() {
-    String left = Robot.drivetrainSubsystem.getLeftLineFollower() ? "1" : "0";
-    String center = Robot.drivetrainSubsystem.getCenterLineFollower() ? "1" : "0";
-    String right = Robot.drivetrainSubsystem.getRightLineFollower() ? "1" : "0";
-    String lineFollow = left + center + right;
-    switch (lineFollow) {
-    case "010":
-      Robot.drivetrainSubsystem.tankDrive(-0.5, -0.5);
-      break;
-    case "110":
-    case "100":
-      Robot.drivetrainSubsystem.tankDrive(-0.5,-0.7);
-      break;
-    case "011":
-    case "001":
-      Robot.drivetrainSubsystem.tankDrive(-0.7, -0.5);
-      break;
-    case "000": //for testing
-      lineVisible = false;
-      break;
-    }
+    Robot.drivetrainSubsystem.tankDrive(-.5, -.5);
   }
 
   // Make this return true when this Command no longer needs to run execute()
   @Override
   protected boolean isFinished() {
-      return Robot.drivetrainSubsystem.getAvgEncoderDistance() >= distance || !lineVisible;
+    return Robot.drivetrainSubsystem.getCenterLineFollower();
   }
 
   // Called once after isFinished returns true

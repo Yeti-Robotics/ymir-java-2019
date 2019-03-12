@@ -84,11 +84,11 @@ public class Robot extends TimedRobot {
     jevois = new JeVois();
     oi = new OI();
     networkTable = NetworkTableInstance.getDefault().getTable("SmartDashboard");
-    // UsbCamera cam = CameraServer.getInstance().startAutomaticCapture(0);
-    // cam.setVideoMode(VideoMode.PixelFormat.kMJPEG, 200, 150, 30);
-    // cam.setBrightness(50);
+    UsbCamera cam = CameraServer.getInstance().startAutomaticCapture(0);
+    cam.setVideoMode(VideoMode.PixelFormat.kMJPEG, 200, 150, 30);
+    cam.setBrightness(50);
     
-    UsbCamera jevoisView = CameraServer.getInstance().startAutomaticCapture(0);
+    UsbCamera jevoisView = CameraServer.getInstance().startAutomaticCapture(1);
     jevoisView.setVideoMode(VideoMode.PixelFormat.kYUYV, 320, 240, 30);
 
 
@@ -161,12 +161,13 @@ public class Robot extends TimedRobot {
     SmartDashboard.putBoolean("Center Line Follow Voltage", drivetrainSubsystem.getCenterLineFollower());
     SmartDashboard.putBoolean("Right Line Follow Voltage", drivetrainSubsystem.getRightLineFollower());
     SmartDashboard.putNumber("Elevator raw value", elevatorSubsystem.elevator1Talon.getSelectedSensorPosition());
+    SmartDashboard.putNumber("Vision distance", VisionProcessor.getAverageDistance(latestContours[0], latestContours[1]));
     
     if (latestContours != null) {
 
     // System.out.println("left: " + VisionProcessor.getLeftDistance(latestContours[0], latestContours[1]) + ", right: " + VisionProcessor.getRightDistance(latestContours[0], latestContours[1]));
     // System.out.println(VisionProcessor.boundRect(latestContours[0], latestContours[1]).width);
-    System.out.println(VisionProcessor.getAverageDistance(latestContours[0], latestContours[1]));
+    // System.out.println(VisionProcessor.getAverageDistance(latestContours[0], latestContours[1]));
     }
 
     networkTable.getEntry(RobotMap.NETWORK_TABLES_GYRO).setDouble(drivetrainSubsystem.getAngle());

@@ -3,13 +3,13 @@ package frc.robot.subsystems;
 import com.analog.adis16448.frc.ADIS16448_IMU;
 import com.ctre.phoenix.motorcontrol.ControlMode;
 import com.ctre.phoenix.motorcontrol.FeedbackDevice;
+import com.ctre.phoenix.motorcontrol.NeutralMode;
 import com.ctre.phoenix.motorcontrol.StatusFrameEnhanced;
 import com.ctre.phoenix.motorcontrol.can.VictorSPX;
 
 import edu.wpi.first.wpilibj.AnalogInput;
 import edu.wpi.first.wpilibj.command.PIDSubsystem;
 import edu.wpi.first.wpilibj.drive.DifferentialDrive;
-import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import frc.robot.RobotMap;
 import frc.robot.commands.drivetrain.UserDriveCommand;
 import frc.robot.controls.CustomTalon;
@@ -36,9 +36,9 @@ public class DrivetrainSubsystem extends PIDSubsystem {
         right2 = new VictorSPX(RobotMap.RIGHT_2_VICTOR);
         leftTal = new CustomTalon(RobotMap.LEFT_DRIVE_TALON);
         rightTal = new CustomTalon(RobotMap.RIGHT_DRIVE_TALON);
-        leftTal.setStatusFramePeriod(StatusFrameEnhanced.Status_2_Feedback0, 1, 30);
+        leftTal.setStatusFramePeriod(StatusFrameEnhanced.Status_2_Feedback0, 2, 30);
         leftTal.configSelectedFeedbackSensor(FeedbackDevice.CTRE_MagEncoder_Relative);
-        rightTal.setStatusFramePeriod(StatusFrameEnhanced.Status_2_Feedback0, 1, 30);
+        rightTal.setStatusFramePeriod(StatusFrameEnhanced.Status_2_Feedback0, 2, 30);
         rightTal.configSelectedFeedbackSensor(FeedbackDevice.CTRE_MagEncoder_Relative);   
         gyro = new ADIS16448_IMU();
         gyro.calibrate();
@@ -47,6 +47,13 @@ public class DrivetrainSubsystem extends PIDSubsystem {
         left2.follow(leftTal);
         right1.follow(rightTal);
         right2.follow(rightTal);
+        
+        leftTal.setNeutralMode(NeutralMode.Brake);
+        rightTal.setNeutralMode(NeutralMode.Brake);
+        left1.setNeutralMode(NeutralMode.Brake);
+        left2.setNeutralMode(NeutralMode.Brake);
+        right1.setNeutralMode(NeutralMode.Brake);
+        right2.setNeutralMode(NeutralMode.Brake);
 
         differentialDrive = new DifferentialDrive(leftTal, rightTal);
        
