@@ -5,15 +5,15 @@
 /* the project.                                                               */
 /*----------------------------------------------------------------------------*/
 
-package frc.robot.commands.rollerbar;
+package frc.robot.commands.drivetrain;
 
+import edu.wpi.first.wpilibj.DoubleSolenoid.Value;
 import edu.wpi.first.wpilibj.command.Command;
 import frc.robot.Robot;
-import frc.robot.Robot.DeployState;
 
-public class IntakeBallCommand extends Command {
-  public IntakeBallCommand() {
-    requires(Robot.rollerBarSubsystem);
+public class ToggleShiftingCommand extends Command {
+  public ToggleShiftingCommand() {
+    requires(Robot.shiftGearsSubsystem);
   }
 
   // Called just before this Command runs the first time
@@ -24,27 +24,27 @@ public class IntakeBallCommand extends Command {
   // Called repeatedly when this Command is scheduled to run
   @Override
   protected void execute() {
-    Robot.rollerBarSubsystem.rollIn();
+    if (Robot.shiftGearsSubsystem.getShifterPosition() == Value.kForward) {
+     Robot.shiftGearsSubsystem.shiftDown(); 
+    } else {
+      Robot.shiftGearsSubsystem.shiftUp();
+    }
   }
 
   // Make this return true when this Command no longer needs to run execute()
   @Override
   protected boolean isFinished() {
-    // return Robot.rollerBarSubsystem.getBeamBreakSensor();
-    return false;
+    return true;
   }
 
   // Called once after isFinished returns true
   @Override
   protected void end() {
-    Robot.deployState = DeployState.BALL;
-    Robot.rollerBarSubsystem.rollStop();
   }
 
   // Called when another command which requires one or more of the same
   // subsystems is scheduled to run
   @Override
   protected void interrupted() {
-    end();
   }
 }

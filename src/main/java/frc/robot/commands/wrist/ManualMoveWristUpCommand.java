@@ -5,15 +5,14 @@
 /* the project.                                                               */
 /*----------------------------------------------------------------------------*/
 
-package frc.robot.commands.rollerbar;
+package frc.robot.commands.wrist;
 
 import edu.wpi.first.wpilibj.command.Command;
 import frc.robot.Robot;
-import frc.robot.Robot.DeployState;
 
-public class IntakeBallCommand extends Command {
-  public IntakeBallCommand() {
-    requires(Robot.rollerBarSubsystem);
+public class ManualMoveWristUpCommand extends Command {
+  public ManualMoveWristUpCommand() {
+    requires(Robot.wristSubsystem);
   }
 
   // Called just before this Command runs the first time
@@ -24,27 +23,24 @@ public class IntakeBallCommand extends Command {
   // Called repeatedly when this Command is scheduled to run
   @Override
   protected void execute() {
-    Robot.rollerBarSubsystem.rollIn();
+    Robot.wristSubsystem.useWrist(-.4);
   }
 
   // Make this return true when this Command no longer needs to run execute()
   @Override
   protected boolean isFinished() {
-    // return Robot.rollerBarSubsystem.getBeamBreakSensor();
     return false;
   }
 
   // Called once after isFinished returns true
   @Override
   protected void end() {
-    Robot.deployState = DeployState.BALL;
-    Robot.rollerBarSubsystem.rollStop();
   }
 
   // Called when another command which requires one or more of the same
   // subsystems is scheduled to run
   @Override
   protected void interrupted() {
-    end();
+    Robot.wristSubsystem.useWrist(0);
   }
 }

@@ -11,16 +11,23 @@ import edu.wpi.first.wpilibj.GenericHID;
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.buttons.JoystickButton;
 import edu.wpi.first.wpilibj.command.Command;
+import frc.robot.commands.CancelCommandsCommand;
 import frc.robot.commands.disk.DeployOutCommand;
 import frc.robot.commands.disk.ListenForDiskCommandGroup;
+import frc.robot.commands.drivetrain.ToggleShiftingCommand;
 import frc.robot.commands.elevator.MoveElevatorDownCommand;
 import frc.robot.commands.elevator.MoveElevatorUpCommand;
+import frc.robot.commands.elevator.ToggleDeployStatesCommand;
+import frc.robot.commands.groups.AutoMoveElevatorDownCommandGroup;
+import frc.robot.commands.groups.AutoMoveElevatorUpCommandGroup;
 import frc.robot.commands.groups.DeployDiskLevel1CommandGroup;
 import frc.robot.commands.groups.DeployHatchPanelCommandGroup;
 import frc.robot.commands.rollerbar.IntakeBallCommand;
 import frc.robot.commands.rollerbar.LaunchBallCommand;
 import frc.robot.commands.shifting.DriveTrainHighShiftCommand;
 import frc.robot.commands.shifting.DriveTrainLowShiftCommand;
+import frc.robot.commands.wrist.ManualMoveWristDownCommand;
+import frc.robot.commands.wrist.ManualMoveWristUpCommand;
 /**
  * This class is the glue that binds the controls on the physical operator
  * interface to the commands and command groups that allow control of the robot.
@@ -36,10 +43,10 @@ public class OI {
     // secondaryJoy = new Joystick(RobotMap.SECONDARY_JOYSTICK);
 
     // Left joystick buttons
-    setJoystickButtonWhenPressedCommand(driverStationJoy, 11, new DriveTrainHighShiftCommand());
+    setJoystickButtonWhenPressedCommand(driverStationJoy, 11, new ToggleShiftingCommand());
 
     // Right joystick buttons
-    setJoystickButtonWhenPressedCommand(driverStationJoy, 12, new DriveTrainLowShiftCommand());
+    setJoystickButtonWhenPressedCommand(driverStationJoy, 12, new DeployHatchPanelCommandGroup());
 
     // Secondary Joystick Buttons
     // setJoystickButtonWhenPressedCommand(driverStationJoy, 1, new
@@ -58,32 +65,13 @@ public class OI {
     // DeployBallRocketLevel3());
 
     setJoystickButtonWhileHeldCommand(driverStationJoy, 1, new IntakeBallCommand());
-    setJoystickButtonWhileHeldCommand(driverStationJoy, 2, new LaunchBallCommand());
-    setJoystickButtonWhileHeldCommand(driverStationJoy, 7, new MoveElevatorDownCommand());
-    // setJoystickButtonWhenPressedCommand(driverStationJoy, 1, new MoveElevatorCommand(RobotMap.ELEVATOR_HATCH_PANEL_LEVEL_1));
-    // setJoystickButtonWhenPressedCommand(driverStationJoy, 2, new MoveElevatorCommand(RobotMap.ELEVATOR_HATCH_PANEL_LEVEL_2));
-    // setJoystickButtonWhenPressedCommand(driverStationJoy, 4, new MoveElevatorCommand(RobotMap.ELEVATOR_HATCH_PANEL_LEVEL_3));
-    setJoystickButtonWhenPressedCommand(driverStationJoy, 4, new DeployOutCommand());
-    setJoystickButtonWhenPressedCommand(driverStationJoy, 5, new DeployHatchPanelCommandGroup());
-    setJoystickButtonWhenPressedCommand(driverStationJoy, 6, new ListenForDiskCommandGroup());
-    setJoystickButtonWhileHeldCommand(driverStationJoy, 3, new MoveElevatorUpCommand());
-    setJoystickButtonWhenPressedCommand(driverStationJoy, 8, new DeployDiskLevel1CommandGroup());
-    // setJoystickButtonWhenPressedCommand(driverStationJoy, 3, new ResetDriveEncoderCommand());
-    // setJoystickButtonWhileHeldCommand(driverStationJoy, 4, new MoveElevatorUpCommand());
-    // setJoystickButtonWhenPressedCommand(driverStationJoy, 5, new DeployHatchPanelCommandGroup());
-    // setJoystickButtonWhenPressedCommand(driverStationJoy, 6, new ListenForDiskCommandGroup());
-    // setJoystickButtonWhenPressedCommand(driverStationJoy, 6, new MoveElevatorCommand(60000));
-    // setJoystickButtonWhenPressedCommand(driverStationJoy, 7, new CloseIntakeDeployInCommandGroup());
-    // setJoystickButtonWhileHeldCommand(driverStationJoy, 8, new MoveElevatorDownCommand());
-    // setJoystickButtonWhenPressedCommand(secondaryJoy, 3, new
-    // LineFollowCommand());
-    // setJoystickButtonWhenPressedCommand(secondaryJoy, 5, new
-    // ResetEncodersCommand());
-    // // setJoystickButtonWhenPressedCommand(secondaryJoy, 4, new
-    // CorrectAzimuthCommand());
-    // setJoystickButtonWhenPressedCommand(driverStationJoy, 7, new DriveForDistanceCommand(120, 0.5, 0.5));
-    // setJoystickButtonWhenPressedCommand(secondaryJoy, 8, new
-    // TurnToTargetCommandGroup());
+    setJoystickButtonWhileHeldCommand(driverStationJoy, 2, new ManualMoveWristUpCommand());
+    setJoystickButtonWhenPressedCommand(driverStationJoy, 3, new AutoMoveElevatorUpCommandGroup());
+    setJoystickButtonWhenPressedCommand(driverStationJoy, 4, new ToggleDeployStatesCommand());
+    setJoystickButtonWhileHeldCommand(driverStationJoy, 5, new LaunchBallCommand());
+    setJoystickButtonWhileHeldCommand(driverStationJoy, 6, new ManualMoveWristDownCommand());
+    setJoystickButtonWhenPressedCommand(driverStationJoy, 7, new AutoMoveElevatorDownCommandGroup());
+    setJoystickButtonWhenPressedCommand(driverStationJoy, 8, new ListenForDiskCommandGroup());
   }
 
   // Gets the Y direction of the left drive joystick

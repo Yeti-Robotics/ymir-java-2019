@@ -9,6 +9,7 @@ package frc.robot.commands.disk;
 
 import edu.wpi.first.wpilibj.command.Command;
 import frc.robot.Robot;
+import frc.robot.Robot.DeployState;
 
 public class DeployInCommand extends Command {
   public DeployInCommand() {
@@ -23,6 +24,7 @@ public class DeployInCommand extends Command {
   // Called repeatedly when this Command is scheduled to run
   @Override
   protected void execute() {
+    Robot.deployState = DeployState.HATCH_PANEL;
     Robot.hatchPanelSubsystem.deployIn();
   }
 

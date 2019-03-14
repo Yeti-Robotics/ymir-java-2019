@@ -27,11 +27,11 @@ public class RollerBarSubsystem extends Subsystem {
   }
 
   public void rollIn() {
-    wristRollerVictor.set(ControlMode.PercentOutput, RobotMap.ROLLER_SPEED);
+    wristRollerVictor.set(ControlMode.PercentOutput, -RobotMap.ROLLER_SPEED);
   }
 
   public void rollOut() {
-    wristRollerVictor.set(ControlMode.PercentOutput, -RobotMap.ROLLER_SPEED);
+    wristRollerVictor.set(ControlMode.PercentOutput, RobotMap.ROLLER_SPEED);
   }
 
   public void rollStop() {

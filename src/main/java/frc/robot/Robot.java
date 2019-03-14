@@ -57,6 +57,7 @@ public class Robot extends TimedRobot {
   public static ElevatorSubsystem elevatorSubsystem;
   public static WristSubsystem wristSubsystem;
   public static RollerBarSubsystem rollerBarSubsystem;
+  public static DeployState deployState;
   public static boolean runVisionThread = false;
   public static JeVois jevois;
   public static List<Contour[]> contourList = new ArrayList<>();
@@ -65,6 +66,10 @@ public class Robot extends TimedRobot {
   };
   static Object imgLock = new Object();
   public static String[] autoModes = {"Test 1"};
+
+  public enum DeployState {
+    BALL, HATCH_PANEL
+  }
 
   Command m_autonomousCommand;
   SendableChooser<Command> m_chooser = new SendableChooser<>();
@@ -83,6 +88,7 @@ public class Robot extends TimedRobot {
     rollerBarSubsystem = new RollerBarSubsystem();
     jevois = new JeVois();
     oi = new OI();
+    deployState = DeployState.HATCH_PANEL;
     networkTable = NetworkTableInstance.getDefault().getTable("SmartDashboard");
     UsbCamera cam = CameraServer.getInstance().startAutomaticCapture(0);
     cam.setVideoMode(VideoMode.PixelFormat.kMJPEG, 200, 150, 30);
@@ -150,17 +156,17 @@ public class Robot extends TimedRobot {
     // discRackSubsystem.printEncoders();
     // elevatorSubsystem.printEncoders();
     // wristSubsystem.printEncoders();
-    SmartDashboard.putNumber("elevator speed", Robot.elevatorSubsystem.getPIDController().get());
+    // SmartDashboard.putNumber("elevator speed", Robot.elevatorSubsystem.getPIDController().get());
     SmartDashboard.putNumber("Elevator height", elevatorSubsystem.getElevatorEncoder());
     SmartDashboard.putNumber("Left Encoder Distance", drivetrainSubsystem.getLeftEncoderDistance());
     SmartDashboard.putNumber("Right Encoder Distance", drivetrainSubsystem.getRightEncoderDistance());
-    SmartDashboard.putNumber("Avg Encoder Distance", drivetrainSubsystem.getAvgEncoderDistance());
-    SmartDashboard.putNumber("Left Encoder Rate", drivetrainSubsystem.getLeftEncoderRate());
-    SmartDashboard.putNumber("Right Encoder Rate", drivetrainSubsystem.getRightEncoderRate());
+    // SmartDashboard.putNumber("Avg Encoder Distance", drivetrainSubsystem.getAvgEncoderDistance());
+    // SmartDashboard.putNumber("Left Encoder Rate", drivetrainSubsystem.getLeftEncoderRate());
+    // SmartDashboard.putNumber("Right Encoder Rate", drivetrainSubsystem.getRightEncoderRate());
     SmartDashboard.putBoolean("Left Line Follow Voltage", drivetrainSubsystem.getLeftLineFollower());
     SmartDashboard.putBoolean("Center Line Follow Voltage", drivetrainSubsystem.getCenterLineFollower());
     SmartDashboard.putBoolean("Right Line Follow Voltage", drivetrainSubsystem.getRightLineFollower());
-    SmartDashboard.putNumber("Elevator raw value", elevatorSubsystem.elevator1Talon.getSelectedSensorPosition());
+    // SmartDashboard.putNumber("Elevator raw value", elevatorSubsystem.elevator1Talon.getSelectedSensorPosition());
     SmartDashboard.putNumber("Vision distance", VisionProcessor.getAverageDistance(latestContours[0], latestContours[1]));
     
     if (latestContours != null) {

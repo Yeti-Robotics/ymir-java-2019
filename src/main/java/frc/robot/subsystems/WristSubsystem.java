@@ -63,7 +63,7 @@ public class WristSubsystem extends PIDSubsystem {
 
   @Override
   public void initDefaultCommand() {
-    setDefaultCommand(new UserWristCommand());
+    // setDefaultCommand(new UserWristCommand());
     // Set the default command for a subsystem here.
     // setDefaultCommand(new MySpecialCommand());
   }

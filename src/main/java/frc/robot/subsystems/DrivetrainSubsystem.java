@@ -7,6 +7,7 @@ import com.ctre.phoenix.motorcontrol.NeutralMode;
 import com.ctre.phoenix.motorcontrol.StatusFrameEnhanced;
 import com.ctre.phoenix.motorcontrol.can.VictorSPX;
 
+import edu.wpi.first.wpilibj.ADXRS450_Gyro;
 import edu.wpi.first.wpilibj.AnalogInput;
 import edu.wpi.first.wpilibj.command.PIDSubsystem;
 import edu.wpi.first.wpilibj.drive.DifferentialDrive;
@@ -48,6 +49,8 @@ public class DrivetrainSubsystem extends PIDSubsystem {
         right1.follow(rightTal);
         right2.follow(rightTal);
         
+        resetEncoders();
+
         leftTal.setNeutralMode(NeutralMode.Brake);
         rightTal.setNeutralMode(NeutralMode.Brake);
         left1.setNeutralMode(NeutralMode.Brake);
@@ -66,16 +69,16 @@ public class DrivetrainSubsystem extends PIDSubsystem {
         lineSensorCenter = new AnalogInput(RobotMap.CENTER_LINE_FOLLOWER_PORT);
         lineSensorRight = new AnalogInput(RobotMap.RIGHT_LINE_FOLLOWER_PORT);
 
-        driveMode = DriveMode.CHEEZY;
+        driveMode = DriveMode.TANK;
     }
-    
+
 
     public void resetGyro() {
         gyro.reset();
     }
 
     public double getAngle() {
-       return gyro.getAngle();
+       return gyro.getAngleX() * Math.sin(gyro.getRoll());
     }
 
     public boolean getLeftLineFollower() {

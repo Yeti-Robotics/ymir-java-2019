@@ -26,6 +26,7 @@ public class ElevatorSubsystem extends PIDSubsystem {
   public CustomTalon elevator1Talon, elevator2Talon;
   private DigitalInput upperLimit, lowerLimit;
   private double motionMagicTarget;
+  private int level;
 
   public ElevatorSubsystem() {
     super(0.00005, .000001, 0, 0.3);
@@ -33,6 +34,7 @@ public class ElevatorSubsystem extends PIDSubsystem {
     elevator2Talon = new CustomTalon(RobotMap.ELEVATOR2_TALON);
     upperLimit = new DigitalInput(RobotMap.ELEVATOR_UPPER_LIMIT);
     lowerLimit = new DigitalInput(RobotMap.ELEVATOR_LOWER_LIMIT);
+    level = -1;
 
     elevator1Talon.configVoltageCompSaturation(12);
     elevator2Talon.configVoltageCompSaturation(12);
@@ -100,6 +102,10 @@ public class ElevatorSubsystem extends PIDSubsystem {
     elevator1Talon.set(RobotMap.ELEVATOR_STABLE_SPEED);
   }
 
+  public void elevatorOff() {
+    elevator1Talon.set(0);
+  }
+
   public void resetElevatorEncoder() {
     elevator1Talon.setSelectedSensorPosition(0);
   }
@@ -112,6 +118,18 @@ public class ElevatorSubsystem extends PIDSubsystem {
     System.out.println("Elevator position: " + getElevatorEncoder());
   }
 
+  public int getLevel() {
+    return level;
+  }
+
+  public void incrementLevel() {
+    level++;
+  }
+
+  public void decrementLevel() {
+    level--;
+  }
+  
   public void moveElevatorUp() {
     SmartDashboard.putNumber("elevator current", elevator1Talon.getOutputCurrent());
     elevator1Talon.set(RobotMap.ELEVATOR_MANUAL_UP_SPEED);
