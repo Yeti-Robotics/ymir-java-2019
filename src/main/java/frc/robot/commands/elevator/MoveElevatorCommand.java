@@ -14,7 +14,7 @@ import frc.robot.RobotMap;
 
 public class MoveElevatorCommand extends Command {
 
-  private double elevatorPosition;
+  private double elevatorPosition = -1;
   private boolean stop;
 
   public MoveElevatorCommand(double elevatorPosition) {
@@ -23,19 +23,27 @@ public class MoveElevatorCommand extends Command {
     requires(Robot.elevatorSubsystem);
   }
 
+  public MoveElevatorCommand() {
+    requires(Robot.elevatorSubsystem);
+  }
+
   // Called just before this Command runs the first time
   @Override
   protected void initialize() {
-    if (Robot.elevatorSubsystem.getLevel() != -1) {
-      stop = false;
-      if (Robot.deployState == Robot.deployState.HATCH_PANEL) {
-        Robot.elevatorSubsystem
-            .setMotionMagic(RobotMap.ELEVATOR_HATCH_PANEL_LEVELS[Robot.elevatorSubsystem.getLevel()]);
+    Robot.elevatorSubsystem.disable();
+    if (elevatorPosition == -1) {
+      if (Robot.elevatorSubsystem.getLevel() != -1) {
+        stop = false;
+        if (Robot.deployState == Robot.deployState.HATCH_PANEL) {
+          Robot.elevatorSubsystem.setMotionMagic(RobotMap.ELEVATOR_HATCH_PANEL_LEVELS[Robot.elevatorSubsystem.getLevel()]);
+        } else {
+          Robot.elevatorSubsystem.setMotionMagic(RobotMap.ELEVATOR_BALL_LEVELS[Robot.elevatorSubsystem.getLevel()]);
+        }
       } else {
-        Robot.elevatorSubsystem.setMotionMagic(RobotMap.ELEVATOR_BALL_LEVELS[Robot.elevatorSubsystem.getLevel()]);
+        stop = true;
       }
     } else {
-      stop = true;
+      Robot.elevatorSubsystem.setMotionMagic(elevatorPosition);
     }
     // Robot.elevatorSubsystem.setSetpoint(elevatorPosition);
     // Robot.elevatorSubsystem.enable();
@@ -59,8 +67,11 @@ public class MoveElevatorCommand extends Command {
     // System.out.println("finished!!!!!!");
     if (Robot.elevatorSubsystem.getLevel() == -1) {
       Robot.elevatorSubsystem.elevatorOff();
+      Robot.elevatorSubsystem.disable();
     } else {
       Robot.elevatorSubsystem.elevatorStop();
+      // Robot.elevatorSubsystem.setSetpoint(elevatorPosition);
+      // Robot.elevatorSubsystem.enable();
     }
   }
 

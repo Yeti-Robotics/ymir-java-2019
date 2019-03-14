@@ -168,6 +168,8 @@ public class Robot extends TimedRobot {
     SmartDashboard.putBoolean("Right Line Follow Voltage", drivetrainSubsystem.getRightLineFollower());
     // SmartDashboard.putNumber("Elevator raw value", elevatorSubsystem.elevator1Talon.getSelectedSensorPosition());
     SmartDashboard.putNumber("Vision distance", VisionProcessor.getAverageDistance(latestContours[0], latestContours[1]));
+    SmartDashboard.putNumber("Elevator pid error", elevatorSubsystem.getPIDController().getError());
+    SmartDashboard.putNumber("Elevator pid output", elevatorSubsystem.getPIDController().get());
     
     if (latestContours != null) {
 
@@ -196,6 +198,7 @@ public class Robot extends TimedRobot {
   @Override
   public void disabledInit() {
     elevatorSubsystem.disable();
+    elevatorSubsystem.setLevel(-1);
   }
 
   @Override

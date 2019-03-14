@@ -29,7 +29,7 @@ public class ElevatorSubsystem extends PIDSubsystem {
   private int level;
 
   public ElevatorSubsystem() {
-    super(0.00005, .000001, 0, 0.3);
+    super(0, 0, 0, 0.23);
     elevator1Talon = new CustomTalon(RobotMap.ELEVATOR1_TALON);
     elevator2Talon = new CustomTalon(RobotMap.ELEVATOR2_TALON);
     upperLimit = new DigitalInput(RobotMap.ELEVATOR_UPPER_LIMIT);
@@ -62,12 +62,13 @@ public class ElevatorSubsystem extends PIDSubsystem {
     elevator1Talon.setInverted(true);
     
     elevator1Talon.configOpenloopRamp(RobotMap.ELEVATOR_OPEN_LOOP_RAMP);
-        
-    setOutputRange(RobotMap.ELEVATOR_MANUAL_DOWN_SPEED, 1);
-    setAbsoluteTolerance(250);
+
+    setOutputRange(0, .35);
+    setAbsoluteTolerance(.5);
     disable();
 
     resetElevatorEncoder();
+
 
     elevator1Talon.config_kP(0, RobotMap.ELEVATOR_P);
     elevator1Talon.config_kI(0, 0);
@@ -79,10 +80,12 @@ public class ElevatorSubsystem extends PIDSubsystem {
     elevator1Talon.setStatusFramePeriod(StatusFrameEnhanced.Status_13_Base_PIDF0, 10);
     elevator1Talon.setStatusFramePeriod(StatusFrameEnhanced.Status_10_MotionMagic, 10);
     elevator1Talon.configPeakOutputForward(RobotMap.ELEVATOR_PEAK_OUTPUT_FORWARD);
+
     elevator1Talon.configForwardSoftLimitThreshold(convertInchesToCounts(RobotMap.ELEVATOR_FORWARD_SOFT_LIMIT));
     elevator1Talon.configReverseSoftLimitThreshold(convertInchesToCounts(RobotMap.ELEVATOR_REVERSE_SOFT_LIMIT));
     elevator1Talon.configReverseSoftLimitEnable(true);
     elevator1Talon.configForwardSoftLimitEnable(true);
+
     elevator1Talon.configClosedloopRamp(RobotMap.ELEVATOR_OPEN_LOOP_RAMP);
   }
 
@@ -128,6 +131,10 @@ public class ElevatorSubsystem extends PIDSubsystem {
 
   public void decrementLevel() {
     level--;
+  }
+
+  public void setLevel(int level) {
+    this.level = level;
   }
   
   public void moveElevatorUp() {

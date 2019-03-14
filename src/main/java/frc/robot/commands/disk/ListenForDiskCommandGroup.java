@@ -8,9 +8,8 @@
 package frc.robot.commands.disk;
 
 import edu.wpi.first.wpilibj.command.CommandGroup;
+import frc.robot.Robot;
 import frc.robot.RobotMap;
-import frc.robot.commands.drivetrain.LineFollowToTargetCommand;
-import frc.robot.commands.drivetrain.TurnToTargetCommandGroup;
 import frc.robot.commands.elevator.MoveElevatorCommand;
 
 public class ListenForDiskCommandGroup extends CommandGroup {
@@ -19,11 +18,15 @@ public class ListenForDiskCommandGroup extends CommandGroup {
    */
   public ListenForDiskCommandGroup() {
     // addParallel(new TurnToTargetCommandGroup());
-    addParallel(new MoveElevatorCommand(RobotMap.ELEVATOR_HATCH_PANEL_LEVEL_1));
+    // addParallel(new MoveElevatorCommand(RobotMap.ELEVATOR_HATCH_PANEL_LEVEL_1));
     addSequential(new OpenIntakeCommand());
     addSequential(new DeployOutCommand());
     // addSequential(new LineFollowToTargetCommand());
-    addSequential(new SenseHatchPanelCommand());
-    addSequential(new DeployInCommand());
+    addSequential(new IntakeDiskCommandGroup());
   }
+
+  // @Override
+  // protected void interrupted() {
+  //   new IntakeDiskCommandGroup().start();
+  // }
 }

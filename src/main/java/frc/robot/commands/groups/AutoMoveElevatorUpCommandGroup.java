@@ -17,6 +17,6 @@ public class AutoMoveElevatorUpCommandGroup extends CommandGroup {
    */
   public AutoMoveElevatorUpCommandGroup() {
       addSequential(new IncrementElevatorLevelCommand());
-      addSequential(new MoveElevatorCommand(0));
+      addSequential(new MoveElevatorCommand());
     }
 }

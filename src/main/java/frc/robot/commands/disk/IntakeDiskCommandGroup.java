@@ -5,18 +5,16 @@
 /* the project.                                                               */
 /*----------------------------------------------------------------------------*/
 
-package frc.robot.commands.groups;
+package frc.robot.commands.disk;
 
 import edu.wpi.first.wpilibj.command.CommandGroup;
-import frc.robot.commands.elevator.DecrementElevatorLevelCommand;
-import frc.robot.commands.elevator.MoveElevatorCommand;
 
-public class AutoMoveElevatorDownCommandGroup extends CommandGroup {
+public class IntakeDiskCommandGroup extends CommandGroup {
   /**
    * Add your docs here.
    */
-  public AutoMoveElevatorDownCommandGroup() {
-      addSequential(new DecrementElevatorLevelCommand());
-      addSequential(new MoveElevatorCommand());
-    }
+  public IntakeDiskCommandGroup() {
+    addSequential(new SenseHatchPanelCommand());
+    addSequential(new DeployInCommand());
+  }
 }
