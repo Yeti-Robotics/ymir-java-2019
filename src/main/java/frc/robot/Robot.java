@@ -10,7 +10,6 @@
 package frc.robot;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 import java.util.Timer;
 import java.util.TimerTask;
@@ -19,10 +18,8 @@ import edu.wpi.cscore.UsbCamera;
 import edu.wpi.cscore.VideoMode;
 import edu.wpi.first.cameraserver.CameraServer;
 import edu.wpi.first.networktables.NetworkTable;
-import edu.wpi.first.networktables.NetworkTableEntry;
 import edu.wpi.first.networktables.NetworkTableInstance;
 import edu.wpi.first.wpilibj.DriverStation;
-import edu.wpi.first.wpilibj.PowerDistributionPanel;
 import edu.wpi.first.wpilibj.TimedRobot;
 import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.command.Scheduler;
@@ -89,18 +86,19 @@ public class Robot extends TimedRobot {
     jevois = new JeVois();
     oi = new OI();
     deployState = DeployState.HATCH_PANEL;
+    SmartDashboard.putString("Elevator mode", "Hatch Panel");
     networkTable = NetworkTableInstance.getDefault().getTable("SmartDashboard");
     UsbCamera cam = CameraServer.getInstance().startAutomaticCapture(0);
     cam.setVideoMode(VideoMode.PixelFormat.kMJPEG, 200, 150, 30);
     cam.setBrightness(50);
-    
+
     UsbCamera jevoisView = CameraServer.getInstance().startAutomaticCapture(1);
     jevoisView.setVideoMode(VideoMode.PixelFormat.kYUYV, 320, 240, 30);
 
 
     new Timer().scheduleAtFixedRate(new TimerTask(){
       long lastLoop = System.currentTimeMillis();
-    
+
       @Override
       public void run() {
           Contour[] contours = jevois.parseStream();
@@ -120,7 +118,7 @@ public class Robot extends TimedRobot {
           }
       }
     }, 20L, 20L);
-    
+
     // chooser.addOption("My Auto", new MyAutoCommand());
     SmartDashboard.putData("Auto mode", m_chooser);
 
@@ -170,7 +168,7 @@ public class Robot extends TimedRobot {
     SmartDashboard.putNumber("Vision distance", VisionProcessor.getAverageDistance(latestContours[0], latestContours[1]));
     SmartDashboard.putNumber("Elevator pid error", elevatorSubsystem.getPIDController().getError());
     SmartDashboard.putNumber("Elevator pid output", elevatorSubsystem.getPIDController().get());
-    
+
     if (latestContours != null) {
 
     // System.out.println("left: " + VisionProcessor.getLeftDistance(latestContours[0], latestContours[1]) + ", right: " + VisionProcessor.getRightDistance(latestContours[0], latestContours[1]));
@@ -187,7 +185,7 @@ public class Robot extends TimedRobot {
     networkTable.getEntry(RobotMap.NETWORK_TABLES_LINEFOLLOWER_RIGHT).setBoolean(drivetrainSubsystem.getRightLineFollower());
     networkTable.getEntry(RobotMap.NETWORK_TABLES_ARM_BALL).setBoolean(rollerBarSubsystem.getBeamBreakSensor());
 
-   
+
   }
 
   /**

@@ -8,8 +8,8 @@
 package frc.robot.commands.elevator;
 
 import edu.wpi.first.wpilibj.command.Command;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import frc.robot.Robot;
-import frc.robot.RobotMap;
 import frc.robot.Robot.DeployState;
 
 public class ToggleDeployStatesCommand extends Command {
@@ -28,11 +28,13 @@ public class ToggleDeployStatesCommand extends Command {
   protected void execute() {
     if(Robot.deployState== DeployState.BALL) {
       Robot.deployState = DeployState.HATCH_PANEL;
+      SmartDashboard.putString("Elevator mode", "Hatch Panel");
       if (Robot.elevatorSubsystem.getLevel() > 0) {
         Robot.elevatorSubsystem.decrementLevel();
       }
     } else {
       Robot.deployState = DeployState.BALL;
+      SmartDashboard.putString("Elevator mode", "Cargo");
     }
   }
 

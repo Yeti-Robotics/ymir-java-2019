@@ -12,20 +12,15 @@ import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.buttons.JoystickButton;
 import edu.wpi.first.wpilibj.command.Command;
 import frc.robot.commands.CancelCommandsCommand;
-import frc.robot.commands.disk.DeployOutCommand;
+import frc.robot.commands.disk.CloseIntakeDeployInCommandGroup;
 import frc.robot.commands.disk.ListenForDiskCommandGroup;
 import frc.robot.commands.drivetrain.ToggleShiftingCommand;
-import frc.robot.commands.elevator.MoveElevatorDownCommand;
-import frc.robot.commands.elevator.MoveElevatorUpCommand;
 import frc.robot.commands.elevator.ToggleDeployStatesCommand;
 import frc.robot.commands.groups.AutoMoveElevatorDownCommandGroup;
 import frc.robot.commands.groups.AutoMoveElevatorUpCommandGroup;
-import frc.robot.commands.groups.DeployDiskLevel1CommandGroup;
 import frc.robot.commands.groups.DeployHatchPanelCommandGroup;
 import frc.robot.commands.rollerbar.IntakeBallCommand;
 import frc.robot.commands.rollerbar.LaunchBallCommand;
-import frc.robot.commands.shifting.DriveTrainHighShiftCommand;
-import frc.robot.commands.shifting.DriveTrainLowShiftCommand;
 import frc.robot.commands.wrist.ManualMoveWristDownCommand;
 import frc.robot.commands.wrist.ManualMoveWristUpCommand;
 /**
@@ -68,10 +63,12 @@ public class OI {
     setJoystickButtonWhileHeldCommand(driverStationJoy, 2, new ManualMoveWristUpCommand());
     setJoystickButtonWhenPressedCommand(driverStationJoy, 3, new AutoMoveElevatorUpCommandGroup());
     setJoystickButtonWhenPressedCommand(driverStationJoy, 4, new ToggleDeployStatesCommand());
-    setJoystickButtonWhileHeldCommand(driverStationJoy, 5, new LaunchBallCommand());
-    setJoystickButtonWhileHeldCommand(driverStationJoy, 6, new ManualMoveWristDownCommand());
-    setJoystickButtonWhenPressedCommand(driverStationJoy, 7, new AutoMoveElevatorDownCommandGroup());
-    setJoystickButtonWhenPressedCommand(driverStationJoy, 8, new ListenForDiskCommandGroup());
+    setJoystickButtonWhenPressedCommand(driverStationJoy, 5, new CloseIntakeDeployInCommandGroup());
+    setJoystickButtonWhileHeldCommand(driverStationJoy, 6, new LaunchBallCommand());
+    setJoystickButtonWhileHeldCommand(driverStationJoy, 7, new ManualMoveWristDownCommand());
+    setJoystickButtonWhenPressedCommand(driverStationJoy, 8, new AutoMoveElevatorDownCommandGroup());
+    setJoystickButtonWhenPressedCommand(driverStationJoy, 9, new ListenForDiskCommandGroup());
+    setJoystickButtonWhenPressedCommand(driverStationJoy, 10, new CancelCommandsCommand());
   }
 
   // Gets the Y direction of the left drive joystick
