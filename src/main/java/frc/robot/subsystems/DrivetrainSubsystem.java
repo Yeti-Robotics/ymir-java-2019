@@ -1,6 +1,5 @@
 package frc.robot.subsystems;
 
-import com.analog.adis16448.frc.ADIS16448_IMU;
 import com.ctre.phoenix.motorcontrol.ControlMode;
 import com.ctre.phoenix.motorcontrol.FeedbackDevice;
 import com.ctre.phoenix.motorcontrol.NeutralMode;
@@ -22,14 +21,14 @@ public class DrivetrainSubsystem extends PIDSubsystem {
     private DifferentialDrive differentialDrive;
     private DriveMode driveMode;
     private AnalogInput lineSensorLeft, lineSensorCenter, lineSensorRight;
-    private ADIS16448_IMU gyro;
+    private ADXRS450_Gyro gyro;
 
     public enum DriveMode {
         TANK, ARCADE, CHEEZY;
     }
 
     public DrivetrainSubsystem() {
-        
+
         super(0.25, 0, 0);
         left1 = new VictorSPX(RobotMap.LEFT_1_VICTOR);
         left2 = new VictorSPX(RobotMap.LEFT_2_VICTOR);
@@ -40,15 +39,15 @@ public class DrivetrainSubsystem extends PIDSubsystem {
         leftTal.setStatusFramePeriod(StatusFrameEnhanced.Status_2_Feedback0, 2, 30);
         leftTal.configSelectedFeedbackSensor(FeedbackDevice.CTRE_MagEncoder_Relative);
         rightTal.setStatusFramePeriod(StatusFrameEnhanced.Status_2_Feedback0, 2, 30);
-        rightTal.configSelectedFeedbackSensor(FeedbackDevice.CTRE_MagEncoder_Relative);   
-        gyro = new ADIS16448_IMU();
+        rightTal.configSelectedFeedbackSensor(FeedbackDevice.CTRE_MagEncoder_Relative);
+        gyro = new ADXRS450_Gyro();
         gyro.calibrate();
 
         left1.follow(leftTal);
         left2.follow(leftTal);
         right1.follow(rightTal);
         right2.follow(rightTal);
-        
+
         resetEncoders();
 
         leftTal.setNeutralMode(NeutralMode.Brake);
@@ -59,7 +58,7 @@ public class DrivetrainSubsystem extends PIDSubsystem {
         right2.setNeutralMode(NeutralMode.Brake);
 
         differentialDrive = new DifferentialDrive(leftTal, rightTal);
-       
+
 
         leftTal.setInverted(true);
         left1.setInverted(true);
@@ -78,7 +77,8 @@ public class DrivetrainSubsystem extends PIDSubsystem {
     }
 
     public double getAngle() {
-       return gyro.getAngleX() * Math.sin(gyro.getRoll());
+    //    return gyro.getAngleX() * Math.sin(gyro.getRoll());
+        return gyro.getAngle();
     }
 
     public boolean getLeftLineFollower() {

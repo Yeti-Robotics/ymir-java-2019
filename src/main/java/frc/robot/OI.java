@@ -59,16 +59,17 @@ public class OI {
     // setJoystickButtonWhenPressedCommand(driverStationJoy, 7, new
     // DeployBallRocketLevel3());
 
-    setJoystickButtonWhileHeldCommand(driverStationJoy, 1, new IntakeBallCommand());
-    setJoystickButtonWhileHeldCommand(driverStationJoy, 2, new ManualMoveWristUpCommand());
-    setJoystickButtonWhenPressedCommand(driverStationJoy, 3, new AutoMoveElevatorUpCommandGroup());
-    setJoystickButtonWhenPressedCommand(driverStationJoy, 4, new ToggleDeployStatesCommand());
-    setJoystickButtonWhenPressedCommand(driverStationJoy, 5, new CloseIntakeDeployInCommandGroup());
-    setJoystickButtonWhileHeldCommand(driverStationJoy, 6, new LaunchBallCommand());
-    setJoystickButtonWhileHeldCommand(driverStationJoy, 7, new ManualMoveWristDownCommand());
-    setJoystickButtonWhenPressedCommand(driverStationJoy, 8, new AutoMoveElevatorDownCommandGroup());
-    setJoystickButtonWhenPressedCommand(driverStationJoy, 9, new ListenForDiskCommandGroup());
-    setJoystickButtonWhenPressedCommand(driverStationJoy, 10, new CancelCommandsCommand());
+    setJoystickButtonWhileHeldCommand(driverStationJoy, 6, new IntakeBallCommand());
+    setJoystickButtonWhileHeldCommand(driverStationJoy, 7, new ManualMoveWristUpCommand());
+    setJoystickButtonWhenPressedCommand(driverStationJoy, 8, new AutoMoveElevatorUpCommandGroup());
+    setJoystickButtonWhenPressedCommand(driverStationJoy, 9, new ToggleDeployStatesCommand());
+    setJoystickButtonWhenPressedCommand(driverStationJoy, 10, new CloseIntakeDeployInCommandGroup());
+
+    setJoystickButtonWhileHeldCommand(driverStationJoy, 1, new LaunchBallCommand());
+    setJoystickButtonWhileHeldCommand(driverStationJoy, 2, new ManualMoveWristDownCommand());
+    setJoystickButtonWhenPressedCommand(driverStationJoy, 3, new AutoMoveElevatorDownCommandGroup());
+    setJoystickButtonWhenPressedCommand(driverStationJoy, 4, new ListenForDiskCommandGroup());
+    setJoystickButtonWhenPressedCommand(driverStationJoy, 5, new CancelCommandsCommand());
   }
 
   // Gets the Y direction of the left drive joystick

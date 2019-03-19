@@ -86,6 +86,7 @@ public class Robot extends TimedRobot {
     jevois = new JeVois();
     oi = new OI();
     deployState = DeployState.HATCH_PANEL;
+    hatchPanelSubsystem.closeIntake();
     SmartDashboard.putString("Elevator mode", "Hatch Panel");
     networkTable = NetworkTableInstance.getDefault().getTable("SmartDashboard");
     UsbCamera cam = CameraServer.getInstance().startAutomaticCapture(0);
@@ -168,6 +169,8 @@ public class Robot extends TimedRobot {
     SmartDashboard.putNumber("Vision distance", VisionProcessor.getAverageDistance(latestContours[0], latestContours[1]));
     SmartDashboard.putNumber("Elevator pid error", elevatorSubsystem.getPIDController().getError());
     SmartDashboard.putNumber("Elevator pid output", elevatorSubsystem.getPIDController().get());
+    SmartDashboard.putNumber("gyro angle", drivetrainSubsystem.getAngle());
+    SmartDashboard.putBoolean("Beam Break sensor", rollerBarSubsystem.getBeamBreakSensor());
 
     if (latestContours != null) {
 
