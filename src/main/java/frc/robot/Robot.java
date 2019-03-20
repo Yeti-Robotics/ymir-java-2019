@@ -89,6 +89,7 @@ public class Robot extends TimedRobot {
     hatchPanelSubsystem.closeIntake();
     SmartDashboard.putString("Elevator mode", "Hatch Panel");
     networkTable = NetworkTableInstance.getDefault().getTable("SmartDashboard");
+    
     UsbCamera cam = CameraServer.getInstance().startAutomaticCapture(0);
     cam.setVideoMode(VideoMode.PixelFormat.kMJPEG, 200, 150, 30);
     cam.setBrightness(50);
@@ -222,7 +223,7 @@ public class Robot extends TimedRobot {
   @Override
   public void autonomousInit() {
     String gameData = DriverStation.getInstance().getGameSpecificMessage(); // gets game data
-    System.out.println("Char: " + gameData.charAt(0));
+    // System.out.println("Char: " + gameData.charAt(0));
     System.out.println(m_chooser.getSelected());
 
     m_autonomousCommand = m_chooser.getSelected();
