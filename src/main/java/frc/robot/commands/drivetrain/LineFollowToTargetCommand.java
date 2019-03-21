@@ -41,11 +41,11 @@ public class LineFollowToTargetCommand extends Command {
       break;
     case "110":
     case "100":
-      Robot.drivetrainSubsystem.tankDrive(-0.5,-0.7);
+      Robot.drivetrainSubsystem.tankDrive(-0.5,-0.6);
       break;
     case "011":
     case "001":
-      Robot.drivetrainSubsystem.tankDrive(-0.7, -0.5);
+      Robot.drivetrainSubsystem.tankDrive(-0.6, -0.5);
       break;
     case "000":
       lineVisible = false;
