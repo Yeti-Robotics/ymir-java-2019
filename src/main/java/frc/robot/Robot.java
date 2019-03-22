@@ -33,6 +33,7 @@ import frc.robot.subsystems.ElevatorSubsystem;
 import frc.robot.subsystems.HatchPanelSubsystem;
 import frc.robot.subsystems.RollerBarSubsystem;
 import frc.robot.subsystems.ShiftGearsSubsystem;
+import frc.robot.subsystems.garbage;
 import frc.robot.subsystems.WristSubsystem;
 
 /**
@@ -172,6 +173,7 @@ public class Robot extends TimedRobot {
     SmartDashboard.putNumber("Elevator pid output", elevatorSubsystem.getPIDController().get());
     SmartDashboard.putNumber("gyro angle", drivetrainSubsystem.getAngle());
     SmartDashboard.putBoolean("Beam Break sensor", rollerBarSubsystem.getBeamBreakSensor());
+    SmartDashboard.putNumber("azimuth", jevois.getAzimuth());
 
     if (latestContours != null) {
 
@@ -222,11 +224,11 @@ public class Robot extends TimedRobot {
    */
   @Override
   public void autonomousInit() {
-    String gameData = DriverStation.getInstance().getGameSpecificMessage(); // gets game data
+    // String gameData = DriverStation.getInstance().getGameSpecificMessage(); // gets game data
     // System.out.println("Char: " + gameData.charAt(0));
-    System.out.println(m_chooser.getSelected());
+    // System.out.println(m_chooser.getSelected());
 
-    m_autonomousCommand = m_chooser.getSelected();
+    // m_autonomousCommand = m_chooser.getSelected();
 
     /*
      * String autoSelected = SmartDashboard.getString("Auto Selector", "Default");
@@ -236,18 +238,18 @@ public class Robot extends TimedRobot {
      */
 
     // schedule the autonomous command (example)
-    if (m_autonomousCommand != null) {
-      m_autonomousCommand.start();
+    // if (m_autonomousCommand != null) {
+    //   m_autonomousCommand.start();
 
 
-    }
+    // }
 
-    String chosenAutoMode = networkTable.getEntry(RobotMap.NETWORK_TABLES_AUTO__CUREENTLY_SELECTED).getString("Default Auto");
-    switch (chosenAutoMode) {
+    // String chosenAutoMode = networkTable.getEntry(RobotMap.NETWORK_TABLES_AUTO__CUREENTLY_SELECTED).getString("Default Auto");
+    // switch (chosenAutoMode) {
 
-      default:
-        break;
-    }
+    //   default:
+    //     break;
+    // }
   }
 
   /**
@@ -264,9 +266,9 @@ public class Robot extends TimedRobot {
     // teleop starts running. If you want the autonomous to
     // continue until interrupted by another command, remove
     // this line or comment it out.-
-    if (m_autonomousCommand != null) {
-      m_autonomousCommand.cancel();
-    }
+    // if (m_autonomousCommand != null) {
+    //   m_autonomousCommand.cancel();
+    // }
   }
 
   /**

@@ -11,14 +11,15 @@ import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import frc.robot.Robot;
 import frc.robot.RobotMap;
+import jdk.jfr.Threshold;
 
 public class TurnAngleCommand extends Command {
 
-  private static final double THRESHOLD = 0;
-  private static final double MIN_SPEED = 0.6;
-  private static final double MAX_SPEED = 0.9;
+  private static final double THRESHOLD = 0.5;
+  private static final double MIN_SPEED = 0.2;
+  private static final double MAX_SPEED = 0.5;
   private static final double SLOW_RANGE = 35;
-  private static final double P = 0.015;
+  private static final double P = 0.2 / 5;
   private static final double I = 0.0002;
   private double angle;
   double targetAngle;
@@ -54,16 +55,16 @@ public class TurnAngleCommand extends Command {
       output = MIN_SPEED;
     }
     if (angle > 0){
-      Robot.drivetrainSubsystem.tankDrive(output, -output);
-    } else if (angle < 0){
       Robot.drivetrainSubsystem.tankDrive(-output, output);
+    } else if (angle < 0){
+      Robot.drivetrainSubsystem.tankDrive(output, -output);
     }
   }
 
   // Make this return true when this Command no longer needs to run execute()
   @Override
   protected boolean isFinished() {
-    return currentAngle > targetAngle - THRESHOLD;
+return Math.abs(targetAngle - currentAngle) < THRESHOLD;
   }
 
   // Called once after isFinished returns true

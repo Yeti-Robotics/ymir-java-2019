@@ -14,6 +14,7 @@ import edu.wpi.first.wpilibj.command.Command;
 import frc.robot.commands.CancelCommandsCommand;
 import frc.robot.commands.disk.CloseIntakeDeployInCommandGroup;
 import frc.robot.commands.disk.ListenForDiskCommandGroup;
+import frc.robot.commands.drivetrain.LineFollowToTargetCommand;
 import frc.robot.commands.drivetrain.ToggleShiftingCommand;
 import frc.robot.commands.drivetrain.TurnToTargetCommandGroup;
 import frc.robot.commands.elevator.ToggleDeployStatesCommand;
@@ -60,15 +61,17 @@ public class OI {
     // setJoystickButtonWhenPressedCommand(driverStationJoy, 7, new
     // DeployBallRocketLevel3());
 
-    // setJoystickButtonWhileHeldCommand(driverStationJoy, 6, new IntakeBallCommand());
-    setJoystickButtonWhileHeldCommand(driverStationJoy, 6, new TurnToTargetCommandGroup());
-    setJoystickButtonWhileHeldCommand(driverStationJoy, 7, new ManualMoveWristUpCommand());
+    setJoystickButtonWhileHeldCommand(driverStationJoy, 6, new IntakeBallCommand());
+    // setJoystickButtonWhenPressedCommand(driverStationJoy, 6, new TurnToTargetCommandGroup());
+    
+    // setJoystickButtonWhenPressedCommand(driverStationJoy, 7, new LineFollowToTargetCommand());
+    // setJoystickButtonWhileHeldCommand(driverStationJoy, 7, new ManualMoveWristUpCommand());
     setJoystickButtonWhenPressedCommand(driverStationJoy, 8, new AutoMoveElevatorUpCommandGroup());
     setJoystickButtonWhenPressedCommand(driverStationJoy, 9, new ToggleDeployStatesCommand());
     setJoystickButtonWhenPressedCommand(driverStationJoy, 10, new CloseIntakeDeployInCommandGroup());
 
     setJoystickButtonWhileHeldCommand(driverStationJoy, 1, new LaunchBallCommand());
-    setJoystickButtonWhileHeldCommand(driverStationJoy, 2, new ManualMoveWristDownCommand());
+    // setJoystickButtonWhileHeldCommand(driverStationJoy, 2, new ManualMoveWristDownCommand());
     setJoystickButtonWhenPressedCommand(driverStationJoy, 3, new AutoMoveElevatorDownCommandGroup());
     setJoystickButtonWhenPressedCommand(driverStationJoy, 4, new ListenForDiskCommandGroup());
     setJoystickButtonWhenPressedCommand(driverStationJoy, 5, new CancelCommandsCommand());

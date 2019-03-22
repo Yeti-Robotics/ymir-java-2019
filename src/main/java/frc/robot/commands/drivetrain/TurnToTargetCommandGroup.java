@@ -22,13 +22,13 @@ public class TurnToTargetCommandGroup extends CommandGroup {
    * Add your docs here.
    */
   public TurnToTargetCommandGroup() {
-    setTimeout(0.5);
+    // setTimeout(0.5);
   }
 
   @Override
   protected void initialize() {
     contours = Robot.latestContours;
-    if(contours != null){
+    if(contours[0].area != 0){
       noContours = false;
       double azimuth = VisionProcessor.getAzimuth(contours[0], contours[1]);
       System.out.println(azimuth);
@@ -38,8 +38,8 @@ public class TurnToTargetCommandGroup extends CommandGroup {
     }
   }
 
-  @Override
-  protected boolean isFinished() {
-    return isTimedOut() || noContours;
-  }
+  // @Override
+  // protected boolean isFinished() {
+  //   return isTimedOut() || noContours;
+  // }
 }
