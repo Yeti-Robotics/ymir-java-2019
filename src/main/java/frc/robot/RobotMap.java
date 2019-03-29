@@ -68,7 +68,7 @@ public class RobotMap {
   public static final double ELEVATOR_BALL_CARGOSHIP_LEVEL = 16;
   public static final double ELEVATOR_BALL_ROCKET_LEVEL_2 = 22.5;
   public static final double ELEVATOR_BALL_ROCKET_LEVEL_3 = 48.5;
-  public static final double ELEVATOR_HATCH_PANEL_LEVEL_1 = 4;
+  public static final double ELEVATOR_HATCH_PANEL_LEVEL_1 = 6;
   public static final double ELEVATOR_HATCH_PANEL_LEVEL_2 = 34;
   public static final double ELEVATOR_HATCH_PANEL_LEVEL_3 = 57.7;
 
@@ -91,7 +91,7 @@ public class RobotMap {
   public static final double ELEVATOR_PEAK_OUTPUT_FORWARD = .6;
   public static final double ELEVATOR_REVERSE_SOFT_LIMIT = 0;
   public static final double ELEVATOR_FORWARD_SOFT_LIMIT = 59;
-  public static final double ELEVATOR_TOLERANCE = 1;
+  public static final double ELEVATOR_TOLERANCE = .25;
 
 
   // Rack constants

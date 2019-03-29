@@ -59,42 +59,50 @@ public class JeVois {
     }
 
     public Contour[] parseStream() {
-        String cameraOutput = jevois.readString();
-        // System.out.println(cameraOutput);
+        if (jevois != null) {
+            String cameraOutput = jevois.readString();
+            // System.out.println(cameraOutput);
 
-        if (cameraOutput != null && !cameraOutput.trim().isEmpty()) {
-            List<Contour> contours = new ArrayList<Contour>();
-            String[] contourStrings = cameraOutput.split("\\|");
+            if (cameraOutput != null && !cameraOutput.trim().isEmpty()) {
+                List<Contour> contours = new ArrayList<Contour>();
+                String[] contourStrings = cameraOutput.split("\\|");
 
-            // System.out.println("output: " + cameraOutput);
-            // System.out.println("output 1.5: " + contourStrings.length);
-            if (contourStrings.length == 2) {
-                for (String contourString : contourStrings) {
-                    String[] contourValues = contourString.split(",");
-                    Contour contour = new Contour(contourValues[0].trim(), contourValues[1].trim(),
-                            contourValues[2].trim(), contourValues[3].trim(), contourValues[4].trim());
-                    // System.out.println("output2: " + contour.toString());
-                    contours.add(contour);
+                // System.out.println("output: " + cameraOutput);
+                // System.out.println("output 1.5: " + contourStrings.length);
+                if (contourStrings.length == 2) {
+                    for (String contourString : contourStrings) {
+                        String[] contourValues = contourString.split(",");
+                        Contour contour = new Contour(contourValues[0].trim(), contourValues[1].trim(),
+                                contourValues[2].trim(), contourValues[3].trim(), contourValues[4].trim());
+                        // System.out.println("output2: " + contour.toString());
+                        contours.add(contour);
 
+                    }
+                    Contour[] contoursArray = { contours.get(0), contours.get(1) };
+                    return contoursArray;
                 }
-                Contour[] contoursArray = { contours.get(0), contours.get(1) };
-                return contoursArray;
-            }
 
+            }
         }
         return null;
     }
 
     public Rect boundRect() {
-        contours = parseStream();
-        return new Rect(contours[0].x, contours[0].y, (contours[1].x + contours[1].w) - contours[0].x, contours[1].h);
+        if (jevois != null && contours != null) {
+            contours = parseStream();
+            return new Rect(contours[0].x, contours[0].y, (contours[1].x + contours[1].w) - contours[0].x, contours[1].h);
+        }
+        return null;
     }
 
     public double getAzimuth() {
-        Rect boundRect = boundRect();
-        double centerX = (boundRect.x + boundRect.width / 2);
-        double azimuth = (centerX * RobotMap.FOV / RobotMap.IMAGE_WIDTH) - (RobotMap.FOV / 2);
-        return azimuth;
+        if (jevois != null && contours != null) {
+            Rect boundRect = boundRect();
+            double centerX = (boundRect.x + boundRect.width / 2);
+            double azimuth = (centerX * RobotMap.FOV / RobotMap.IMAGE_WIDTH) - (RobotMap.FOV / 2);
+            return azimuth;
+        }
+        return 0;
 
     }
 
