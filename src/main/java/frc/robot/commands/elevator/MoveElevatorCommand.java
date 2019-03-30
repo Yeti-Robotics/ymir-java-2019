@@ -69,7 +69,7 @@ public class MoveElevatorCommand extends Command {
       Robot.elevatorSubsystem.elevatorOff();
       Robot.elevatorSubsystem.disable();
     } else {
-      Robot.elevatorSubsystem.elevatorStop();
+      // Robot.elevatorSubsystem.elevatorStop();
       // Robot.elevatorSubsystem.setSetpoint(elevatorPosition);
       // Robot.elevatorSubsystem.enable();
     }

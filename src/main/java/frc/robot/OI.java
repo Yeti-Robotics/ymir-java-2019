@@ -17,6 +17,8 @@ import frc.robot.commands.disk.ListenForDiskCommandGroup;
 import frc.robot.commands.drivetrain.LineFollowToTargetCommand;
 import frc.robot.commands.drivetrain.ToggleShiftingCommand;
 import frc.robot.commands.drivetrain.TurnToTargetCommandGroup;
+import frc.robot.commands.elevator.MoveElevatorDownCommand;
+import frc.robot.commands.elevator.MoveElevatorUpCommand;
 import frc.robot.commands.elevator.ToggleDeployStatesCommand;
 import frc.robot.commands.groups.AutoMoveElevatorDownCommandGroup;
 import frc.robot.commands.groups.AutoMoveElevatorUpCommandGroup;
@@ -63,6 +65,10 @@ public class OI {
 
     setJoystickButtonWhileHeldCommand(driverStationJoy, 6, new IntakeBallCommand());
     // setJoystickButtonWhenPressedCommand(driverStationJoy, 6, new TurnToTargetCommandGroup());
+
+    setJoystickButtonWhileHeldCommand(driverStationJoy, 7, new MoveElevatorUpCommand());
+    setJoystickButtonWhileHeldCommand(driverStationJoy, 2, new MoveElevatorDownCommand());
+
     
     // setJoystickButtonWhenPressedCommand(driverStationJoy, 7, new LineFollowToTargetCommand());
     // setJoystickButtonWhileHeldCommand(driverStationJoy, 7, new ManualMoveWristUpCommand());

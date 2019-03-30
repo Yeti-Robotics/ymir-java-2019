@@ -72,13 +72,14 @@ public class ElevatorSubsystem extends PIDSubsystem {
     elevator1Talon.config_kP(0, RobotMap.ELEVATOR_P);
     elevator1Talon.config_kI(0, 0);
     elevator1Talon.config_kD(0, RobotMap.ELEVATOR_D);
-    elevator1Talon.configMotionCruiseVelocity((int) (RobotMap.ELEVATOR_INITIAL_VELOCITY));
-    elevator1Talon.configMotionAcceleration((int) (RobotMap.ELEVATOR_INITIAL_ACCELERATION));
-    elevator1Talon.configPeakOutputReverse(RobotMap.ELEVATOR_MANUAL_DOWN_SPEED);
+    elevator1Talon.configMotionCruiseVelocity((int) (RobotMap.ELEVATOR_CRUISING_VELOCITY));
+    elevator1Talon.configMotionAcceleration((int) (RobotMap.ELEVATOR_CRUISING_ACCELERATION));
+    // elevator1Talon.configPeakOutputReverse(RobotMap.ELEVATOR_MANUAL_DOWN_SPEED);
     elevator1Talon.configAllowableClosedloopError(0, convertInchesToCounts(RobotMap.ELEVATOR_TOLERANCE));
     elevator1Talon.setStatusFramePeriod(StatusFrameEnhanced.Status_13_Base_PIDF0, 10);
     elevator1Talon.setStatusFramePeriod(StatusFrameEnhanced.Status_10_MotionMagic, 10);
     elevator1Talon.configPeakOutputForward(RobotMap.ELEVATOR_PEAK_OUTPUT_FORWARD);
+    elevator1Talon.configMotionSCurveStrength(5);
 
     elevator1Talon.configForwardSoftLimitThreshold(convertInchesToCounts(RobotMap.ELEVATOR_FORWARD_SOFT_LIMIT));
     elevator1Talon.configReverseSoftLimitThreshold(convertInchesToCounts(RobotMap.ELEVATOR_REVERSE_SOFT_LIMIT));
