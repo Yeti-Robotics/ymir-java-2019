@@ -91,11 +91,11 @@ public class Robot extends TimedRobot {
     SmartDashboard.putString("Elevator mode", "Hatch Panel");
     networkTable = NetworkTableInstance.getDefault().getTable("SmartDashboard");
     
-    UsbCamera cam = CameraServer.getInstance().startAutomaticCapture(0);
-    cam.setVideoMode(VideoMode.PixelFormat.kMJPEG, 200, 150, 30);
-    cam.setBrightness(50);
+    // UsbCamera cam = CameraServer.getInstance().startAutomaticCapture(0);
+    // cam.setVideoMode(VideoMode.PixelFormat.kMJPEG, 200, 150, 30);
+    // cam.setBrightness(50);
 
-    UsbCamera jevoisView = CameraServer.getInstance().startAutomaticCapture(1);
+    UsbCamera jevoisView = CameraServer.getInstance().startAutomaticCapture(0);
     jevoisView.setVideoMode(VideoMode.PixelFormat.kYUYV, 320, 240, 30);
 
 

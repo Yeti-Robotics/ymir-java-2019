@@ -14,6 +14,7 @@ import edu.wpi.first.wpilibj.command.Command;
 import frc.robot.commands.CancelCommandsCommand;
 import frc.robot.commands.disk.CloseIntakeDeployInCommandGroup;
 import frc.robot.commands.disk.ListenForDiskCommandGroup;
+import frc.robot.commands.drivetrain.DriveStraightToTargetCommand;
 import frc.robot.commands.drivetrain.LineFollowToTargetCommand;
 import frc.robot.commands.drivetrain.ToggleShiftingCommand;
 import frc.robot.commands.drivetrain.TurnToTargetCommandGroup;
@@ -66,8 +67,8 @@ public class OI {
     setJoystickButtonWhileHeldCommand(driverStationJoy, 6, new IntakeBallCommand());
     // setJoystickButtonWhenPressedCommand(driverStationJoy, 6, new TurnToTargetCommandGroup());
 
-    setJoystickButtonWhileHeldCommand(driverStationJoy, 7, new MoveElevatorUpCommand());
-    setJoystickButtonWhileHeldCommand(driverStationJoy, 2, new MoveElevatorDownCommand());
+    setJoystickButtonWhenPressedCommand(driverStationJoy, 7, new DriveStraightToTargetCommand());
+    setJoystickButtonWhenPressedCommand(driverStationJoy, 2, new LineFollowToTargetCommand());
 
     
     // setJoystickButtonWhenPressedCommand(driverStationJoy, 7, new LineFollowToTargetCommand());

@@ -36,6 +36,7 @@ public class LineFollowToTargetCommand extends Command {
     String right = Robot.drivetrainSubsystem.getRightLineFollower() ? "1" : "0";
     String lineFollow = left + center + right;
     switch (lineFollow) {
+    case "000":
     case "010":
       Robot.drivetrainSubsystem.tankDrive(-0.5, -0.5);
       break;
@@ -47,9 +48,9 @@ public class LineFollowToTargetCommand extends Command {
     case "001":
       Robot.drivetrainSubsystem.tankDrive(-0.6, -0.5);
       break;
-    case "000":
-      lineVisible = false;
-      break;
+    // case "000":
+      // lineVisible = false;
+      // break;
     }
   }
 

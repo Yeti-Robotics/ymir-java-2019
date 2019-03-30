@@ -9,7 +9,7 @@ package frc.robot.commands.groups;
 
 import edu.wpi.first.wpilibj.command.CommandGroup;
 import frc.robot.RobotMap;
-import frc.robot.commands.drivetrain.DriveToLineCommand;
+import frc.robot.commands.drivetrain.DriveStraightToTargetCommand;
 import frc.robot.commands.drivetrain.LineFollowToTargetCommand;
 import frc.robot.commands.elevator.MoveElevatorCommand;
 
@@ -19,7 +19,7 @@ public class DeployDiskLevel2CommandGroup extends CommandGroup {
    */
   public DeployDiskLevel2CommandGroup() {
     addSequential(new MoveElevatorCommand(RobotMap.ELEVATOR_HATCH_PANEL_LEVEL_1));
-    addSequential(new DriveToLineCommand());
+    addSequential(new DriveStraightToTargetCommand());
     addSequential(new LineFollowToTargetCommand());
     // addSequential(new TurnToTargetCommandGroup());
     addSequential(new DeployHatchPanelCommandGroup());

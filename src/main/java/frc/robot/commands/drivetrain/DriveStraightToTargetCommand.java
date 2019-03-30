@@ -9,9 +9,12 @@ package frc.robot.commands.drivetrain;
 
 import edu.wpi.first.wpilibj.command.Command;
 import frc.robot.Robot;
+import frc.robot.controls.VisionProcessor;
 
-public class DriveToLineCommand extends Command {
-  public DriveToLineCommand() {
+public class DriveStraightToTargetCommand extends Command {
+  double distance;
+  public DriveStraightToTargetCommand() {
+ 
     // Use requires() here to declare subsystem dependencies
     // eg. requires(chassis);
     requires(Robot.drivetrainSubsystem);
@@ -20,6 +23,9 @@ public class DriveToLineCommand extends Command {
   // Called just before this Command runs the first time
   @Override
   protected void initialize() {
+    distance = VisionProcessor.getCenterDistance(Robot.latestContours[0], Robot.latestContours[1]);
+    Robot.drivetrainSubsystem.resetEncoders();
+ 
   }
 
   // Called repeatedly when this Command is scheduled to run
@@ -31,7 +37,7 @@ public class DriveToLineCommand extends Command {
   // Make this return true when this Command no longer needs to run execute()
   @Override
   protected boolean isFinished() {
-    return Robot.drivetrainSubsystem.getCenterLineFollower();
+    return Math.abs(Robot.drivetrainSubsystem.getAvgEncoderDistance()) >= distance;
   }
 
   // Called once after isFinished returns true
