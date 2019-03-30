@@ -13,8 +13,11 @@ import edu.wpi.first.wpilibj.buttons.JoystickButton;
 import edu.wpi.first.wpilibj.command.Command;
 import frc.robot.commands.CancelCommandsCommand;
 import frc.robot.commands.disk.CloseIntakeDeployInCommandGroup;
-import frc.robot.commands.disk.ListenForDiskCommandGroup;
+import frc.robot.commands.disk.IntakeDiskCommandGroup;
+import frc.robot.commands.disk.AutoIntakeDiskCommandGroup;
 import frc.robot.commands.drivetrain.DriveStraightToTargetCommand;
+import frc.robot.commands.drivetrain.DriveToLineCommand;
+import frc.robot.commands.drivetrain.DriveToTargetCommandGroup;
 import frc.robot.commands.drivetrain.LineFollowToTargetCommand;
 import frc.robot.commands.drivetrain.ToggleShiftingCommand;
 import frc.robot.commands.drivetrain.TurnToTargetCommandGroup;
@@ -23,6 +26,7 @@ import frc.robot.commands.elevator.MoveElevatorUpCommand;
 import frc.robot.commands.elevator.ToggleDeployStatesCommand;
 import frc.robot.commands.groups.AutoMoveElevatorDownCommandGroup;
 import frc.robot.commands.groups.AutoMoveElevatorUpCommandGroup;
+import frc.robot.commands.groups.DeployDiskLevel1CommandGroup;
 import frc.robot.commands.groups.DeployHatchPanelCommandGroup;
 import frc.robot.commands.rollerbar.IntakeBallCommand;
 import frc.robot.commands.rollerbar.LaunchBallCommand;
@@ -64,10 +68,10 @@ public class OI {
     // setJoystickButtonWhenPressedCommand(driverStationJoy, 7, new
     // DeployBallRocketLevel3());
 
-    setJoystickButtonWhileHeldCommand(driverStationJoy, 6, new IntakeBallCommand());
+    setJoystickButtonWhenPressedCommand(driverStationJoy, 6, new IntakeDiskCommandGroup());
     // setJoystickButtonWhenPressedCommand(driverStationJoy, 6, new TurnToTargetCommandGroup());
 
-    setJoystickButtonWhenPressedCommand(driverStationJoy, 7, new DriveStraightToTargetCommand());
+    setJoystickButtonWhenPressedCommand(driverStationJoy, 7, new DeployDiskLevel1CommandGroup());
     setJoystickButtonWhenPressedCommand(driverStationJoy, 2, new LineFollowToTargetCommand());
 
     
@@ -80,7 +84,7 @@ public class OI {
     setJoystickButtonWhileHeldCommand(driverStationJoy, 1, new LaunchBallCommand());
     // setJoystickButtonWhileHeldCommand(driverStationJoy, 2, new ManualMoveWristDownCommand());
     setJoystickButtonWhenPressedCommand(driverStationJoy, 3, new AutoMoveElevatorDownCommandGroup());
-    setJoystickButtonWhenPressedCommand(driverStationJoy, 4, new ListenForDiskCommandGroup());
+    setJoystickButtonWhenPressedCommand(driverStationJoy, 4, new AutoIntakeDiskCommandGroup());
     setJoystickButtonWhenPressedCommand(driverStationJoy, 5, new CancelCommandsCommand());
   }
 

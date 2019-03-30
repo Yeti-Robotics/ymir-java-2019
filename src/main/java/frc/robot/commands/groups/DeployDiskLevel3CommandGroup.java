@@ -12,13 +12,14 @@ import frc.robot.RobotMap;
 import frc.robot.commands.drivetrain.DriveStraightToTargetCommand;
 import frc.robot.commands.drivetrain.LineFollowToTargetCommand;
 import frc.robot.commands.elevator.MoveElevatorCommand;
+import frc.robot.commands.elevator.SetElevatorLevelCommand;
 
 public class DeployDiskLevel3CommandGroup extends CommandGroup {
   /**
    * Add your docs here.
    */
   public DeployDiskLevel3CommandGroup() {
-    addSequential(new MoveElevatorCommand(RobotMap.ELEVATOR_HATCH_PANEL_LEVEL_1));
+    addSequential(new SetElevatorLevelCommand(RobotMap.ELEVATOR_HATCH_PANEL_LEVEL_1));
     addSequential(new DriveStraightToTargetCommand());
     addSequential(new LineFollowToTargetCommand());
     // addSequential(new TurnToTargetCommandGroup());

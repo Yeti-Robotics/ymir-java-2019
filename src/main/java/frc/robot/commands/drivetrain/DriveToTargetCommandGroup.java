@@ -5,18 +5,16 @@
 /* the project.                                                               */
 /*----------------------------------------------------------------------------*/
 
-package frc.robot.commands.disk;
+package frc.robot.commands.drivetrain;
 
 import edu.wpi.first.wpilibj.command.CommandGroup;
 
-public class IntakeDiskCommandGroup extends CommandGroup {
+public class DriveToTargetCommandGroup extends CommandGroup {
   /**
    * Add your docs here.
    */
-  public IntakeDiskCommandGroup() {
-    addSequential(new OpenIntakeCommand());
-    addSequential(new DeployOutCommand());
-    addSequential(new SenseHatchPanelCommand());
-    addSequential(new DeployInCommand());
+  public DriveToTargetCommandGroup() {
+    addSequential(new DriveToLineCommand());
+    addSequential(new LineFollowToTargetCommand());
   }
 }

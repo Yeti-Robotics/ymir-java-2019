@@ -18,22 +18,21 @@ public class SenseHatchPanelCommand extends Command {
 
   @Override
   protected void initialize() {
+    System.out.println("SenseHatch");
   }
 
   @Override
   protected void execute() {
-    if (Robot.hatchPanelSubsystem.getLeftSwitch() || Robot.hatchPanelSubsystem.getRightSwitch()){
-      Robot.hatchPanelSubsystem.closeIntake();
-    }
   }
 
   @Override
   protected boolean isFinished() {
-    return Robot.hatchPanelSubsystem.getIntakeState() == Value.kReverse;
+    return Robot.hatchPanelSubsystem.getLeftSwitch() || Robot.hatchPanelSubsystem.getRightSwitch();
   }
 
   @Override
   protected void end() {
+    Robot.hatchPanelSubsystem.closeIntake();
   }
 
   @Override

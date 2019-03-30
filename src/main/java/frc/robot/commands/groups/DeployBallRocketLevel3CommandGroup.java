@@ -13,6 +13,7 @@ import frc.robot.RobotMap;
 import frc.robot.commands.drivetrain.LineFollowToTargetCommand;
 import frc.robot.commands.drivetrain.TurnToTargetCommandGroup;
 import frc.robot.commands.elevator.MoveElevatorCommand;
+import frc.robot.commands.elevator.SetElevatorLevelCommand;
 import frc.robot.commands.rollerbar.LaunchBallCommand;
 import frc.robot.controls.VisionProcessor;
 
@@ -23,7 +24,7 @@ public class DeployBallRocketLevel3CommandGroup extends CommandGroup {
   public DeployBallRocketLevel3CommandGroup() {
     addSequential(new LineFollowToTargetCommand());
     addSequential(new TurnToTargetCommandGroup());
-    addSequential(new MoveElevatorCommand(RobotMap.ELEVATOR_BALL_ROCKET_LEVEL_3));
+    addSequential(new SetElevatorLevelCommand(RobotMap.ELEVATOR_BALL_ROCKET_LEVEL_3));
     addSequential(new LaunchBallCommand());
   }
 }

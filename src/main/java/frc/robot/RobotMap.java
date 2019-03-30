@@ -65,15 +65,15 @@ public class RobotMap {
   // Elevator constants
   public static final double ELEVATOR_REST_LEVEL = 0;
   public static final double ELEVATOR_BALL_ROCKET_LEVEL_1 = ELEVATOR_REST_LEVEL;
-  public static final double ELEVATOR_BALL_CARGOSHIP_LEVEL = 10;
-  public static final double ELEVATOR_BALL_ROCKET_LEVEL_2 = 17.5;
-  public static final double ELEVATOR_BALL_ROCKET_LEVEL_3 = 42.5;
-  public static final double ELEVATOR_HATCH_PANEL_LEVEL_1 = 0;
-  public static final double ELEVATOR_HATCH_PANEL_LEVEL_2 = 28;
-  public static final double ELEVATOR_HATCH_PANEL_LEVEL_3 = 51.7;
+  public static final double ELEVATOR_BALL_CARGOSHIP_LEVEL = 16;
+  public static final double ELEVATOR_BALL_ROCKET_LEVEL_2 = 23.5;
+  public static final double ELEVATOR_BALL_ROCKET_LEVEL_3 = 48.5;
+  public static final double ELEVATOR_HATCH_PANEL_LEVEL_1 = 6;
+  public static final double ELEVATOR_HATCH_PANEL_LEVEL_2 = 34;
+  public static final double ELEVATOR_HATCH_PANEL_LEVEL_3 = 57.7;
 
-  public static final double[] ELEVATOR_HATCH_PANEL_LEVELS = {ELEVATOR_HATCH_PANEL_LEVEL_2};
-  public static final double[] ELEVATOR_BALL_LEVELS = {ELEVATOR_BALL_ROCKET_LEVEL_2, ELEVATOR_BALL_ROCKET_LEVEL_3};
+  public static final double[] ELEVATOR_HATCH_PANEL_LEVELS = {ELEVATOR_HATCH_PANEL_LEVEL_1, ELEVATOR_HATCH_PANEL_LEVEL_2, ELEVATOR_HATCH_PANEL_LEVEL_3};
+  public static final double[] ELEVATOR_BALL_LEVELS = {ELEVATOR_BALL_ROCKET_LEVEL_1, ELEVATOR_BALL_CARGOSHIP_LEVEL, ELEVATOR_BALL_ROCKET_LEVEL_2, ELEVATOR_BALL_ROCKET_LEVEL_3};
 
   public static final double ELEVATOR_MANUAL_UP_SPEED = .5;
   public static final double ELEVATOR_MANUAL_DOWN_SPEED = -.2;
@@ -83,14 +83,14 @@ public class RobotMap {
   public static final int ELEVATOR_PEAK_CURRENT_DURATION = 200;
 
   public static final double ELEVATOR_MAX_VELOCITY = 58472.2;
-  public static final double ELEVATOR_CRUISING_VELOCITY = ELEVATOR_MAX_VELOCITY / (1.5);
+  public static final double ELEVATOR_CRUISING_VELOCITY = ELEVATOR_MAX_VELOCITY / 2;
   public static final double ELEVATOR_CRUISING_ACCELERATION = ELEVATOR_MAX_VELOCITY / 2;  
-  public static final double ELEVATOR_P = 0.065;
-  public static final double ELEVATOR_D = 16;
+  public static final double ELEVATOR_P = /*(511.5*30) / 81536*/ 0.015;
+  public static final double ELEVATOR_D = /*(511.5*6000) / 81536*/ 20;
   public static final double ELEVATOR_OPEN_LOOP_RAMP = .3;
   public static final double ELEVATOR_PEAK_OUTPUT_FORWARD = .6;
   public static final double ELEVATOR_REVERSE_SOFT_LIMIT = 0;
-  public static final double ELEVATOR_FORWARD_SOFT_LIMIT = 45;
+  public static final double ELEVATOR_FORWARD_SOFT_LIMIT = 59;
   public static final double ELEVATOR_TOLERANCE = .25;
 
 
@@ -132,8 +132,7 @@ public class RobotMap {
   public static final double FOCAL_LENGTH = (22 * 55) / TAPE_BOUND_WIDTH_INCH;
   public static final int JEVOIS_BAUD_RATE = 115200;
   public static final int FOV = 65;
-  public static final double CAMERA_BUMPER_BUFFER = 7.5;
-
+  public static final double CAMERA_BUMPER_BUFFER = 10.0;
   // Line Following Constants
   public static final int LEFT_LINE_FOLLOWER_PORT = 0;
   public static final int CENTER_LINE_FOLLOWER_PORT = 1;

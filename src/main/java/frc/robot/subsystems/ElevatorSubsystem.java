@@ -79,7 +79,7 @@ public class ElevatorSubsystem extends PIDSubsystem {
     elevator1Talon.setStatusFramePeriod(StatusFrameEnhanced.Status_13_Base_PIDF0, 10);
     elevator1Talon.setStatusFramePeriod(StatusFrameEnhanced.Status_10_MotionMagic, 10);
     elevator1Talon.configPeakOutputForward(RobotMap.ELEVATOR_PEAK_OUTPUT_FORWARD);
-    elevator1Talon.configMotionSCurveStrength(5);
+    // elevator1Talon.configMotionSCurveStrength(5);
 
     elevator1Talon.configForwardSoftLimitThreshold(convertInchesToCounts(RobotMap.ELEVATOR_FORWARD_SOFT_LIMIT));
     elevator1Talon.configReverseSoftLimitThreshold(convertInchesToCounts(RobotMap.ELEVATOR_REVERSE_SOFT_LIMIT));

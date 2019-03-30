@@ -78,6 +78,7 @@ public class Robot extends TimedRobot {
    */
   @Override
   public void robotInit() {
+    SmartDashboard.putData(Scheduler.getInstance());
     hatchPanelSubsystem = new HatchPanelSubsystem();
     drivetrainSubsystem = new DrivetrainSubsystem();
     shiftGearsSubsystem = new ShiftGearsSubsystem();
@@ -99,28 +100,28 @@ public class Robot extends TimedRobot {
     jevoisView.setVideoMode(VideoMode.PixelFormat.kYUYV, 320, 240, 30);
 
 
-    // new Timer().scheduleAtFixedRate(new TimerTask(){
-    //   long lastLoop = System.currentTimeMillis();
+    new Timer().scheduleAtFixedRate(new TimerTask(){
+      long lastLoop = System.currentTimeMillis();
 
-    //   @Override
-    //   public void run() {
-    //       Contour[] contours = jevois.parseStream();
-    //       if (contours != null) {
-    //         contourList.add(contours);
-    //         latestContours = contours;
-    //         // System.out.println(Arrays.toString(latestContours));
-    //         if (contourList.size() > 10){
-    //           contourList.remove(0);
-    //         }
-    //         lastLoop = System.currentTimeMillis();
-    //       }
-    //       if (System.currentTimeMillis() - lastLoop > 3000) {
-    //         latestContours = new Contour[] {
-    //           new Contour("0", "0", "0", "0", "0"), new Contour("0", "0", "0", "0", "0")
-    //         };
-    //       }
-    //   }
-    // }, 20L, 20L);
+      @Override
+      public void run() {
+          Contour[] contours = jevois.parseStream();
+          if (contours != null) {
+            contourList.add(contours);
+            latestContours = contours;
+            // System.out.println(Arrays.toString(latestContours));
+            if (contourList.size() > 10){
+              contourList.remove(0);
+            }
+            lastLoop = System.currentTimeMillis();
+          }
+          if (System.currentTimeMillis() - lastLoop > 3000) {
+            latestContours = new Contour[] {
+              new Contour("0", "0", "0", "0", "0"), new Contour("0", "0", "0", "0", "0")
+            };
+          }
+      }
+    }, 20L, 20L);
 
     // chooser.addOption("My Auto", new MyAutoCommand());
     SmartDashboard.putData("Auto mode", m_chooser);
@@ -174,6 +175,7 @@ public class Robot extends TimedRobot {
     SmartDashboard.putNumber("gyro angle", drivetrainSubsystem.getAngle());
     SmartDashboard.putBoolean("Beam Break sensor", rollerBarSubsystem.getBeamBreakSensor());
     SmartDashboard.putNumber("azimuth", jevois.getAzimuth());
+    SmartDashboard.putNumber("vision distance", VisionProcessor.getCenterDistance(latestContours[0], latestContours[1]));
 
     if (latestContours != null) {
 

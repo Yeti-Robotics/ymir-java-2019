@@ -8,60 +8,36 @@
 package frc.robot.commands.elevator;
 
 import edu.wpi.first.wpilibj.command.Command;
-import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import frc.robot.Robot;
-import frc.robot.RobotMap;
 
-public class MoveElevatorCommand extends Command {
-
-  private boolean stop;
-
-  public MoveElevatorCommand() {
+public class SetElevatorLevelCommand extends Command {
+  double elevatorLevel;
+  public SetElevatorLevelCommand(double elevatorLevel) {
     requires(Robot.elevatorSubsystem);
+    this.elevatorLevel = elevatorLevel;
   }
 
   // Called just before this Command runs the first time
   @Override
   protected void initialize() {
-    Robot.elevatorSubsystem.disable();
-
-    if (Robot.elevatorSubsystem.getLevel() != -1) {
-      stop = false;
-      if (Robot.deployState == Robot.deployState.HATCH_PANEL) {
-        Robot.elevatorSubsystem
-            .setMotionMagic(RobotMap.ELEVATOR_HATCH_PANEL_LEVELS[Robot.elevatorSubsystem.getLevel()]);
-      } else {
-        Robot.elevatorSubsystem.setMotionMagic(RobotMap.ELEVATOR_BALL_LEVELS[Robot.elevatorSubsystem.getLevel()]);
-      }
-    } else {
-      stop = true;
-    }
+    Robot.elevatorSubsystem.setMotionMagic(elevatorLevel);
   }
 
   // Called repeatedly when this Command is scheduled to run
   @Override
   protected void execute() {
-    // System.out.println("running");
   }
 
   // Make this return true when this Command no longer needs to run execute()
   @Override
   protected boolean isFinished() {
-    return Robot.elevatorSubsystem.motionMagicOnTarget() || stop;
+    return Robot.elevatorSubsystem.motionMagicOnTarget();
   }
 
   // Called once after isFinished returns true
   @Override
   protected void end() {
-    // System.out.println("finished!!!!!!");
-    if (Robot.elevatorSubsystem.getLevel() == -1) {
-      Robot.elevatorSubsystem.elevatorOff();
-      Robot.elevatorSubsystem.disable();
-    } else {
-      // Robot.elevatorSubsystem.elevatorStop();
-      // Robot.elevatorSubsystem.setSetpoint(elevatorPosition);
-      // Robot.elevatorSubsystem.enable();
-    }
+    // Robot.elevatorSubsystem.elevatorStop();
   }
 
   // Called when another command which requires one or more of the same
