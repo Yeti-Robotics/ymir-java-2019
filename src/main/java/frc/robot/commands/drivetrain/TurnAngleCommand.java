@@ -8,26 +8,26 @@
 package frc.robot.commands.drivetrain;
 
 import edu.wpi.first.wpilibj.command.Command;
+import edu.wpi.first.wpilibj.command.PIDCommand;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import frc.robot.Robot;
 import frc.robot.RobotMap;
 import jdk.jfr.Threshold;
 
-public class TurnAngleCommand extends Command {
+public class TurnAngleCommand extends PIDCommand {
 
   private static final double THRESHOLD = 0.5;
-  private static final double MIN_SPEED = 0.2;
-  private static final double MAX_SPEED = 0.5;
-  private static final double SLOW_RANGE = 35;
-  private static final double P = 0.2 / 5;
-  private static final double I = 0.0002;
   private double angle;
   double targetAngle;
   double currentAngle;
-  double totalError = 0;
-
 
   public TurnAngleCommand(double angle) {
+    super(.06, 0.05, 0, 0);
+    setInputRange(-180, 180);
+    // getPIDController().setContinuous(true);
+    getPIDController().setAbsoluteTolerance(2);
+    getPIDController().setOutputRange(-0.5, 0.5);
+    
     requires(Robot.drivetrainSubsystem);
     this.angle = angle;
   }
@@ -36,46 +36,43 @@ public class TurnAngleCommand extends Command {
   @Override
   protected void initialize() {
     Robot.drivetrainSubsystem.resetGyro();
-    
-
+    setSetpoint(angle);
+    getPIDController().enable();
   }
 
   // Called repeatedly when this Command is scheduled to run
   @Override
   protected void execute() {
-  
-    targetAngle = Math.abs(angle);
-    currentAngle = Math.abs(Robot.drivetrainSubsystem.getAngle());
-   
-    double error = targetAngle - currentAngle;
-    totalError += error;
-    double output = (P * error) + I * totalError;
-    SmartDashboard.putNumber("output", output);
-    if (output < MIN_SPEED){
-      output = MIN_SPEED;
-    }
-    if (angle > 0){
-      Robot.drivetrainSubsystem.tankDrive(-output, output);
-    } else if (angle < 0){
-      Robot.drivetrainSubsystem.tankDrive(output, -output);
-    }
+    SmartDashboard.putNumber("Gyro PID", getPIDController().get());
   }
 
   // Make this return true when this Command no longer needs to run execute()
   @Override
   protected boolean isFinished() {
-return Math.abs(targetAngle - currentAngle) < THRESHOLD;
+    System.out.println("**********************************FINISHED*******************************************");
+  return getPIDController().onTarget();
   }
 
   // Called once after isFinished returns true
   @Override
   protected void end() {
-    
+    getPIDController().disable();
   }
 
   // Called when another command which requires one or more of the same
   // subsystems is scheduled to run
   @Override
   protected void interrupted() {
+    end();
+  }
+
+  @Override
+  protected double returnPIDInput() {
+    return Robot.drivetrainSubsystem.getAngle();
+  }
+
+  @Override
+  protected void usePIDOutput(double output) {
+    Robot.drivetrainSubsystem.tankDrive(-output, output);
   }
 }

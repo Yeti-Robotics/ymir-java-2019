@@ -13,6 +13,7 @@ import frc.robot.RobotMap;
 import frc.robot.commands.drivetrain.DriveStraightToTargetCommand;
 import frc.robot.commands.drivetrain.DriveToLineCommand;
 import frc.robot.commands.drivetrain.LineFollowToTargetCommand;
+import frc.robot.commands.drivetrain.TurnToTargetCommandGroup;
 import frc.robot.commands.elevator.MoveElevatorCommand;
 import frc.robot.commands.elevator.SetElevatorLevelCommand;
 import frc.robot.controls.VisionProcessor;
@@ -23,9 +24,9 @@ public class DeployDiskLevel1CommandGroup extends CommandGroup {
    */
   public DeployDiskLevel1CommandGroup() {
         addSequential(new SetElevatorLevelCommand(RobotMap.ELEVATOR_HATCH_PANEL_LEVEL_1));
+        addSequential(new TurnToTargetCommandGroup());
         addSequential(new DriveToLineCommand());
         addSequential(new LineFollowToTargetCommand());
-        // addSequential(new TurnToTargetCommandGroup());
         addSequential(new DeployHatchPanelCommandGroup());
   }
 }

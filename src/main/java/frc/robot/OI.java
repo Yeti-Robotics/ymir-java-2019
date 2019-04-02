@@ -20,14 +20,19 @@ import frc.robot.commands.drivetrain.DriveToLineCommand;
 import frc.robot.commands.drivetrain.DriveToTargetCommandGroup;
 import frc.robot.commands.drivetrain.LineFollowToTargetCommand;
 import frc.robot.commands.drivetrain.ToggleShiftingCommand;
+import frc.robot.commands.drivetrain.TurnAngleCommand;
 import frc.robot.commands.drivetrain.TurnToTargetCommandGroup;
 import frc.robot.commands.elevator.MoveElevatorDownCommand;
 import frc.robot.commands.elevator.MoveElevatorUpCommand;
 import frc.robot.commands.elevator.ToggleDeployStatesCommand;
 import frc.robot.commands.groups.AutoMoveElevatorDownCommandGroup;
 import frc.robot.commands.groups.AutoMoveElevatorUpCommandGroup;
+import frc.robot.commands.groups.DeployBallRocketLevel1CommandGroup;
 import frc.robot.commands.groups.DeployDiskLevel1CommandGroup;
+import frc.robot.commands.groups.DeployDiskLevel2CommandGroup;
+import frc.robot.commands.groups.DeployDiskLevel3CommandGroup;
 import frc.robot.commands.groups.DeployHatchPanelCommandGroup;
+import frc.robot.commands.groups.IntakeBallCommandGroup;
 import frc.robot.commands.rollerbar.IntakeBallCommand;
 import frc.robot.commands.rollerbar.LaunchBallCommand;
 import frc.robot.commands.wrist.ManualMoveWristDownCommand;
@@ -68,11 +73,11 @@ public class OI {
     // setJoystickButtonWhenPressedCommand(driverStationJoy, 7, new
     // DeployBallRocketLevel3());
 
-    setJoystickButtonWhenPressedCommand(driverStationJoy, 6, new IntakeDiskCommandGroup());
-    // setJoystickButtonWhenPressedCommand(driverStationJoy, 6, new TurnToTargetCommandGroup());
+    // setJoystickButtonWhenPressedCommand(driverStationJoy, 6, new IntakeBallCommandGroup());
+    setJoystickButtonWhenPressedCommand(driverStationJoy, 6, new TurnToTargetCommandGroup());
 
-    setJoystickButtonWhenPressedCommand(driverStationJoy, 7, new DeployDiskLevel1CommandGroup());
-    setJoystickButtonWhenPressedCommand(driverStationJoy, 2, new LineFollowToTargetCommand());
+    setJoystickButtonWhenPressedCommand(driverStationJoy, 7, new IntakeDiskCommandGroup());
+    setJoystickButtonWhenPressedCommand(driverStationJoy, 2, new DeployDiskLevel1CommandGroup());
 
     
     // setJoystickButtonWhenPressedCommand(driverStationJoy, 7, new LineFollowToTargetCommand());

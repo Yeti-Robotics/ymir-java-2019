@@ -29,8 +29,8 @@ public class LaunchBallCommand extends Command {
   // Make this return true when this Command no longer needs to run execute()
   @Override
   protected boolean isFinished() {
-    // return !Robot.rollerBarSubsystem.getBeamBreakSensor();
-    return false;
+    return !Robot.rollerBarSubsystem.getBeamBreakSensor();
+    // return false;
   }
 
   // Called once after isFinished returns true

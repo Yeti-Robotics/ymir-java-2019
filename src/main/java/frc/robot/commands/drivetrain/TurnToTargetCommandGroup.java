@@ -31,7 +31,7 @@ public class TurnToTargetCommandGroup extends CommandGroup {
     if(contours[0].area != 0){
       noContours = false;
       double azimuth = VisionProcessor.getAzimuth(contours[0], contours[1]);
-      System.out.println(azimuth);
+      System.out.println("**********************************" + azimuth);
 
       turnAngleCommand = new TurnAngleCommand(azimuth);
       turnAngleCommand.start();

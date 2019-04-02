@@ -12,6 +12,7 @@ import frc.robot.Robot;
 import frc.robot.RobotMap;
 import frc.robot.commands.drivetrain.DriveToLineCommand;
 import frc.robot.commands.drivetrain.LineFollowToTargetCommand;
+import frc.robot.commands.drivetrain.TurnToTargetCommandGroup;
 import frc.robot.commands.elevator.MoveElevatorCommand;
 import frc.robot.commands.elevator.SetElevatorLevelCommand;
 
@@ -20,7 +21,7 @@ public class AutoIntakeDiskCommandGroup extends CommandGroup {
    * Add your docs here.
    */
   public AutoIntakeDiskCommandGroup() {
-    // addParallel(new TurnToTargetCommandGroup());
+    addParallel(new TurnToTargetCommandGroup());
     addSequential(new SetElevatorLevelCommand(RobotMap.ELEVATOR_HATCH_PANEL_LEVEL_1));
     addParallel(new IntakeDiskCommandGroup());
     // addSequential(new DriveToLineCommand());

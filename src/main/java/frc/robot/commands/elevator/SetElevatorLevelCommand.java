@@ -9,6 +9,7 @@ package frc.robot.commands.elevator;
 
 import edu.wpi.first.wpilibj.command.Command;
 import frc.robot.Robot;
+import frc.robot.RobotMap;
 
 public class SetElevatorLevelCommand extends Command {
   double elevatorLevel;
@@ -21,11 +22,13 @@ public class SetElevatorLevelCommand extends Command {
   @Override
   protected void initialize() {
     Robot.elevatorSubsystem.setMotionMagic(elevatorLevel);
+    System.out.println("***********ELEVATOR STARTED***************");
   }
 
   // Called repeatedly when this Command is scheduled to run
   @Override
   protected void execute() {
+    System.out.println(Robot.elevatorSubsystem.getElevatorEncoder());
   }
 
   // Make this return true when this Command no longer needs to run execute()
@@ -37,6 +40,7 @@ public class SetElevatorLevelCommand extends Command {
   // Called once after isFinished returns true
   @Override
   protected void end() {
+    System.out.println("***********ELEVATOR FINISHED********************");
     // Robot.elevatorSubsystem.elevatorStop();
   }
 
