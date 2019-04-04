@@ -11,6 +11,7 @@ import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import frc.robot.Robot;
 import frc.robot.Robot.DeployState;
+import frc.robot.subsystems.HatchPanelSubsystem;
 
 public class SetRobotDeployStateCommand extends Command {
 
@@ -29,6 +30,9 @@ public class SetRobotDeployStateCommand extends Command {
   @Override
   protected void execute() {
       Robot.deployState = deployState;
+      if(deployState == DeployState.HATCH_PANEL) {
+        Robot.hatchPanelSubsystem.setHatchPanelDeployState(HatchPanelSubsystem.HatchPanelDeployState.LISTEN);
+      }
   }
 
   // Make this return true when this Command no longer needs to run execute()

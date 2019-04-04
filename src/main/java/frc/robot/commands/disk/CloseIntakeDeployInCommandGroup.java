@@ -8,6 +8,8 @@
 package frc.robot.commands.disk;
 
 import edu.wpi.first.wpilibj.command.CommandGroup;
+import frc.robot.Robot;
+import frc.robot.subsystems.HatchPanelSubsystem;
 
 public class CloseIntakeDeployInCommandGroup extends CommandGroup {
   /**
@@ -16,5 +18,10 @@ public class CloseIntakeDeployInCommandGroup extends CommandGroup {
   public CloseIntakeDeployInCommandGroup() {
     addSequential(new CloseIntakeCommand());
     addSequential(new DeployInCommand());
+  }
+
+  @Override
+  protected void end() {
+    Robot.hatchPanelSubsystem.setHatchPanelDeployState(HatchPanelSubsystem.HatchPanelDeployState.DEPLOY);
   }
 }

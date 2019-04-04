@@ -15,6 +15,7 @@ import frc.robot.commands.drivetrain.LineFollowToTargetCommand;
 import frc.robot.commands.drivetrain.TurnToTargetCommandGroup;
 import frc.robot.commands.elevator.MoveElevatorCommand;
 import frc.robot.commands.elevator.SetElevatorLevelCommand;
+import frc.robot.subsystems.HatchPanelSubsystem;
 
 public class AutoIntakeDiskCommandGroup extends CommandGroup {
   /**
@@ -26,5 +27,10 @@ public class AutoIntakeDiskCommandGroup extends CommandGroup {
     addParallel(new IntakeDiskCommandGroup());
     // addSequential(new DriveToLineCommand());
     addSequential(new LineFollowToTargetCommand());
+  }
+
+  @Override
+  protected void end() {
+    Robot.hatchPanelSubsystem.setHatchPanelDeployState(HatchPanelSubsystem.HatchPanelDeployState.DEPLOY);
   }
 }

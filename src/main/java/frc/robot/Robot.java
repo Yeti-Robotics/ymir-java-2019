@@ -28,13 +28,7 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import frc.robot.controls.Contour;
 import frc.robot.controls.JeVois;
 import frc.robot.controls.VisionProcessor;
-import frc.robot.subsystems.DrivetrainSubsystem;
-import frc.robot.subsystems.ElevatorSubsystem;
-import frc.robot.subsystems.HatchPanelSubsystem;
-import frc.robot.subsystems.RollerBarSubsystem;
-import frc.robot.subsystems.ShiftGearsSubsystem;
-import frc.robot.subsystems.garbage;
-import frc.robot.subsystems.WristSubsystem;
+import frc.robot.subsystems.*;
 
 /**
  * The VM is configured to automatically run this class, and to call the
@@ -55,6 +49,7 @@ public class Robot extends TimedRobot {
   public static ElevatorSubsystem elevatorSubsystem;
   public static WristSubsystem wristSubsystem;
   public static RollerBarSubsystem rollerBarSubsystem;
+  public static ClimbSubsystem climbSubsystem;
   public static DeployState deployState;
   public static boolean runVisionThread = false;
   public static JeVois jevois;
@@ -85,6 +80,7 @@ public class Robot extends TimedRobot {
     elevatorSubsystem = new ElevatorSubsystem();
     wristSubsystem = new WristSubsystem();
     rollerBarSubsystem = new RollerBarSubsystem();
+    climbSubsystem = new ClimbSubsystem();
     jevois = new JeVois();
     oi = new OI();
     deployState = DeployState.HATCH_PANEL;

@@ -107,13 +107,13 @@ public class RobotMap {
   public static final int LEFT_2_VICTOR = 2;
   public static final int RIGHT_1_VICTOR = 1;
   public static final int RIGHT_2_VICTOR = 5;
-  public static final int ELEVATOR_VICTOR = 4;
   public static final int ROLLER_VICTOR = 3;
 
   // Solenoids
   public static final int[] DRIVE_TRAIN_SHIFT = { 0, 7 };
   public static final int[] DEPLOY_SOLENOID = { 2, 5 };
   public static final int[] INTAKE_SOLENOID = { 1, 6 };
+  public static final int[] CLIMBER_SOLENOID = { 3, 4 };
 
   // Limit Switches
   public static final int LEFT_HATCH_PANEL_LIMIT = 1;
@@ -130,6 +130,7 @@ public class RobotMap {
   public static final int JEVOIS_BAUD_RATE = 115200;
   public static final int FOV = 65;
   public static final double CAMERA_BUMPER_BUFFER = 10.0;
+
   // Line Following Constants
   public static final int LEFT_LINE_FOLLOWER_PORT = 0;
   public static final int CENTER_LINE_FOLLOWER_PORT = 1;

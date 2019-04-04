@@ -13,6 +13,7 @@ import edu.wpi.first.wpilibj.buttons.JoystickButton;
 import edu.wpi.first.wpilibj.command.Command;
 import frc.robot.commands.CancelCommandsCommand;
 import frc.robot.commands.SetRobotDeployStateCommand;
+import frc.robot.commands.climber.ToggleClimberCommand;
 import frc.robot.commands.disk.CloseIntakeDeployInCommandGroup;
 import frc.robot.commands.disk.AutoIntakeDiskCommandGroup;
 import frc.robot.commands.drivetrain.ToggleShiftingCommand;
@@ -35,9 +36,6 @@ public class OI {
   public OI() {
     // Creates joystick objects for use
     driverStationJoy = new Joystick(RobotMap.DRIVERSTATION_JOYSTICK);
-    // leftJoy = new Joystick(RobotMap.LEFT_JOYSTICK);
-    // rightJoy = new Joystick(RobotMap.RIGHT_JOYSTICK);
-    // secondaryJoy = new Joystick(RobotMap.SECONDARY_JOYSTICK);
 
     // Left joystick buttons
     setJoystickButtonWhenPressedCommand(driverStationJoy, 11, new ToggleShiftingCommand());
@@ -48,39 +46,19 @@ public class OI {
     // Secondary Joystick Buttons
     setJoystickButtonWhenPressedCommand(driverStationJoy, 6, new IntakeBallCommand());
     setJoystickButtonWhenPressedCommand(driverStationJoy, 7, new SetElevatorDeployLevelCommand(0));
-//    setJoystickButtonWhenPressedCommand(driverStationJoy, 8, new SetElevatorDeployLevelCommand(1));
-    setJoystickButtonWhenPressedCommand(driverStationJoy, 8, new AutoMoveElevatorUpCommandGroup());
+    setJoystickButtonWhenPressedCommand(driverStationJoy, 8, new SetElevatorDeployLevelCommand(1));
     setJoystickButtonWhenPressedCommand(driverStationJoy, 9, new SetElevatorDeployLevelCommand(2));
     setJoystickButtonWhenPressedCommand(driverStationJoy, 10, new CloseIntakeDeployInCommandGroup());
 
     setJoystickButtonWhileHeldCommand(driverStationJoy, 1, new LaunchBallCommand());
-//    setJoystickButtonWhenPressedCommand(driverStationJoy, 2, new DeployDiskLevel1CommandGroup());
-//    setJoystickButtonWhenPressedCommand(driverStationJoy, 3, new SetRobotDeployStateCommand(Robot.DeployState.BALL));
-    setJoystickButtonWhenPressedCommand(driverStationJoy, 3, new AutoMoveElevatorDownCommandGroup());
-    setJoystickButtonWhenPressedCommand(driverStationJoy, 4, new SetRobotDeployStateCommand(Robot.DeployState.BALL));
-//    setJoystickButtonWhenPressedCommand(driverStationJoy, 4, new SetRobotDeployStateCommand(Robot.DeployState.HATCH_PANEL));
+    setJoystickButtonWhenPressedCommand(driverStationJoy, 2, new ToggleClimberCommand());
+    setJoystickButtonWhenPressedCommand(driverStationJoy, 3, new SetRobotDeployStateCommand(Robot.DeployState.BALL));
+    setJoystickButtonWhenPressedCommand(driverStationJoy, 4, new SetRobotDeployStateCommand(Robot.DeployState.HATCH_PANEL));
     setJoystickButtonWhenPressedCommand(driverStationJoy, 5, new CancelCommandsCommand());
-
-    // setJoystickButtonWhenPressedCommand(driverStationJoy, 1, new
-    // DeployDiskLevel1CommandGroup());
-    // setJoystickButtonWhenPressedCommand(secondaryJoy, 2, new
-    // IntakeBallCommandGroup());
-    // setJoystickButtonWhenPressedCommand(driverStationJoy, 3, new
-    // DeployDiskLevel2CommandGroup());
-    // setJoystickButtonWhenPressedCommand(driverStationJoy, 4, new
-    // DeployDiskLevel3CommandGroup());
-    // setJoystickButtonWhenPressedCommand(driverStationJoy, 5, new
-    // DeployBallCargoShipCommandGroup());
-    // setJoystickButtonWhenPressedCommand(secondaryJoy, 6, new
-    // DeployBallRocketLevel2CommandGroup());
-    // setJoystickButtonWhenPressedCommand(driverStationJoy, 7, new
-    // DeployBallRocketLevel3());
-
   }
 
   // Gets the Y direction of the left drive joystick
   public double getLeftY() {
-    // return leftJoy.getY();
     return driverStationJoy.getRawAxis(RobotMap.DRIVERSTATION_LEFT_Y_AXIS);
   }
 
