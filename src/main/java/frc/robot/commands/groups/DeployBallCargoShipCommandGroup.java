@@ -24,7 +24,7 @@ public class DeployBallCargoShipCommandGroup extends CommandGroup {
   public DeployBallCargoShipCommandGroup() {
     addSequential(new LineFollowToTargetCommand());
     addSequential(new TurnToTargetCommandGroup());
-    addSequential(new SetElevatorLevelCommand(RobotMap.ELEVATOR_BALL_CARGOSHIP_LEVEL));
+    addSequential(new SetElevatorLevelCommand(0));
     addSequential(new LaunchBallCommand());
   }
 }

@@ -5,15 +5,17 @@
 /* the project.                                                               */
 /*----------------------------------------------------------------------------*/
 
-package frc.robot.commands.rollerbar;
+package frc.robot.commands;
 
 import edu.wpi.first.wpilibj.command.Command;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import frc.robot.Robot;
+import frc.robot.Robot.DeployState;
 
-public class LaunchBallCommand extends Command {
-  public LaunchBallCommand() {
-    requires(Robot.rollerBarSubsystem);
-    setTimeout(1.5);
+public class ToggleDeployStatesCommand extends Command {
+  public ToggleDeployStatesCommand() {
+    // Use requires() here to declare subsystem dependencies
+    // eg. requires(chassis);
   }
 
   // Called just before this Command runs the first time
@@ -24,25 +26,32 @@ public class LaunchBallCommand extends Command {
   // Called repeatedly when this Command is scheduled to run
   @Override
   protected void execute() {
-    Robot.rollerBarSubsystem.rollOut();
+    if(Robot.deployState== DeployState.BALL) {
+      Robot.deployState = DeployState.HATCH_PANEL;
+      SmartDashboard.putString("Elevator mode", "Hatch Panel");
+      if (Robot.elevatorSubsystem.getLevel() > 0) {
+        Robot.elevatorSubsystem.decrementLevel();
+      }
+    } else {
+      Robot.deployState = DeployState.BALL;
+      SmartDashboard.putString("Elevator mode", "Cargo");
+    }
   }
 
   // Make this return true when this Command no longer needs to run execute()
   @Override
   protected boolean isFinished() {
-    return isTimedOut();
+    return true;
   }
 
   // Called once after isFinished returns true
   @Override
   protected void end() {
-    Robot.rollerBarSubsystem.rollStop();
   }
 
   // Called when another command which requires one or more of the same
   // subsystems is scheduled to run
   @Override
   protected void interrupted() {
-    end();
   }
 }

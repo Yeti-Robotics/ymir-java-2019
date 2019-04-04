@@ -22,6 +22,6 @@ public class IntakeBallCommandGroup extends CommandGroup {
     addSequential(new DriveToLineCommand());
     addSequential(new LineFollowToTargetCommand());
     addSequential(new IntakeBallCommand());
-    addSequential(new SetElevatorLevelCommand(RobotMap.ELEVATOR_REST_LEVEL));
+    addSequential(new SetElevatorLevelCommand(0));
   }
 }

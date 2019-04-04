@@ -23,8 +23,8 @@ public class DeployDiskLevel1CommandGroup extends CommandGroup {
    * Add your docs here.
    */
   public DeployDiskLevel1CommandGroup() {
-        addSequential(new SetElevatorLevelCommand(RobotMap.ELEVATOR_HATCH_PANEL_LEVEL_1));
-        addSequential(new TurnToTargetCommandGroup());
+        addParallel(new SetElevatorLevelCommand(RobotMap.ELEVATOR_HATCH_PANEL_LEVEL_1));
+        addSequential(new TurnToTargetCommandGroup(), 0.75);
         addSequential(new DriveToLineCommand());
         addSequential(new LineFollowToTargetCommand());
         addSequential(new DeployHatchPanelCommandGroup());

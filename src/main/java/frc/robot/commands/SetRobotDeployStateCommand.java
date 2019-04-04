@@ -5,17 +5,19 @@
 /* the project.                                                               */
 /*----------------------------------------------------------------------------*/
 
-package frc.robot.commands.elevator;
+package frc.robot.commands;
 
 import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import frc.robot.Robot;
 import frc.robot.Robot.DeployState;
 
-public class ToggleDeployStatesCommand extends Command {
-  public ToggleDeployStatesCommand() {
-    // Use requires() here to declare subsystem dependencies
-    // eg. requires(chassis);
+public class SetRobotDeployStateCommand extends Command {
+
+  private DeployState deployState;
+
+  public SetRobotDeployStateCommand(DeployState deployState) {
+    this.deployState = deployState;
   }
 
   // Called just before this Command runs the first time
@@ -26,16 +28,7 @@ public class ToggleDeployStatesCommand extends Command {
   // Called repeatedly when this Command is scheduled to run
   @Override
   protected void execute() {
-    if(Robot.deployState== DeployState.BALL) {
-      Robot.deployState = DeployState.HATCH_PANEL;
-      SmartDashboard.putString("Elevator mode", "Hatch Panel");
-      if (Robot.elevatorSubsystem.getLevel() > 0) {
-        Robot.elevatorSubsystem.decrementLevel();
-      }
-    } else {
-      Robot.deployState = DeployState.BALL;
-      SmartDashboard.putString("Elevator mode", "Cargo");
-    }
+      Robot.deployState = deployState;
   }
 
   // Make this return true when this Command no longer needs to run execute()

@@ -10,6 +10,7 @@ package frc.robot.subsystems;
 import edu.wpi.first.wpilibj.DigitalInput;
 import edu.wpi.first.wpilibj.DoubleSolenoid;
 import edu.wpi.first.wpilibj.DoubleSolenoid.Value;
+import edu.wpi.first.wpilibj.Solenoid;
 import edu.wpi.first.wpilibj.command.Subsystem;
 import frc.robot.RobotMap;
 
@@ -18,13 +19,31 @@ import frc.robot.RobotMap;
  */
 public class HatchPanelSubsystem extends Subsystem {
   private DoubleSolenoid intake, deploy;
+  private Solenoid climb1, climb2;
   private DigitalInput leftSwitch, rightSwitch;
+  private HatchPanelDeployState hatchPanelDeployState;
+  public enum HatchPanelDeployState {
+    LISTEN, DEPLOY
+  }
 
   public HatchPanelSubsystem() {
     intake = new DoubleSolenoid(RobotMap.INTAKE_SOLENOID[0], RobotMap.INTAKE_SOLENOID[1]);
     deploy = new DoubleSolenoid(RobotMap.DEPLOY_SOLENOID[0], RobotMap.DEPLOY_SOLENOID[1]);
+    climb1 = new Solenoid(3);
+    climb2 = new Solenoid(4);
     leftSwitch = new DigitalInput(RobotMap.LEFT_HATCH_PANEL_LIMIT);
     rightSwitch = new DigitalInput(RobotMap.RIGHT_HATCH_PANEL_LIMIT);
+    hatchPanelDeployState = HatchPanelDeployState.LISTEN;
+    climb1.set(true);
+    climb2.set(false);
+  }
+
+  public HatchPanelDeployState getHatchPanelDeployState() {
+    return hatchPanelDeployState;
+  }
+
+  public void setHatchPanelDeployState(HatchPanelDeployState hatchPanelDeployState) {
+    this.hatchPanelDeployState = hatchPanelDeployState;
   }
 
   public boolean getLeftSwitch() {

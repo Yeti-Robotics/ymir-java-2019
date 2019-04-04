@@ -63,17 +63,14 @@ public class RobotMap {
   public static final double ROLLER_SPEED = 1.0;
 
   // Elevator constants
-  public static final double ELEVATOR_REST_LEVEL = 0;
-  public static final double ELEVATOR_BALL_ROCKET_LEVEL_1 = ELEVATOR_REST_LEVEL;
-  public static final double ELEVATOR_BALL_CARGOSHIP_LEVEL = 16;
-  public static final double ELEVATOR_BALL_ROCKET_LEVEL_2 = 23.5;
-  public static final double ELEVATOR_BALL_ROCKET_LEVEL_3 = 48.5;
-  public static final double ELEVATOR_HATCH_PANEL_LEVEL_1 = 6;
-  public static final double ELEVATOR_HATCH_PANEL_LEVEL_2 = 34;
-  public static final double ELEVATOR_HATCH_PANEL_LEVEL_3 = 57.7;
+  public static final double ELEVATOR_HATCH_PANEL_LEVEL_1 = 0;
+  public static final double ELEVATOR_BALL_ROCKET_LEVEL_2 = 17.5;
+  public static final double ELEVATOR_BALL_ROCKET_LEVEL_3 = 42.5;
+  public static final double ELEVATOR_HATCH_PANEL_LEVEL_2 = 28;
+  public static final double ELEVATOR_HATCH_PANEL_LEVEL_3 = 53.7;
 
-  public static final double[] ELEVATOR_HATCH_PANEL_LEVELS = {ELEVATOR_HATCH_PANEL_LEVEL_1, ELEVATOR_HATCH_PANEL_LEVEL_2, ELEVATOR_HATCH_PANEL_LEVEL_3};
-  public static final double[] ELEVATOR_BALL_LEVELS = {ELEVATOR_BALL_ROCKET_LEVEL_1, ELEVATOR_BALL_CARGOSHIP_LEVEL, ELEVATOR_BALL_ROCKET_LEVEL_2, ELEVATOR_BALL_ROCKET_LEVEL_3};
+  public static final double[] ELEVATOR_HATCH_PANEL_LEVELS = {ELEVATOR_HATCH_PANEL_LEVEL_2, ELEVATOR_HATCH_PANEL_LEVEL_3};
+  public static final double[] ELEVATOR_BALL_LEVELS = {ELEVATOR_BALL_ROCKET_LEVEL_2, ELEVATOR_BALL_ROCKET_LEVEL_3};
 
   public static final double ELEVATOR_MANUAL_UP_SPEED = .5;
   public static final double ELEVATOR_MANUAL_DOWN_SPEED = -.2;
