@@ -30,7 +30,7 @@ public class HatchPanelSubsystem extends Subsystem {
     deploy = new DoubleSolenoid(RobotMap.DEPLOY_SOLENOID[0], RobotMap.DEPLOY_SOLENOID[1]);
     leftSwitch = new DigitalInput(RobotMap.LEFT_HATCH_PANEL_LIMIT);
     rightSwitch = new DigitalInput(RobotMap.RIGHT_HATCH_PANEL_LIMIT);
-    hatchPanelDeployState = HatchPanelDeployState.LISTEN;
+    hatchPanelDeployState = HatchPanelDeployState.DEPLOY;
   }
 
   public HatchPanelDeployState getHatchPanelDeployState() {

@@ -16,6 +16,7 @@ import frc.robot.commands.SetRobotDeployStateCommand;
 import frc.robot.commands.climber.ToggleClimberCommand;
 import frc.robot.commands.disk.CloseIntakeDeployInCommandGroup;
 import frc.robot.commands.disk.AutoIntakeDiskCommandGroup;
+import frc.robot.commands.drivetrain.DriveForDistanceCommand;
 import frc.robot.commands.drivetrain.ToggleShiftingCommand;
 import frc.robot.commands.ToggleDeployStatesCommand;
 import frc.robot.commands.elevator.SetElevatorDeployLevelCommand;
@@ -44,7 +45,7 @@ public class OI {
     setJoystickButtonWhenPressedCommand(driverStationJoy, 12, new AutoDeployCommandGroup());
 
     // Secondary Joystick Buttons
-    setJoystickButtonWhenPressedCommand(driverStationJoy, 6, new IntakeBallCommand());
+    setJoystickButtonWhileHeldCommand(driverStationJoy, 6, new IntakeBallCommand());
     setJoystickButtonWhenPressedCommand(driverStationJoy, 7, new SetElevatorDeployLevelCommand(0));
     setJoystickButtonWhenPressedCommand(driverStationJoy, 8, new SetElevatorDeployLevelCommand(1));
     setJoystickButtonWhenPressedCommand(driverStationJoy, 9, new SetElevatorDeployLevelCommand(2));

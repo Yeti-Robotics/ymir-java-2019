@@ -32,6 +32,9 @@ public class SetRobotDeployStateCommand extends Command {
       Robot.deployState = deployState;
       if(deployState == DeployState.HATCH_PANEL) {
         Robot.hatchPanelSubsystem.setHatchPanelDeployState(HatchPanelSubsystem.HatchPanelDeployState.LISTEN);
+        SmartDashboard.putString("Auto deploy mode", "Hatch Panel");
+      } else {
+        SmartDashboard.putString("Auto deploy mode", "Ball");
       }
   }
 

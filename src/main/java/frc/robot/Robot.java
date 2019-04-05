@@ -172,6 +172,12 @@ public class Robot extends TimedRobot {
     SmartDashboard.putBoolean("Beam Break sensor", rollerBarSubsystem.getBeamBreakSensor());
     SmartDashboard.putNumber("azimuth", jevois.getAzimuth());
     SmartDashboard.putNumber("vision distance", VisionProcessor.getCenterDistance(latestContours[0], latestContours[1]));
+    SmartDashboard.putNumber("Auto deploy level" , elevatorSubsystem.getLevel() + 1);
+    if(Robot.hatchPanelSubsystem.getHatchPanelDeployState() == HatchPanelSubsystem.HatchPanelDeployState.DEPLOY) {
+      SmartDashboard.putString("Hatch panel mode", "Deploy");
+    } else {
+      SmartDashboard.putString("Hatch panel mode", "Listen");
+    }
 
     if (latestContours != null) {
 

@@ -28,13 +28,13 @@ public class ToggleDeployStatesCommand extends Command {
   protected void execute() {
     if(Robot.deployState== DeployState.BALL) {
       Robot.deployState = DeployState.HATCH_PANEL;
-      SmartDashboard.putString("Elevator mode", "Hatch Panel");
+      SmartDashboard.putString("Auto deploy mode", "Hatch Panel");
       if (Robot.elevatorSubsystem.getLevel() > 0) {
         Robot.elevatorSubsystem.decrementLevel();
       }
     } else {
       Robot.deployState = DeployState.BALL;
-      SmartDashboard.putString("Elevator mode", "Cargo");
+      SmartDashboard.putString("Auto deploy mode", "Cargo");
     }
   }
 
