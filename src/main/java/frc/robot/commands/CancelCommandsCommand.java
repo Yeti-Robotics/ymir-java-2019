@@ -9,6 +9,7 @@ package frc.robot.commands;
 
 import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.command.Scheduler;
+import frc.robot.Robot;
 
 public class CancelCommandsCommand extends Command {
   public CancelCommandsCommand() {
@@ -25,6 +26,7 @@ public class CancelCommandsCommand extends Command {
   @Override
   protected void execute() {
     Scheduler.getInstance().removeAll();
+    Robot.elevatorSubsystem.disableElevator();
   }
 
   // Make this return true when this Command no longer needs to run execute()

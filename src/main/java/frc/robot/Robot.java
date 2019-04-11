@@ -1,3 +1,4 @@
+
 /*----------------------------------------------------------------------------*/
 /* Copyright (c) 2017-2018 FIRST. All Rights Reserved.                        */
 /* Open Source Software - may be modified and shared by FRC teams. The code   */
@@ -41,6 +42,7 @@ public class Robot extends TimedRobot {
 
   public static OI oi;
   public static NetworkTable networkTable;
+  public static NetworkTable rootNetworkTable;
 
   // Instantiates the subsystems
   public static DrivetrainSubsystem drivetrainSubsystem;
@@ -85,14 +87,14 @@ public class Robot extends TimedRobot {
     oi = new OI();
     deployState = DeployState.HATCH_PANEL;
     hatchPanelSubsystem.closeIntake();
-    SmartDashboard.putString("Elevator mode", "Hatch Panel");
     networkTable = NetworkTableInstance.getDefault().getTable("SmartDashboard");
+    rootNetworkTable = NetworkTableInstance.getDefault().getTable("");
     
-    // UsbCamera cam = CameraServer.getInstance().startAutomaticCapture(0);
-    // cam.setVideoMode(VideoMode.PixelFormat.kMJPEG, 200, 150, 30);
-    // cam.setBrightness(50);
+    UsbCamera cam = CameraServer.getInstance().startAutomaticCapture(0);
+    cam.setVideoMode(VideoMode.PixelFormat.kMJPEG, 200, 150, 30);
+    cam.setBrightness(50);
 
-    UsbCamera jevoisView = CameraServer.getInstance().startAutomaticCapture(0);
+    UsbCamera jevoisView = CameraServer.getInstance().startAutomaticCapture(1);
     jevoisView.setVideoMode(VideoMode.PixelFormat.kYUYV, 320, 240, 30);
 
 
@@ -172,11 +174,13 @@ public class Robot extends TimedRobot {
     SmartDashboard.putBoolean("Beam Break sensor", rollerBarSubsystem.getBeamBreakSensor());
     SmartDashboard.putNumber("azimuth", jevois.getAzimuth());
     SmartDashboard.putNumber("vision distance", VisionProcessor.getCenterDistance(latestContours[0], latestContours[1]));
-    SmartDashboard.putNumber("Auto deploy level" , elevatorSubsystem.getLevel() + 1);
+    rootNetworkTable.getEntry("Auto deploy level").setNumber(elevatorSubsystem.getLevel() + 2);
+    SmartDashboard.putNumber("Gyro Angle", drivetrainSubsystem.getAngle());
     if(Robot.hatchPanelSubsystem.getHatchPanelDeployState() == HatchPanelSubsystem.HatchPanelDeployState.DEPLOY) {
-      SmartDashboard.putString("Hatch panel mode", "Deploy");
+      rootNetworkTable.getEntry("Hatch panel mode").setString("Deploy");
     } else {
-      SmartDashboard.putString("Hatch panel mode", "Listen");
+      rootNetworkTable.getEntry("Hatch panel mode").setString("Listen");
+
     }
 
     if (latestContours != null) {

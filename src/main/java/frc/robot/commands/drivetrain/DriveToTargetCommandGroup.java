@@ -14,7 +14,7 @@ public class DriveToTargetCommandGroup extends CommandGroup {
    * Add your docs here.
    */
   public DriveToTargetCommandGroup() {
-    addSequential(new DriveToLineCommand());
+    addSequential(new TurnToTargetCommandGroup());
     addSequential(new LineFollowToTargetCommand());
   }
 }

@@ -18,7 +18,10 @@ import frc.robot.commands.disk.CloseIntakeDeployInCommandGroup;
 import frc.robot.commands.disk.AutoIntakeDiskCommandGroup;
 import frc.robot.commands.disk.IntakeDiskCommandGroup;
 import frc.robot.commands.drivetrain.DriveForDistanceCommand;
+import frc.robot.commands.drivetrain.DriveToTargetCommandGroup;
+import frc.robot.commands.drivetrain.LineFollowToTargetCommand;
 import frc.robot.commands.drivetrain.ToggleShiftingCommand;
+import frc.robot.commands.drivetrain.TurnToTargetCommandGroup;
 import frc.robot.commands.ToggleDeployStatesCommand;
 import frc.robot.commands.elevator.SetElevatorDeployLevelCommand;
 import frc.robot.commands.groups.*;
@@ -39,38 +42,40 @@ public class OI {
     driverStationJoy = new Joystick(RobotMap.DRIVERSTATION_JOYSTICK);
 
     // Left joystick buttons
-    setJoystickButtonWhenPressedCommand(driverStationJoy, 11, new ToggleShiftingCommand());
+    // setJoystickButtonWhenPressedCommand(driverStationJoy, 11, new ToggleShiftingCommand());
 
-    // Right joystick buttons
-    setJoystickButtonWhenPressedCommand(driverStationJoy, 12, new AutoDeployCommandGroup());
+    // // Right joystick buttons
+    // setJoystickButtonWhenPressedCommand(driverStationJoy, 12, new AutoDeployCommandGroup());
 
-    // Secondary Joystick Buttons
-    setJoystickButtonWhileHeldCommand(driverStationJoy, 6, new IntakeBallCommand());
-    setJoystickButtonWhenPressedCommand(driverStationJoy, 7, new SetElevatorDeployLevelCommand(0));
-    setJoystickButtonWhenPressedCommand(driverStationJoy, 8, new SetElevatorDeployLevelCommand(1));
-    setJoystickButtonWhenPressedCommand(driverStationJoy, 9, new SetElevatorDeployLevelCommand(2));
-    setJoystickButtonWhenPressedCommand(driverStationJoy, 10, new CloseIntakeDeployInCommandGroup());
+    // // Secondary Joystick Buttons
+    // setJoystickButtonWhileHeldCommand(driverStationJoy, 6, new IntakeBallCommand());
+    // setJoystickButtonWhenPressedCommand(driverStationJoy, 7, new SetElevatorDeployLevelCommand(0));
+    // setJoystickButtonWhenPressedCommand(driverStationJoy, 8, new SetElevatorDeployLevelCommand(1));
+    // setJoystickButtonWhenPressedCommand(driverStationJoy, 9, new SetElevatorDeployLevelCommand(2));
+    // setJoystickButtonWhenPressedCommand(driverStationJoy, 10, new CloseIntakeDeployInCommandGroup());
 
-    setJoystickButtonWhileHeldCommand(driverStationJoy, 1, new LaunchBallCommand());
-    setJoystickButtonWhenPressedCommand(driverStationJoy, 2, new ToggleClimberCommand());
-    setJoystickButtonWhenPressedCommand(driverStationJoy, 3, new SetRobotDeployStateCommand(Robot.DeployState.BALL));
-    setJoystickButtonWhenPressedCommand(driverStationJoy, 4, new SetRobotDeployStateCommand(Robot.DeployState.HATCH_PANEL));
-    setJoystickButtonWhenPressedCommand(driverStationJoy, 5, new CancelCommandsCommand());
+    // setJoystickButtonWhileHeldCommand(driverStationJoy, 1, new LaunchBallCommand());
+    // setJoystickButtonWhenPressedCommand(driverStationJoy, 2, new ToggleClimberCommand());
+    // setJoystickButtonWhenPressedCommand(driverStationJoy, 3, new SetRobotDeployStateCommand(Robot.DeployState.BALL));
+    // setJoystickButtonWhenPressedCommand(driverStationJoy, 4, new SetRobotDeployStateCommand(Robot.DeployState.HATCH_PANEL));
+    // setJoystickButtonWhenPressedCommand(driverStationJoy, 5, new CancelCommandsCommand());
 
     //Old Setup
-//    setJoystickButtonWhenPressedCommand(driverStationJoy, 11, new ToggleShiftingCommand());
-//
-//    setJoystickButtonWhenPressedCommand(driverStationJoy, 12, new DeployHatchPanelCommandGroup());
-//
-//    setJoystickButtonWhileHeldCommand(driverStationJoy, 7, new IntakeBallCommand());
-//    setJoystickButtonWhenPressedCommand(driverStationJoy, 8, new AutoMoveElevatorUpCommandGroup());
-//    setJoystickButtonWhenPressedCommand(driverStationJoy, 9, new ToggleDeployStatesCommand());
-//    setJoystickButtonWhenPressedCommand(driverStationJoy, 10, new CloseIntakeDeployInCommandGroup());
-//
-//    setJoystickButtonWhileHeldCommand(driverStationJoy, 2, new LaunchBallCommand());
-//    setJoystickButtonWhenPressedCommand(driverStationJoy, 3, new AutoMoveElevatorDownCommandGroup());
-//    setJoystickButtonWhenPressedCommand(driverStationJoy, 4, new IntakeDiskCommandGroup());
-//    setJoystickButtonWhenPressedCommand(driverStationJoy, 5, new CancelCommandsCommand());
+   setJoystickButtonWhenPressedCommand(driverStationJoy, 11, new ToggleShiftingCommand());
+
+   setJoystickButtonWhenPressedCommand(driverStationJoy, 12, new DeployHatchPanelCommandGroup());
+
+   setJoystickButtonWhileHeldCommand(driverStationJoy, 6, new IntakeBallCommand());
+   setJoystickButtonWhenPressedCommand(driverStationJoy, 7, new AutoMoveElevatorUpCommandGroup());
+   setJoystickButtonWhenPressedCommand(driverStationJoy, 8, new SetRobotDeployStateCommand(Robot.DeployState.HATCH_PANEL));
+   setJoystickButtonWhenPressedCommand(driverStationJoy, 9, new IntakeDiskCommandGroup());
+  //  setJoystickButtonWhileHeldCommand(driverStationJoy, 10, new DriveToTargetCommandGroup());
+
+   setJoystickButtonWhileHeldCommand(driverStationJoy, 1, new LaunchBallCommand());
+   setJoystickButtonWhenPressedCommand(driverStationJoy, 2, new AutoMoveElevatorDownCommandGroup());
+   setJoystickButtonWhenPressedCommand(driverStationJoy, 3, new SetRobotDeployStateCommand(Robot.DeployState.BALL));
+   setJoystickButtonWhenPressedCommand(driverStationJoy, 4, new CloseIntakeDeployInCommandGroup());
+   setJoystickButtonWhenPressedCommand(driverStationJoy, 5, new ToggleClimberCommand());
     //Old setup
   }
 

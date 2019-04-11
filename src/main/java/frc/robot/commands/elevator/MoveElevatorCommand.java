@@ -58,7 +58,7 @@ public class MoveElevatorCommand extends Command {
       Robot.elevatorSubsystem.elevatorOff();
       Robot.elevatorSubsystem.disable();
     } else {
-      // Robot.elevatorSubsystem.elevatorStop();
+      Robot.elevatorSubsystem.elevatorStop();
       // Robot.elevatorSubsystem.setSetpoint(elevatorPosition);
       // Robot.elevatorSubsystem.enable();
     }
@@ -68,5 +68,6 @@ public class MoveElevatorCommand extends Command {
   // subsystems is scheduled to run
   @Override
   protected void interrupted() {
+    Robot.elevatorSubsystem.disableElevator();
   }
 }

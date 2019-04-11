@@ -89,6 +89,10 @@ public class ElevatorSubsystem extends PIDSubsystem {
     elevator1Talon.configClosedloopRamp(RobotMap.ELEVATOR_OPEN_LOOP_RAMP);
   }
 
+  public void disableElevator() {
+    elevator1Talon.set(0);
+  }
+
   public int convertInchesToCounts(double inches) {
     return (int) (inches / RobotMap.ELEVATOR_DISTANCE_PER_PULSE);
   }

@@ -22,7 +22,7 @@ public class TurnToTargetCommandGroup extends CommandGroup {
    * Add your docs here.
    */
   public TurnToTargetCommandGroup() {
-    // setTimeout(0.5);
+    setTimeout(0.75);
   }
 
   @Override
@@ -38,8 +38,4 @@ public class TurnToTargetCommandGroup extends CommandGroup {
     }
   }
 
-  // @Override
-  // protected boolean isFinished() {
-  //   return isTimedOut() || noContours;
-  // }
 }

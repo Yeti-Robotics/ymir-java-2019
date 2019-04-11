@@ -25,7 +25,7 @@ public class LineFollowToTargetCommand extends Command {
   @Override
   protected void initialize() {
     Robot.drivetrainSubsystem.resetEncoders();
-    distance = VisionProcessor.getAverageDistance(Robot.latestContours[0], Robot.latestContours[1]) - RobotMap.CAMERA_BUMPER_BUFFER;
+    distance = VisionProcessor.getCenterDistance(Robot.latestContours[0], Robot.latestContours[1]) - RobotMap.CAMERA_BUMPER_BUFFER;
   }
 
   // Called repeatedly when this Command is scheduled to run
@@ -57,12 +57,13 @@ public class LineFollowToTargetCommand extends Command {
   // Make this return true when this Command no longer needs to run execute()
   @Override
   protected boolean isFinished() {
-      return Robot.drivetrainSubsystem.getAvgEncoderDistance() >= distance || !lineVisible;
+      return Robot.drivetrainSubsystem.getAvgEncoderDistance() >= distance;
   }
 
   // Called once after isFinished returns true
   @Override
   protected void end() {
+    System.out.println("'''''''''''''''''finished line follow'''''''''''''''''");
     Robot.drivetrainSubsystem.tankDrive(0, 0);
   }
 
@@ -70,5 +71,6 @@ public class LineFollowToTargetCommand extends Command {
   // subsystems is scheduled to run
   @Override
   protected void interrupted() {
+    System.out.println("**********************line follow interrupted********************");
   }
 }

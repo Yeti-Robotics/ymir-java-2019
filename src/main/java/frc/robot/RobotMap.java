@@ -80,10 +80,10 @@ public class RobotMap {
   public static final int ELEVATOR_PEAK_CURRENT_DURATION = 200;
 
   public static final double ELEVATOR_MAX_VELOCITY = 58472.2;
-  public static final double ELEVATOR_CRUISING_VELOCITY = ELEVATOR_MAX_VELOCITY / 2;
-  public static final double ELEVATOR_CRUISING_ACCELERATION = ELEVATOR_MAX_VELOCITY / 2;  
-  public static final double ELEVATOR_P = /*(511.5*30) / 81536*/ 0.015;
-  public static final double ELEVATOR_D = /*(511.5*6000) / 81536*/ 20;
+  public static final double ELEVATOR_CRUISING_VELOCITY = ELEVATOR_MAX_VELOCITY / 1.25;
+  public static final double ELEVATOR_CRUISING_ACCELERATION = ELEVATOR_MAX_VELOCITY / 1.25;  
+  public static final double ELEVATOR_P = (511.5*30) / 81536 /*0.015*/;
+  public static final double ELEVATOR_D = (511.5*6000) / 81536 /*20*/;
   public static final double ELEVATOR_OPEN_LOOP_RAMP = .3;
   public static final double ELEVATOR_PEAK_OUTPUT_FORWARD = .6;
   public static final double ELEVATOR_REVERSE_SOFT_LIMIT = 0;

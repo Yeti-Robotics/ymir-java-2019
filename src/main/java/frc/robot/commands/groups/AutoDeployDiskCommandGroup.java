@@ -16,7 +16,7 @@ public class AutoDeployDiskCommandGroup extends CommandGroup {
     public AutoDeployDiskCommandGroup() {
         addParallel(new MoveElevatorCommand());
         addSequential(new TurnToTargetCommandGroup(), 0.75);
-        addSequential(new DriveToLineCommand());
+        // addSequential(new DriveToLineCommand());
         addSequential(new LineFollowToTargetCommand());
         addSequential(new DeployHatchPanelCommandGroup());
         addSequential(new DriveForDistanceCommand(5,-.4,-.4));

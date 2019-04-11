@@ -14,7 +14,7 @@ public class AutoDeployBallCommandGroup extends CommandGroup {
     public AutoDeployBallCommandGroup() {
         addParallel(new MoveElevatorCommand());
         addSequential(new TurnToTargetCommandGroup(), 0.75);
-        addSequential(new DriveToLineCommand());
+        // addSequential(new DriveToLineCommand());
         addSequential(new LineFollowToTargetCommand());
         addSequential(new LaunchBallCommand());
         addSequential(new DriveForDistanceCommand(5,-.4,-.4));

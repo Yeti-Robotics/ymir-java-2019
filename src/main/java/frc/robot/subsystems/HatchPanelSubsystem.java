@@ -56,10 +56,10 @@ public class HatchPanelSubsystem extends Subsystem {
     intake.set(Value.kForward);
   }
   public void deployOut() {
-    deploy.set(Value.kForward);
+    deploy.set(Value.kReverse);
   }
   public void deployIn() {
-    deploy.set(Value.kReverse);
+    deploy.set(Value.kForward);
   }
 
   public Value getIntakeState() {

@@ -11,31 +11,33 @@ import com.ctre.phoenix.motorcontrol.ControlMode;
 import com.ctre.phoenix.motorcontrol.can.VictorSPX;
 
 import edu.wpi.first.wpilibj.DigitalInput;
+import edu.wpi.first.wpilibj.Talon;
 import edu.wpi.first.wpilibj.command.Subsystem;
 import frc.robot.RobotMap;
+import frc.robot.controls.CustomTalon;
 
 /**
  * Add your docs here.
  */
 public class RollerBarSubsystem extends Subsystem {
-  private VictorSPX wristRollerVictor;
+  private CustomTalon wristRollerTalon;
   private DigitalInput beamBreakSensor;
 
   public RollerBarSubsystem() {
-    wristRollerVictor = new VictorSPX(RobotMap.ROLLER_VICTOR);
+    wristRollerTalon = new CustomTalon(1);
     beamBreakSensor = new DigitalInput(RobotMap.BALL_BEAM_BREAK_SENSOR);
   }
 
   public void rollIn() {
-    wristRollerVictor.set(ControlMode.PercentOutput, -RobotMap.ROLLER_SPEED);
+    wristRollerTalon.set(ControlMode.PercentOutput, -RobotMap.ROLLER_SPEED);
   }
 
   public void rollOut() {
-    wristRollerVictor.set(ControlMode.PercentOutput, RobotMap.ROLLER_SPEED);
+    wristRollerTalon.set(ControlMode.PercentOutput, RobotMap.ROLLER_SPEED);
   }
 
   public void rollStop() {
-    wristRollerVictor.set(ControlMode.PercentOutput, 0);
+    wristRollerTalon.set(ControlMode.PercentOutput, 0);
   }
 
   public boolean getBeamBreakSensor() {

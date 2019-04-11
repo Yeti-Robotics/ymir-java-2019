@@ -22,7 +22,8 @@ public class TurnAngleCommand extends PIDCommand {
   double currentAngle;
 
   public TurnAngleCommand(double angle) {
-    super(.06, 0.05, 0, 0);
+    super(.05, 0, 0, 0);
+    setTimeout(.75);
     setInputRange(-180, 180);
     // getPIDController().setContinuous(true);
     getPIDController().setAbsoluteTolerance(2);
@@ -50,7 +51,7 @@ public class TurnAngleCommand extends PIDCommand {
   @Override
   protected boolean isFinished() {
     System.out.println("**********************************FINISHED*******************************************");
-  return getPIDController().onTarget();
+  return getPIDController().onTarget() || isTimedOut();
   }
 
   // Called once after isFinished returns true
