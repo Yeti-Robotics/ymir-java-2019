@@ -14,9 +14,7 @@ import edu.wpi.first.wpilibj.command.Command;
 import frc.robot.commands.CancelCommandsCommand;
 import frc.robot.commands.SetRobotDeployStateCommand;
 import frc.robot.commands.climber.ToggleClimberCommand;
-import frc.robot.commands.disk.CloseIntakeDeployInCommandGroup;
-import frc.robot.commands.disk.AutoIntakeDiskCommandGroup;
-import frc.robot.commands.disk.IntakeDiskCommandGroup;
+import frc.robot.commands.disk.*;
 import frc.robot.commands.drivetrain.DriveForDistanceCommand;
 import frc.robot.commands.drivetrain.DriveToTargetCommandGroup;
 import frc.robot.commands.drivetrain.LineFollowToTargetCommand;
@@ -76,7 +74,6 @@ public class OI {
    setJoystickButtonWhenPressedCommand(driverStationJoy, 3, new SetRobotDeployStateCommand(Robot.DeployState.BALL));
    setJoystickButtonWhenPressedCommand(driverStationJoy, 4, new CloseIntakeDeployInCommandGroup());
    setJoystickButtonWhenPressedCommand(driverStationJoy, 5, new ToggleClimberCommand());
-    //Old setup
   }
 
   // Gets the Y direction of the left drive joystick

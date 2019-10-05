@@ -111,8 +111,8 @@ public class RobotMap {
 
   // Solenoids
   public static final int[] DRIVE_TRAIN_SHIFT = { 0, 7 };
-  public static final int[] DEPLOY_SOLENOID = { 2, 5 };
-  public static final int[] INTAKE_SOLENOID = { 1, 6 };
+  public static final int[] DEPLOY_SOLENOID = { 6, 1 };
+  public static final int[] INTAKE_SOLENOID = { 5, 2 };
   public static final int[] CLIMBER_SOLENOID = { 3, 4 };
 
   // Limit Switches
