@@ -20,7 +20,6 @@ import edu.wpi.cscore.VideoMode;
 import edu.wpi.first.cameraserver.CameraServer;
 import edu.wpi.first.networktables.NetworkTable;
 import edu.wpi.first.networktables.NetworkTableInstance;
-import edu.wpi.first.wpilibj.DriverStation;
 import edu.wpi.first.wpilibj.TimedRobot;
 import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.command.Scheduler;
@@ -29,7 +28,13 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import frc.robot.controls.Contour;
 import frc.robot.controls.JeVois;
 import frc.robot.controls.VisionProcessor;
-import frc.robot.subsystems.*;
+import frc.robot.subsystems.ClimbSubsystem;
+import frc.robot.subsystems.DrivetrainSubsystem;
+import frc.robot.subsystems.ElevatorSubsystem;
+import frc.robot.subsystems.HatchPanelSubsystem;
+import frc.robot.subsystems.RollerBarSubsystem;
+import frc.robot.subsystems.ShiftGearsSubsystem;
+import frc.robot.subsystems.WristSubsystem;
 
 /**
  * The VM is configured to automatically run this class, and to call the
@@ -94,8 +99,8 @@ public class Robot extends TimedRobot {
     cam.setVideoMode(VideoMode.PixelFormat.kMJPEG, 200, 150, 30);
     cam.setBrightness(50);
 
-    UsbCamera jevoisView = CameraServer.getInstance().startAutomaticCapture(1);
-    jevoisView.setVideoMode(VideoMode.PixelFormat.kYUYV, 320, 240, 30);
+    // UsbCamera jevoisView = CameraServer.getInstance().startAutomaticCapture(1);
+    // jevoisView.setVideoMode(VideoMode.PixelFormat.kYUYV, 320, 240, 30);
 
 
     new Timer().scheduleAtFixedRate(new TimerTask(){
@@ -180,6 +185,12 @@ public class Robot extends TimedRobot {
       rootNetworkTable.getEntry("Hatch panel mode").setString("Deploy");
     } else {
       rootNetworkTable.getEntry("Hatch panel mode").setString("Listen");
+    }
+
+    if (deployState == DeployState.BALL) {
+      SmartDashboard.putString("Elevator Mode", "Ball");
+    } else {
+      SmartDashboard.putString("Elevator Mode", "Hatch Panel");
 
     }
 

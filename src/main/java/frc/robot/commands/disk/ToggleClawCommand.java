@@ -5,38 +5,36 @@
 /* the project.                                                               */
 /*----------------------------------------------------------------------------*/
 
-package frc.robot.commands.wrist;
+package frc.robot.commands.disk;
 
+import edu.wpi.first.wpilibj.DoubleSolenoid.Value;
 import edu.wpi.first.wpilibj.command.Command;
 import frc.robot.Robot;
-import frc.robot.RobotMap;
 
-public class MoveWristCommand extends Command {
-  private double angle;
-  public MoveWristCommand(double angle) {
-    requires(Robot.wristSubsystem);
-
-    this.angle = angle;
+public class ToggleClawCommand extends Command {
+  public ToggleClawCommand() {
+    requires(Robot.hatchPanelSubsystem);
   }
 
   // Called just before this Command runs the first time
   @Override
   protected void initialize() {
-    Robot.wristSubsystem.resetWristEncoder();
-    Robot.wristSubsystem.setSetpoint(angle);
-    Robot.wristSubsystem.enable();
   }
 
   // Called repeatedly when this Command is scheduled to run
   @Override
   protected void execute() {
-    Robot.wristSubsystem.getPIDController().setF(RobotMap.WRIST_FEED_FORWARD * (1 / Math.cos(Robot.wristSubsystem.getWristEncoderValue())));
+    if (Robot.hatchPanelSubsystem.getIntakePosition() == Value.kForward) {
+     Robot.hatchPanelSubsystem.closeIntake(); 
+    } else {
+      Robot.hatchPanelSubsystem.openIntake();
+    }
   }
 
   // Make this return true when this Command no longer needs to run execute()
   @Override
   protected boolean isFinished() {
-    return Robot.wristSubsystem.onTarget();
+    return true;
   }
 
   // Called once after isFinished returns true

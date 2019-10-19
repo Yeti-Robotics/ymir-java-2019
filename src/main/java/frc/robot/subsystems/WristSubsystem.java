@@ -10,28 +10,25 @@ package frc.robot.subsystems;
 import com.ctre.phoenix.motorcontrol.ControlMode;
 import com.ctre.phoenix.motorcontrol.FeedbackDevice;
 
-import edu.wpi.first.wpilibj.Encoder;
-import edu.wpi.first.wpilibj.command.PIDSubsystem;
 import edu.wpi.first.wpilibj.command.Subsystem;
 import frc.robot.RobotMap;
-import frc.robot.commands.wrist.UserWristCommand;
 import frc.robot.controls.CustomTalon;
 
 /**
  * Add your docs here.
  */
-public class WristSubsystem extends PIDSubsystem {
+public class WristSubsystem extends Subsystem {
   
   private CustomTalon wristTal;
 
 
   public WristSubsystem(){
-    super(1, 0, 0);
+    
     wristTal = new CustomTalon(RobotMap.WRIST_TALON);
 
     wristTal.configSelectedFeedbackSensor(FeedbackDevice.QuadEncoder);
 
-    setAbsoluteTolerance(3);
+    
 
     
     wristTal.configContinuousCurrentLimit(RobotMap.WRIST_CONT_CURRENT_LIMIT);
@@ -50,7 +47,12 @@ public class WristSubsystem extends PIDSubsystem {
   }
 
   public void useWrist(double power){
-    wristTal.set(power);
+    wristTal.set(ControlMode.PercentOutput, power);
+  }
+
+  public void stopWrist(){
+    wristTal.set(ControlMode.PercentOutput, 0);
+
   }
 
   public void resetWristEncoder(){
@@ -61,20 +63,8 @@ public class WristSubsystem extends PIDSubsystem {
     return wristTal.getSelectedSensorPosition()*RobotMap.WRIST_DEGREES_PER_PULSE;
   }
 
-  @Override
   public void initDefaultCommand() {
-    // setDefaultCommand(new UserWristCommand());
-    // Set the default command for a subsystem here.
-    // setDefaultCommand(new MySpecialCommand());
+  
   }
 
-  @Override
-  protected double returnPIDInput() {
-    return getWristEncoderValue();
-  }
-
-  @Override
-  protected void usePIDOutput(double output) {
-    wristTal.set(output);
-  }
 }

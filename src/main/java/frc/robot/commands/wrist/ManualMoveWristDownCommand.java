@@ -23,7 +23,7 @@ public class ManualMoveWristDownCommand extends Command {
   // Called repeatedly when this Command is scheduled to run
   @Override
   protected void execute() {
-    Robot.wristSubsystem.useWrist(.4);
+    Robot.wristSubsystem.useWrist(0.5);
   }
 
   // Make this return true when this Command no longer needs to run execute()
@@ -41,6 +41,6 @@ public class ManualMoveWristDownCommand extends Command {
   // subsystems is scheduled to run
   @Override
   protected void interrupted() {
-    Robot.wristSubsystem.useWrist(0);
+    Robot.wristSubsystem.stopWrist();
   }
 }
