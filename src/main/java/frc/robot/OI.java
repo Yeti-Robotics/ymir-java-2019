@@ -80,8 +80,8 @@ public class OI {
 
   // Gets the Y direction of the left drive joystick
   public double getLeftY() {
-    // return driverStationJoy.getRawAxis(RobotMap.DRIVERSTATION_LEFT_Y_AXIS);
-    return leftJoy.getRawAxis(RobotMap.DRIVERSTATION_LEFT_Y_AXIS);
+    return driverStationJoy.getRawAxis(RobotMap.DRIVERSTATION_LEFT_Y_AXIS);
+    // return leftJoy.getRawAxis(RobotMap.DRIVERSTATION_LEFT_Y_AXIS);
   }
 
   // Gets the Y direction of the left drive joystick
@@ -92,8 +92,8 @@ public class OI {
 
   // Gets the Y direction of the right drive joystick
   public double getRightY() {
-    // return driverStationJoy.getRawAxis(RobotMap.DRIVERSTATION_LEFT_Y_AXIS);
-    return rightJoy.getRawAxis(RobotMap.DRIVERSTATION_RIGHT_Y_AXIS);
+    return driverStationJoy.getRawAxis(RobotMap.DRIVERSTATION_LEFT_Y_AXIS);
+    // return rightJoy.getRawAxis(RobotMap.DRIVERSTATION_RIGHT_Y_AXIS);
   }
 
   // Gets the X direction of the right drive joystick
