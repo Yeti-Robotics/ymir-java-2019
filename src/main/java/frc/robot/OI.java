@@ -13,9 +13,10 @@ import edu.wpi.first.wpilibj.buttons.JoystickButton;
 import edu.wpi.first.wpilibj.command.Command;
 import frc.robot.commands.SetRobotDeployStateCommand;
 import frc.robot.commands.climber.ToggleClimberCommand;
-import frc.robot.commands.disk.CloseIntakeDeployInCommandGroup;
-import frc.robot.commands.disk.IntakeDiskCommandGroup;
-import frc.robot.commands.disk.ToggleClawCommand;
+import frc.robot.commands.disk.*;
+import frc.robot.commands.drivetrain.DriveForDistanceCommand;
+import frc.robot.commands.drivetrain.DriveToTargetCommandGroup;
+import frc.robot.commands.drivetrain.LineFollowToTargetCommand;
 import frc.robot.commands.drivetrain.ToggleShiftingCommand;
 import frc.robot.commands.groups.AutoMoveElevatorDownCommandGroup;
 import frc.robot.commands.groups.AutoMoveElevatorUpCommandGroup;
@@ -75,21 +76,6 @@ public class OI {
    setJoystickButtonWhenPressedCommand(driverStationJoy, 3, new SetRobotDeployStateCommand(Robot.DeployState.BALL));
    setJoystickButtonWhenPressedCommand(driverStationJoy, 4, new CloseIntakeDeployInCommandGroup());
    setJoystickButtonWhenPressedCommand(driverStationJoy, 5, new ToggleClimberCommand());
-    //Old setup
-
-
-    setJoystickButtonWhenPressedCommand(leftJoy, 1, new ToggleShiftingCommand());
-    setJoystickButtonWhenPressedCommand(rightJoy, 1, new ToggleClawCommand());
-
-    setJoystickButtonWhileHeldCommand(secondaryJoy, 1, new IntakeBallCommand());
-    setJoystickButtonWhileHeldCommand(secondaryJoy, 2, new LaunchBallCommand());
-    setJoystickButtonWhileHeldCommand(secondaryJoy, 4, new ManualMoveWristDownCommand());
-    setJoystickButtonWhileHeldCommand(secondaryJoy, 6, new ManualMoveWristUpCommand());
-    setJoystickButtonWhenPressedCommand(secondaryJoy, 7, new AutoMoveElevatorDownCommandGroup());
-    setJoystickButtonWhenPressedCommand(secondaryJoy, 8, new AutoMoveElevatorUpCommandGroup());
-    setJoystickButtonWhenPressedCommand(secondaryJoy, 9, new SetRobotDeployStateCommand(Robot.DeployState.HATCH_PANEL));
-    setJoystickButtonWhenPressedCommand(secondaryJoy, 10, new SetRobotDeployStateCommand(Robot.DeployState.BALL));
-
   }
 
   // Gets the Y direction of the left drive joystick
