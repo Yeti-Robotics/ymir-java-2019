@@ -60,21 +60,21 @@ public class OI {
     // setJoystickButtonWhenPressedCommand(driverStationJoy, 5, new CancelCommandsCommand());
 
     //Old Setup
-   setJoystickButtonWhenPressedCommand(driverStationJoy, 11, new ToggleShiftingCommand());
+  //  setJoystickButtonWhenPressedCommand(driverStationJoy, 11, new ToggleShiftingCommand());
 
-   setJoystickButtonWhenPressedCommand(driverStationJoy, 12, new DeployHatchPanelCommandGroup());
+  //  setJoystickButtonWhenPressedCommand(driverStationJoy, 12, new DeployHatchPanelCommandGroup());
 
-   setJoystickButtonWhileHeldCommand(driverStationJoy, 6, new IntakeBallCommand());
-   setJoystickButtonWhenPressedCommand(driverStationJoy, 7, new AutoMoveElevatorUpCommandGroup());
-   setJoystickButtonWhenPressedCommand(driverStationJoy, 8, new SetRobotDeployStateCommand(Robot.DeployState.HATCH_PANEL));
-   setJoystickButtonWhenPressedCommand(driverStationJoy, 9, new IntakeDiskCommandGroup());
-  //  setJoystickButtonWhileHeldCommand(driverStationJoy, 10, new DriveToTargetCommandGroup());
+  //  setJoystickButtonWhileHeldCommand(driverStationJoy, 6, new IntakeBallCommand());
+  //  setJoystickButtonWhenPressedCommand(driverStationJoy, 7, new AutoMoveElevatorUpCommandGroup());
+  //  setJoystickButtonWhenPressedCommand(driverStationJoy, 8, new SetRobotDeployStateCommand(Robot.DeployState.HATCH_PANEL));
+  //  setJoystickButtonWhenPressedCommand(driverStationJoy, 9, new IntakeDiskCommandGroup());
+  // //  setJoystickButtonWhileHeldCommand(driverStationJoy, 10, new DriveToTargetCommandGroup());
 
-   setJoystickButtonWhileHeldCommand(driverStationJoy, 1, new LaunchBallCommand());
-   setJoystickButtonWhenPressedCommand(driverStationJoy, 2, new AutoMoveElevatorDownCommandGroup());
-   setJoystickButtonWhenPressedCommand(driverStationJoy, 3, new SetRobotDeployStateCommand(Robot.DeployState.BALL));
-   setJoystickButtonWhenPressedCommand(driverStationJoy, 4, new CloseIntakeDeployInCommandGroup());
-   setJoystickButtonWhenPressedCommand(driverStationJoy, 5, new ToggleClimberCommand());
+  //  setJoystickButtonWhileHeldCommand(driverStationJoy, 1, new LaunchBallCommand());
+  //  setJoystickButtonWhenPressedCommand(driverStationJoy, 2, new AutoMoveElevatorDownCommandGroup());
+  //  setJoystickButtonWhenPressedCommand(driverStationJoy, 3, new SetRobotDeployStateCommand(Robot.DeployState.BALL));
+  //  setJoystickButtonWhenPressedCommand(driverStationJoy, 4, new CloseIntakeDeployInCommandGroup());
+  //  setJoystickButtonWhenPressedCommand(driverStationJoy, 5, new ToggleClimberCommand());
     //Old setup
 
 

@@ -175,12 +175,12 @@ public class Robot extends TimedRobot {
     SmartDashboard.putNumber("Vision distance", VisionProcessor.getAverageDistance(latestContours[0], latestContours[1]));
     SmartDashboard.putNumber("Elevator pid error", elevatorSubsystem.getPIDController().getError());
     SmartDashboard.putNumber("Elevator pid output", elevatorSubsystem.getPIDController().get());
-    SmartDashboard.putNumber("gyro angle", drivetrainSubsystem.getAngle());
+    // SmartDashboard.putNumber("gyro angle", drivetrainSubsystem.getAngle());
     SmartDashboard.putBoolean("Beam Break sensor", rollerBarSubsystem.getBeamBreakSensor());
     SmartDashboard.putNumber("azimuth", jevois.getAzimuth());
     SmartDashboard.putNumber("vision distance", VisionProcessor.getCenterDistance(latestContours[0], latestContours[1]));
     rootNetworkTable.getEntry("Auto deploy level").setNumber(elevatorSubsystem.getLevel() + 2);
-    SmartDashboard.putNumber("Gyro Angle", drivetrainSubsystem.getAngle());
+    // SmartDashboard.putNumber("Gyro Angle", drivetrainSubsystem.getAngle());
     if(Robot.hatchPanelSubsystem.getHatchPanelDeployState() == HatchPanelSubsystem.HatchPanelDeployState.DEPLOY) {
       rootNetworkTable.getEntry("Hatch panel mode").setString("Deploy");
     } else {
@@ -201,7 +201,7 @@ public class Robot extends TimedRobot {
     // System.out.println(VisionProcessor.getAverageDistance(latestContours[0], latestContours[1]));
     }
 
-    networkTable.getEntry(RobotMap.NETWORK_TABLES_GYRO).setDouble(drivetrainSubsystem.getAngle());
+    // networkTable.getEntry(RobotMap.NETWORK_TABLES_GYRO).setDouble(drivetrainSubsystem.getAngle());
     networkTable.getEntry(RobotMap.NETWORK_TABLES_ARM_ENCODER).setDouble(wristSubsystem.getWristEncoderValue());
     networkTable.getEntry(RobotMap.NETWORK_TABLES_ELEVATOR_ENCODER).setDouble(elevatorSubsystem.getElevatorEncoder());
     networkTable.getEntry(RobotMap.NETWORK_TABLES_VISION_TARGET_FOUND).setBoolean(latestContours[0].w > 0);

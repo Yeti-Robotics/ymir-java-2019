@@ -36,7 +36,7 @@ public class TurnAngleCommand extends PIDCommand {
   // Called just before this Command runs the first time
   @Override
   protected void initialize() {
-    Robot.drivetrainSubsystem.resetGyro();
+    // Robot.drivetrainSubsystem.resetGyro();
     setSetpoint(angle);
     getPIDController().enable();
   }
@@ -69,7 +69,8 @@ public class TurnAngleCommand extends PIDCommand {
 
   @Override
   protected double returnPIDInput() {
-    return Robot.drivetrainSubsystem.getAngle();
+    // return Robot.drivetrainSubsystem.getAngle();
+    return 5.0;
   }
 
   @Override

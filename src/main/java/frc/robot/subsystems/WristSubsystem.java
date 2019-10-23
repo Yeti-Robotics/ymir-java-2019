@@ -26,19 +26,20 @@ public class WristSubsystem extends Subsystem {
     
     wristTal = new CustomTalon(RobotMap.WRIST_TALON);
 
-    wristTal.configSelectedFeedbackSensor(FeedbackDevice.QuadEncoder);
+    // wristTal.configSelectedFeedbackSensor(FeedbackDevice.QuadEncoder);
 
     
 
     
-    wristTal.configContinuousCurrentLimit(RobotMap.WRIST_CONT_CURRENT_LIMIT);
-    wristTal.configPeakCurrentLimit(RobotMap.WRIST_PEAK_CURRENT_LIMIT);
-    wristTal.configPeakCurrentDuration(RobotMap.WRIST_PEAK_CURRENT_DURATION);
+    // wristTal.configContinuousCurrentLimit(RobotMap.WRIST_CONT_CURRENT_LIMIT);
+    // wristTal.configPeakCurrentLimit(RobotMap.WRIST_PEAK_CURRENT_LIMIT);
+    // wristTal.configPeakCurrentDuration(RobotMap.WRIST_PEAK_CURRENT_DURATION);
+    // wristTal.enableCurrentLimit(true);
 
-    wristTal.configContinuousCurrentLimit(15);
-    wristTal.configPeakCurrentLimit(25);
-    wristTal.configPeakCurrentDuration(200);
-    wristTal.enableCurrentLimit(true);
+
+    // wristTal.configContinuousCurrentLimit(15);
+    // wristTal.configPeakCurrentLimit(25);
+    // wristTal.configPeakCurrentDuration(200);
   }
 
 

@@ -40,8 +40,8 @@ public class DrivetrainSubsystem extends PIDSubsystem {
         leftTal.configSelectedFeedbackSensor(FeedbackDevice.CTRE_MagEncoder_Relative);
         rightTal.setStatusFramePeriod(StatusFrameEnhanced.Status_2_Feedback0, 2, 30);
         rightTal.configSelectedFeedbackSensor(FeedbackDevice.CTRE_MagEncoder_Relative);
-        gyro = new ADXRS450_Gyro();
-        gyro.calibrate();
+        // gyro = new ADXRS450_Gyro();
+        // gyro.calibrate();
 
         left1.follow(leftTal);
         left2.follow(leftTal);
@@ -72,14 +72,14 @@ public class DrivetrainSubsystem extends PIDSubsystem {
     }
 
 
-    public void resetGyro() {
-        gyro.reset();
-    }
+    // public void resetGyro() {
+    //     gyro.reset();
+    // }
 
-    public double getAngle() {
-    //    return gyro.getAngleX() * Math.sin(gyro.getRoll());
-        return gyro.getAngle();
-    }
+    // public double getAngle() {
+    // //    return gyro.getAngleX() * Math.sin(gyro.getRoll());
+    //     return gyro.getAngle();
+    // }
 
     public boolean getLeftLineFollower() {
         return lineSensorLeft.getAverageVoltage() > 0.5;
