@@ -20,24 +20,24 @@ import frc.robot.controls.CustomTalon;
  * Add your docs here.
  */
 public class RollerBarSubsystem extends Subsystem {
-  private CustomTalon wristRollerTalon;
+  private VictorSPX rollerVic;
   private DigitalInput beamBreakSensor;
 
   public RollerBarSubsystem() {
-    wristRollerTalon = new CustomTalon(1);
+    rollerVic = new VictorSPX(RobotMap.ROLLER_VICTOR);
     beamBreakSensor = new DigitalInput(RobotMap.BALL_BEAM_BREAK_SENSOR);
   }
 
   public void rollIn() {
-    wristRollerTalon.set(ControlMode.PercentOutput, -RobotMap.ROLLER_SPEED);
+    rollerVic.set(ControlMode.PercentOutput, -RobotMap.ROLLER_SPEED);
   }
 
   public void rollOut() {
-    wristRollerTalon.set(ControlMode.PercentOutput, RobotMap.ROLLER_SPEED);
+    rollerVic.set(ControlMode.PercentOutput, RobotMap.ROLLER_SPEED);
   }
 
   public void rollStop() {
-    wristRollerTalon.set(ControlMode.PercentOutput, 0);
+    rollerVic.set(ControlMode.PercentOutput, 0);
   }
 
   public boolean getBeamBreakSensor() {

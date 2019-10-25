@@ -23,10 +23,10 @@ public class RobotMap {
 
   // Wrist Encoder Constants
   public static final double WRIST_GEAR_DIAMETER = 1.7;
-  public static final double WRIST_PULSES_PER_REVOLUTION = 1024;
-  public static final double WRIST_DEGREES_PER_PULSE = 360 / WRIST_PULSES_PER_REVOLUTION;
-  public static final int WRIST_UPPER_ENCODER_LIMIT = 7;
-  public static final int WRIST_LOWER_ENCODER_LIMIT = 0;
+  public static final double WRIST_PULSES_PER_REVOLUTION = 2048;
+  public static final double WRIST_DEGREES_PER_PULSE = 135/1664.0;
+  public static final int WRIST_UPPER_ENCODER_LIMIT = 0;
+  public static final int WRIST_LOWER_ENCODER_LIMIT = -90;
 
   // Elevator Encoder Constants
   public static final double ELEVATOR_PULSES_PER_REVOLUTION = 4096;

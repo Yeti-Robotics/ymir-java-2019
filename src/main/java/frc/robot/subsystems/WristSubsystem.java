@@ -12,6 +12,7 @@ import com.ctre.phoenix.motorcontrol.FeedbackDevice;
 
 import edu.wpi.first.wpilibj.command.Subsystem;
 import frc.robot.RobotMap;
+import frc.robot.commands.wrist.JoystickWristCommand;
 import frc.robot.controls.CustomTalon;
 
 /**
@@ -26,25 +27,23 @@ public class WristSubsystem extends Subsystem {
     
     wristTal = new CustomTalon(RobotMap.WRIST_TALON);
 
-    // wristTal.configSelectedFeedbackSensor(FeedbackDevice.QuadEncoder);
+    wristTal.configSelectedFeedbackSensor(FeedbackDevice.QuadEncoder);
 
     
 
     
-    // wristTal.configContinuousCurrentLimit(RobotMap.WRIST_CONT_CURRENT_LIMIT);
-    // wristTal.configPeakCurrentLimit(RobotMap.WRIST_PEAK_CURRENT_LIMIT);
-    // wristTal.configPeakCurrentDuration(RobotMap.WRIST_PEAK_CURRENT_DURATION);
-    // wristTal.enableCurrentLimit(true);
+    wristTal.configContinuousCurrentLimit(RobotMap.WRIST_CONT_CURRENT_LIMIT);
+    wristTal.configPeakCurrentLimit(RobotMap.WRIST_PEAK_CURRENT_LIMIT);
+    wristTal.configPeakCurrentDuration(RobotMap.WRIST_PEAK_CURRENT_DURATION);
+    wristTal.enableCurrentLimit(true);
 
-
-    // wristTal.configContinuousCurrentLimit(15);
-    // wristTal.configPeakCurrentLimit(25);
-    // wristTal.configPeakCurrentDuration(200);
+    wristTal.configForwardSoftLimitThreshold(RobotMap.WRIST_LOWER_ENCODER_LIMIT);
+    wristTal.configReverseSoftLimitThreshold(RobotMap.WRIST_UPPER_ENCODER_LIMIT);
   }
 
 
   public void printEncoders() {
-    System.out.println("Wrist: " + wristTal.getSelectedSensorPosition());
+    System.out.println("Wrist: " + getWristEncoderValue());
   }
 
   public void useWrist(double power){
@@ -61,11 +60,12 @@ public class WristSubsystem extends Subsystem {
   }
 
   public double getWristEncoderValue(){
-    return wristTal.getSelectedSensorPosition()*RobotMap.WRIST_DEGREES_PER_PULSE;
+    return wristTal.getSelectedSensorPosition() * RobotMap.WRIST_DEGREES_PER_PULSE;
   }
 
+
   public void initDefaultCommand() {
-  
+    setDefaultCommand(new JoystickWristCommand());
   }
 
 }

@@ -179,6 +179,7 @@ public class Robot extends TimedRobot {
     SmartDashboard.putBoolean("Beam Break sensor", rollerBarSubsystem.getBeamBreakSensor());
     SmartDashboard.putNumber("azimuth", jevois.getAzimuth());
     SmartDashboard.putNumber("vision distance", VisionProcessor.getCenterDistance(latestContours[0], latestContours[1]));
+    SmartDashboard.putNumber("Wrist encoder value", wristSubsystem.getWristEncoderValue());
     rootNetworkTable.getEntry("Auto deploy level").setNumber(elevatorSubsystem.getLevel() + 2);
     // SmartDashboard.putNumber("Gyro Angle", drivetrainSubsystem.getAngle());
     if(Robot.hatchPanelSubsystem.getHatchPanelDeployState() == HatchPanelSubsystem.HatchPanelDeployState.DEPLOY) {

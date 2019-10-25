@@ -33,52 +33,14 @@ public class OI {
   private Joystick leftJoy, rightJoy, secondaryJoy, driverStationJoy;
 
   public OI() {
-    // Creates joystick objects for use
-    // driverStationJoy = new Joystick(RobotMap.DRIVERSTATION_JOYSTICK);
     leftJoy = new Joystick(0);
     rightJoy = new Joystick(1);
     secondaryJoy = new Joystick(2);
 
 
-    // Left joystick buttons
-    // setJoystickButtonWhenPressedCommand(driverStationJoy, 11, new ToggleShiftingCommand());
-
-    // // Right joystick buttons
-    // setJoystickButtonWhenPressedCommand(driverStationJoy, 12, new AutoDeployCommandGroup());
-
-    // // Secondary Joystick Buttons
-    // setJoystickButtonWhileHeldCommand(driverStationJoy, 6, new IntakeBallCommand());
-    // setJoystickButtonWhenPressedCommand(driverStationJoy, 7, new SetElevatorDeployLevelCommand(0));
-    // setJoystickButtonWhenPressedCommand(driverStationJoy, 8, new SetElevatorDeployLevelCommand(1));
-    // setJoystickButtonWhenPressedCommand(driverStationJoy, 9, new SetElevatorDeployLevelCommand(2));
-    // setJoystickButtonWhenPressedCommand(driverStationJoy, 10, new CloseIntakeDeployInCommandGroup());
-
-    // setJoystickButtonWhileHeldCommand(driverStationJoy, 1, new LaunchBallCommand());
-    // setJoystickButtonWhenPressedCommand(driverStationJoy, 2, new ToggleClimberCommand());
-    // setJoystickButtonWhenPressedCommand(driverStationJoy, 3, new SetRobotDeployStateCommand(Robot.DeployState.BALL));
-    // setJoystickButtonWhenPressedCommand(driverStationJoy, 4, new SetRobotDeployStateCommand(Robot.DeployState.HATCH_PANEL));
-    // setJoystickButtonWhenPressedCommand(driverStationJoy, 5, new CancelCommandsCommand());
-
-    //Old Setup
-  //  setJoystickButtonWhenPressedCommand(driverStationJoy, 11, new ToggleShiftingCommand());
-
-  //  setJoystickButtonWhenPressedCommand(driverStationJoy, 12, new DeployHatchPanelCommandGroup());
-
-  //  setJoystickButtonWhileHeldCommand(driverStationJoy, 6, new IntakeBallCommand());
-  //  setJoystickButtonWhenPressedCommand(driverStationJoy, 7, new AutoMoveElevatorUpCommandGroup());
-  //  setJoystickButtonWhenPressedCommand(driverStationJoy, 8, new SetRobotDeployStateCommand(Robot.DeployState.HATCH_PANEL));
-  //  setJoystickButtonWhenPressedCommand(driverStationJoy, 9, new IntakeDiskCommandGroup());
-  // //  setJoystickButtonWhileHeldCommand(driverStationJoy, 10, new DriveToTargetCommandGroup());
-
-  //  setJoystickButtonWhileHeldCommand(driverStationJoy, 1, new LaunchBallCommand());
-  //  setJoystickButtonWhenPressedCommand(driverStationJoy, 2, new AutoMoveElevatorDownCommandGroup());
-  //  setJoystickButtonWhenPressedCommand(driverStationJoy, 3, new SetRobotDeployStateCommand(Robot.DeployState.BALL));
-  //  setJoystickButtonWhenPressedCommand(driverStationJoy, 4, new CloseIntakeDeployInCommandGroup());
-  //  setJoystickButtonWhenPressedCommand(driverStationJoy, 5, new ToggleClimberCommand());
-    //Old setup
-
 
     setJoystickButtonWhenPressedCommand(leftJoy, 1, new ToggleShiftingCommand());
+
     setJoystickButtonWhenPressedCommand(rightJoy, 1, new ToggleClawCommand());
 
     setJoystickButtonWhileHeldCommand(secondaryJoy, 1, new IntakeBallCommand());
@@ -95,19 +57,19 @@ public class OI {
   // Gets the Y direction of the left drive joystick
   public double getLeftY() {
     // return driverStationJoy.getRawAxis(RobotMap.DRIVERSTATION_LEFT_Y_AXIS);
-    return leftJoy.getRawAxis(RobotMap.DRIVERSTATION_LEFT_Y_AXIS);
+    return leftJoy.getY();
   }
 
-  // Gets the Y direction of the left drive joystick
+  // Gets the X direction of the left drive joystick
   public double getLeftX() {
-    return driverStationJoy.getRawAxis(0);
+    return leftJoy.getX();
   }
   
 
   // Gets the Y direction of the right drive joystick
   public double getRightY() {
     // return driverStationJoy.getRawAxis(RobotMap.DRIVERSTATION_LEFT_Y_AXIS);
-    return rightJoy.getRawAxis(RobotMap.DRIVERSTATION_RIGHT_Y_AXIS);
+    return rightJoy.getY();
   }
 
   // Gets the X direction of the right drive joystick
