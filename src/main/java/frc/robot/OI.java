@@ -35,10 +35,10 @@ public class OI {
 
   public OI() {
     // Creates joystick objects for use
-    // driverStationJoy = new Joystick(RobotMap.DRIVERSTATION_JOYSTICK);
-    leftJoy = new Joystick(0);
-    rightJoy = new Joystick(1);
-    secondaryJoy = new Joystick(2);
+    driverStationJoy = new Joystick(RobotMap.DRIVERSTATION_JOYSTICK);
+    // leftJoy = new Joystick(0);
+    // rightJoy = new Joystick(1);
+    // secondaryJoy = new Joystick(2);
 
 
     // Left joystick buttons
@@ -80,30 +80,29 @@ public class OI {
 
   // Gets the Y direction of the left drive joystick
   public double getLeftY() {
-    return driverStationJoy.getRawAxis(RobotMap.DRIVERSTATION_LEFT_Y_AXIS);
+    return driverStationJoy.getRawAxis(1);
     // return leftJoy.getRawAxis(RobotMap.DRIVERSTATION_LEFT_Y_AXIS);
   }
 
   // Gets the Y direction of the left drive joystick
   public double getLeftX() {
-    return driverStationJoy.getRawAxis(0);
+    return driverStationJoy.getX();
   }
   
 
   // Gets the Y direction of the right drive joystick
   public double getRightY() {
-    return driverStationJoy.getRawAxis(RobotMap.DRIVERSTATION_LEFT_Y_AXIS);
+    return driverStationJoy.getRawAxis(3);
     // return rightJoy.getRawAxis(RobotMap.DRIVERSTATION_RIGHT_Y_AXIS);
   }
 
   // Gets the X direction of the right drive joystick
   public double getRightX() {
-    return rightJoy.getX();
+    return driverStationJoy.getX();
   }
 
-  public double getSecondaryY(){
-    return secondaryJoy.getY();
-  }
+  
+  
 
   private void setJoystickButtonWhenPressedCommand(GenericHID joystick, int button, Command command) {
     new JoystickButton(joystick, button).whenPressed(command);
