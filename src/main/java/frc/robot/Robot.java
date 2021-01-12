@@ -99,9 +99,8 @@ public class Robot extends TimedRobot {
     cam.setVideoMode(VideoMode.PixelFormat.kMJPEG, 200, 150, 30);
     cam.setBrightness(50);
 
-    // UsbCamera jevoisView = CameraServer.getInstance().startAutomaticCapture(1);
-    // jevoisView.setVideoMode(VideoMode.PixelFormat.kYUYV, 320, 240, 30);
-
+    UsbCamera jevoisView = CameraServer.getInstance().startAutomaticCapture(1);
+    jevoisView.setVideoMode(VideoMode.PixelFormat.kYUYV, 320, 240, 30);
 
     new Timer().scheduleAtFixedRate(new TimerTask(){
       long lastLoop = System.currentTimeMillis();
@@ -197,6 +196,7 @@ public class Robot extends TimedRobot {
 
     if (latestContours != null) {
 
+      jevois.parseStream();
     // System.out.println("left: " + VisionProcessor.getLeftDistance(latestContours[0], latestContours[1]) + ", right: " + VisionProcessor.getRightDistance(latestContours[0], latestContours[1]));
     // System.out.println(VisionProcessor.boundRect(latestContours[0], latestContours[1]).width);
     // System.out.println(VisionProcessor.getAverageDistance(latestContours[0], latestContours[1]));

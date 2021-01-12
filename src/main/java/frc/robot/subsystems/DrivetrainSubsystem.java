@@ -68,7 +68,7 @@ public class DrivetrainSubsystem extends PIDSubsystem {
         lineSensorCenter = new AnalogInput(RobotMap.CENTER_LINE_FOLLOWER_PORT);
         lineSensorRight = new AnalogInput(RobotMap.RIGHT_LINE_FOLLOWER_PORT);
 
-        driveMode = DriveMode.TANK;
+        driveMode = DriveMode.CHEEZY;
     }
 
 

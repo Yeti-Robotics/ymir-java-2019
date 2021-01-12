@@ -11,8 +11,8 @@ import com.ctre.phoenix.motorcontrol.ControlMode;
 import com.ctre.phoenix.motorcontrol.FeedbackDevice;
 
 import edu.wpi.first.wpilibj.command.Subsystem;
-import frc.robot.RobotMap;
-import frc.robot.commands.wrist.JoystickWristCommand;
+import frc.robot.RobotMap;            
+import frc.robot.commands.wrist.UserWristCommand;
 import frc.robot.controls.CustomTalon;
 
 /**
@@ -20,18 +20,14 @@ import frc.robot.controls.CustomTalon;
  */
 public class WristSubsystem extends Subsystem {
   
-  private CustomTalon wristTal;
+  private final CustomTalon wristTal;
 
+  public WristSubsystem() {
 
-  public WristSubsystem(){
-    
     wristTal = new CustomTalon(RobotMap.WRIST_TALON);
 
     wristTal.configSelectedFeedbackSensor(FeedbackDevice.QuadEncoder);
 
-    
-
-    
     wristTal.configContinuousCurrentLimit(RobotMap.WRIST_CONT_CURRENT_LIMIT);
     wristTal.configPeakCurrentLimit(RobotMap.WRIST_PEAK_CURRENT_LIMIT);
     wristTal.configPeakCurrentDuration(RobotMap.WRIST_PEAK_CURRENT_DURATION);
@@ -41,12 +37,11 @@ public class WristSubsystem extends Subsystem {
     wristTal.configReverseSoftLimitThreshold(RobotMap.WRIST_UPPER_ENCODER_LIMIT);
   }
 
-
   public void printEncoders() {
     System.out.println("Wrist: " + getWristEncoderValue());
   }
 
-  public void useWrist(double power){
+  public void useWrist(final double power) {
     wristTal.set(ControlMode.PercentOutput, power);
   }
 
@@ -65,7 +60,7 @@ public class WristSubsystem extends Subsystem {
 
 
   public void initDefaultCommand() {
-    setDefaultCommand(new JoystickWristCommand());
+    setDefaultCommand(new UserWristCommand());
   }
 
 }

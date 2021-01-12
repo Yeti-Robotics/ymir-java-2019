@@ -61,7 +61,7 @@ public class JeVois {
     public Contour[] parseStream() {
         if (jevois != null) {
             String cameraOutput = jevois.readString();
-            // System.out.println(cameraOutput);
+            System.out.println("Output :" + cameraOutput);
 
             if (cameraOutput != null && !cameraOutput.trim().isEmpty()) {
                 List<Contour> contours = new ArrayList<Contour>();
