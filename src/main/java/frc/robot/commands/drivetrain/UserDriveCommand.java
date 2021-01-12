@@ -36,7 +36,7 @@ public class UserDriveCommand extends Command {
          break;
       case CHEEZY:
 //    	        Robot.drivetrainSubsystem.cheezyDrive(-Robot.oi.getRightX(), Robot.oi.getLeftY());
-            Robot.drivetrainSubsystem.cheezyDrive(Robot.oi.getLeftX(), -Robot.oi.getLeftY());
+            Robot.drivetrainSubsystem.cheezyDrive(-Robot.oi.getLeftX(), Robot.oi.getLeftY());
          break;
   }
   }
