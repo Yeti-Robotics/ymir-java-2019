@@ -64,7 +64,7 @@ public class OI {
 
   // Gets the X direction of the left drive joystick
   public double getLeftX() {
-    return leftJoy.getRawAxis(2);
+    return leftJoy.getRawAxis(0);
   }
   
 
@@ -76,7 +76,7 @@ public class OI {
 
   // Gets the X direction of the right drive joystick
   public double getRightX() {
-    return rightJoy.getX();
+    return rightJoy.getRawAxis(2);
   }
 
   public double getSecondaryY(){
