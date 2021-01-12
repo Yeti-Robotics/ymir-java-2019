@@ -16,6 +16,7 @@ import frc.robot.commands.climber.ToggleClimberCommand;
 import frc.robot.commands.disk.CloseIntakeDeployInCommandGroup;
 import frc.robot.commands.disk.IntakeDiskCommandGroup;
 import frc.robot.commands.disk.ToggleClawCommand;
+import frc.robot.commands.drivetrain.SetDriveModeCommand;
 import frc.robot.commands.drivetrain.ToggleShiftingCommand;
 import frc.robot.commands.groups.AutoMoveElevatorDownCommandGroup;
 import frc.robot.commands.groups.AutoMoveElevatorUpCommandGroup;
@@ -24,6 +25,7 @@ import frc.robot.commands.rollerbar.IntakeBallCommand;
 import frc.robot.commands.rollerbar.LaunchBallCommand;
 import frc.robot.commands.wrist.ManualMoveWristDownCommand;
 import frc.robot.commands.wrist.ManualMoveWristUpCommand;
+import frc.robot.subsystems.DrivetrainSubsystem.DriveMode;
 
 /**
  * This class is the glue that binds the controls on the physical operator
@@ -43,8 +45,8 @@ public class OI {
 
     setJoystickButtonWhenPressedCommand(rightJoy, 1, new ToggleClawCommand());
 
-    setJoystickButtonWhileHeldCommand(secondaryJoy, 1, new IntakeBallCommand());
-    setJoystickButtonWhileHeldCommand(secondaryJoy, 2, new LaunchBallCommand());
+    setJoystickButtonWhileHeldCommand(secondaryJoy, 1, new SetDriveModeCommand(DriveMode.TANK));
+    setJoystickButtonWhileHeldCommand(secondaryJoy, 2, new SetDriveModeCommand(DriveMode.CHEEZY));
     setJoystickButtonWhileHeldCommand(secondaryJoy, 4, new ManualMoveWristDownCommand());
     setJoystickButtonWhileHeldCommand(secondaryJoy, 6, new ManualMoveWristUpCommand());
     setJoystickButtonWhenPressedCommand(secondaryJoy, 7, new AutoMoveElevatorDownCommandGroup());
