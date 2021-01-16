@@ -56,8 +56,9 @@ public class OI {
     driverStationJoy = new Joystick(0);
 
     setJoystickButtonWhenPressedCommand(driverStationJoy, 11, new ToggleShiftingCommand());
-    setJoystickButtonWhileHeldCommand(driverStationJoy, 1, new SetDriveModeCommand(DriveMode.TANK));
-    setJoystickButtonWhileHeldCommand(driverStationJoy, 2, new SetDriveModeCommand(DriveMode.CHEEZY));
+    setJoystickButtonWhenPressedCommand(driverStationJoy, 1, new SetDriveModeCommand(DriveMode.TANK));
+    setJoystickButtonWhenPressedCommand(driverStationJoy, 2, new SetDriveModeCommand(DriveMode.CHEEZY));
+    setJoystickButtonWhenPressedCommand(driverStationJoy, 3, new SetDriveModeCommand(DriveMode.ARCADE));
 
   }
 
@@ -71,7 +72,8 @@ public class OI {
 
   // Gets the Y direction of the left drive joystick
   public double getLeftX() {
-    return driverStationJoy.getX();
+    // return driverStationJoy.getX();
+    return driverStationJoy.getRawAxis(0);
   }
 
   // Gets the Y direction of the right drive joystick
@@ -86,7 +88,8 @@ public class OI {
 
   // Gets the X direction of the right drive joystick
   public double getRightX() {
-    return driverStationJoy.getX();
+    // return driverStationJoy.getX();
+    return driverStationJoy.getRawAxis(2);
   }
 
 
