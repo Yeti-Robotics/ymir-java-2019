@@ -69,6 +69,7 @@ public class DrivetrainSubsystem extends PIDSubsystem {
         lineSensorRight = new AnalogInput(RobotMap.RIGHT_LINE_FOLLOWER_PORT);
 
         driveMode = DriveMode.TANK;
+        System.out.println("tank tank");
     }
 
 

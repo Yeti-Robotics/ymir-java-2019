@@ -35,11 +35,10 @@ public class OI {
   private Joystick leftJoy, rightJoy, secondaryJoy, driverStationJoy;
 
   public OI() {
+    /*
     leftJoy = new Joystick(0);
     rightJoy = new Joystick(1);
     secondaryJoy = new Joystick(2);
-
-
 
     setJoystickButtonWhenPressedCommand(leftJoy, 1, new ToggleShiftingCommand());
 
@@ -53,31 +52,43 @@ public class OI {
     setJoystickButtonWhenPressedCommand(secondaryJoy, 8, new AutoMoveElevatorUpCommandGroup());
     setJoystickButtonWhenPressedCommand(secondaryJoy, 9, new SetRobotDeployStateCommand(Robot.DeployState.HATCH_PANEL));
     setJoystickButtonWhenPressedCommand(secondaryJoy, 10, new SetRobotDeployStateCommand(Robot.DeployState.BALL));
+*/
+    driverStationJoy = new Joystick(0);
 
+    setJoystickButtonWhenPressedCommand(driverStationJoy, 11, new ToggleShiftingCommand());
+    setJoystickButtonWhileHeldCommand(driverStationJoy, 1, new SetDriveModeCommand(DriveMode.TANK));
+    setJoystickButtonWhileHeldCommand(driverStationJoy, 2, new SetDriveModeCommand(DriveMode.CHEEZY));
+
+  }
+
+  public double getLeftY() {
+    if(driverStationJoy.getRawAxis(1) >= .1 || driverStationJoy.getRawAxis(1) <= -.1){
+      return driverStationJoy.getRawAxis(1);
+    }else{
+      return 0;
+    }
   }
 
   // Gets the Y direction of the left drive joystick
-  public double getLeftY() {
-    // return driverStationJoy.getRawAxis(RobotMap.DRIVERSTATION_LEFT_Y_AXIS);
-    return leftJoy.getRawAxis(1);
-  }
-
-  // Gets the X direction of the left drive joystick
   public double getLeftX() {
-    return leftJoy.getRawAxis(0);
+    return driverStationJoy.getX();
   }
-  
 
   // Gets the Y direction of the right drive joystick
   public double getRightY() {
-    // return driverStationJoy.getRawAxis(RobotMap.DRIVERSTATION_LEFT_Y_AXIS);
-    return rightJoy.getRawAxis(3);
+
+    if(driverStationJoy.getRawAxis(3) >= .1 || driverStationJoy.getRawAxis(3) <= -.1){
+      return driverStationJoy.getRawAxis(3);
+    }else{
+      return 0;
+    }
   }
 
   // Gets the X direction of the right drive joystick
   public double getRightX() {
-    return rightJoy.getRawAxis(2);
+    return driverStationJoy.getX();
   }
+
 
   public double getSecondaryY(){
     return secondaryJoy.getY();

@@ -14,7 +14,7 @@ public class SetDriveModeCommand extends Command {
     public SetDriveModeCommand(DriveMode driveMode) {
         this.driveMode = driveMode;
         requires(Robot.drivetrainSubsystem);
-   
+        System.out.println("drive mode is: " + driveMode);
   }
 
   // Called just before this Command runs the first time
