@@ -23,7 +23,7 @@ public class UserWristCommand extends Command {
   // Called repeatedly when this Command is scheduled to run
   @Override
   protected void execute() {
-    Robot.wristSubsystem.useWrist(-Robot.oi.getRightY());
+    // Robot.wristSubsystem.useWrist(-Robot.oi.getRightY());
   }
 
   // Make this return true when this Command no longer needs to run execute()
